@@ -1,4 +1,4 @@
-=== Provenexpert ===
+=== ProvenExpert ===
 Contributors: provenexpert, laolaweb, threadi
 Tags: provenexpert
 Requires at least: 4.9.24
@@ -24,6 +24,12 @@ Official WordPress plugin to add widgets from ProvenExpert on your website.
 
 The development repository is on [GitHub](https://github.com/provenexpert/wordpress-plugin).
 
+We also provide a number of [hooks](https://github.com/provenexpert/wordpress-plugin/blob/master/doc/hooks.md) as help for developers.
+
+#### ClassicPress
+
+This plugin is compatible with [ClassicPress](https://www.classicpress.net/).
+
 ---
 
 == Installation ==
@@ -40,5 +46,5 @@ The plugin can be installed even without ProvenExpert account. However, it is no
 
 == Changelog ==
 
-= 1.0.0 =
+= @@VersionNumber@@ =
 * Initial release

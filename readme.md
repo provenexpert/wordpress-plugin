@@ -6,7 +6,7 @@ This repository provides the features of the WordPress plugin _ProvenExpert_. Th
 
 ## Preparations
 
-Add this in your wp-config.php for development:
+Add this in your `wp-config.php` for development:
 
 ```
 define( 'WP_ENVIRONMENT_TYPE', 'local' );
@@ -14,8 +14,8 @@ define( 'WP_DEVELOPMENT_MODE', 'plugin' );
 ```
 
 You need to install:
+* composer
 * npm
-* node
 * wp-cli
 
 ## Usage
@@ -38,7 +38,7 @@ After checkout go through the following steps:
 Translations of this plugin are managed by https://translate.wordpress.org. It is not necessary to generate our own language files,
 although this is possible and sometimes helpful to detect possible errors.
 
-I recommend to use [PoEdit](https://poedit.net/) to translate texts for this plugin.
+We recommend to use [PoEdit](https://poedit.net/) to translate texts for this plugin.
 
 ### generate pot-file
 

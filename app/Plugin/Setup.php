@@ -106,11 +106,14 @@ class Setup {
 
 		// create return URL depending on permalink settings.
 		$return_url = add_query_arg(
-			array( 'provenexpertplugin' => 1, 'hash' => $hash ),
+			array(
+				'provenexpertplugin' => 1,
+				'hash'               => $hash,
+			),
 			trailingslashit( get_option( 'home' ) )
 		);
-		if( ! empty( get_option( 'permalink_structure' ) ) ) {
-			$return_url = get_option( 'home' ). '/provenexpertplugin/' . $hash . '/';
+		if ( ! empty( get_option( 'permalink_structure' ) ) ) {
+			$return_url = get_option( 'home' ) . '/provenexpertplugin/' . $hash . '/';
 		}
 
 		// collect the URL.
@@ -165,7 +168,7 @@ class Setup {
 		$provenexpert = get_query_var( 'provenexpert' );
 
 		// if no provenexpert is set, check the URL-param.
-		if( empty( $provenexpert ) ) {
+		if ( empty( $provenexpert ) ) {
 			$provenexpert = filter_input( INPUT_GET, 'provenexpertplugin', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 		}
 
