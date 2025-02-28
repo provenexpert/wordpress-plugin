@@ -2,7 +2,7 @@
   "name": "@provenexpert/provenexpert",
   "version": "1.0.0",
   "description": "Add widgets from ProvenExpert in your website.",
-  "author": "laOlaWeb GmbH",
+  "author": "ProvenExpert",
   "license": "GPL-2.0-or-later",
   "scripts": {
     "build": "concurrently --kill-others \"npm run build:awards\" \"npm run build:bar\" \"npm run build:circle\" \"npm run build:landing\" \"npm run build:proseal\" \"npm run build:seal\"",
