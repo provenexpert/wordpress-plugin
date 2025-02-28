@@ -1,0 +1,61 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "provenexpert/seal",
+	"version": "1.0.0",
+	"title": "ProvenExpert Seal",
+	"category": "widgets",
+	"description": "Provides a block to show your ProvenExpert Seal.",
+	"keywords": ["ProvenExpert"],
+	"supports": {},
+	"textdomain": "provenexpert",
+	"editorScript": "file:build/index.js",
+	"editorStyle": "file:build/index.css",
+    "style": "file:build/style-index.css",
+	"attributes": {
+        "preview": {
+            "type": "boolean",
+            "default": false
+        },
+		"blockId": {
+			"type": "string"
+		},
+        "width": {
+            "type": "integer",
+            "default": 250
+        },
+        "feedback": {
+            "type": "boolean",
+            "default": false
+        },
+        "slider": {
+            "type": "boolean",
+            "default": false
+        },
+        "fixed": {
+            "type": "boolean",
+            "default": false
+        },
+        "origin": {
+            "type": "string",
+            "default": "bottom"
+        },
+        "position": {
+            "type": "integer",
+            "default": 0
+        },
+        "side": {
+            "type": "string",
+            "default": "right"
+        },
+        "seal_type": {
+            "type": "string",
+            "default": "portrait"
+        }
+    },
+	"example": {
+		"attributes": {
+            "preview": true
+        }
+	}
+}

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="provenexpert" basedir="." default="help">
+
+    <!-- Include config file containing  -->
+    <loadproperties srcFile="build.properties" />
+
+    <!-- Sets variables which can later be used. -->
+    <property name="src.dir" location="../" />
+    <property name="build.dir" location="../releases" />
+    <property name="log.dir" location="./" />
+
+    <!-- check for necessary vars -->
+    <fail unless="plugin.slug" />
+    <fail unless="plugin.version" />
+    <fail unless="npm.path" />
+    <fail unless="composer.path" />
+    <fail message="Do not run as root!">
+        <condition>
+            <equals arg1="root" arg2="${user.name}"/>
+        </condition>
+    </fail>
+
+    <!-- install composer -->
+    <target name="composer-install">
+        <delete file="${log.dir}/composer-install.txt"/>
+        <delete file="${log.dir}/composer-update.txt"/>
+        <exec dir="${src.dir}" failonerror="true" executable="${composer.path}" output="${log.dir}/composer-install.txt">
+            <arg line="install"/>
+        </exec>
+        <exec dir="${src.dir}" failonerror="true" executable="${composer.path}" output="${log.dir}/composer-update.txt">
+            <arg line="update"/>
+        </exec>
+    </target>
+
+    <!-- generate autoloader for release -->
+    <target name="autoloader-generation">
+        <delete file="${log.dir}/autoloader-generation.txt"/>
+        <exec dir="${src.dir}" failonerror="true" executable="${composer.path}" output="${log.dir}/autoloader-generation.txt">
+            <arg line="dump-autoload -oa --no-dev"/>
+        </exec>
+    </target>
+
+    <!-- generate autoloader for dev -->
+    <target name="autoloader-generation-dev">
+        <delete file="${log.dir}/autoloader-generation-dev.txt"/>
+        <exec dir="${src.dir}" failonerror="true" executable="${composer.path}" output="${log.dir}/autoloader-generation-dev.txt">
+            <arg line="dump-autoload -oa"/>
+        </exec>
+    </target>
+
+    <!-- install npm -->
+    <target name="npm-install">
+        <delete file="${log.dir}/npm-install1.txt"/>
+        <delete file="${log.dir}/npm-install2.txt"/>
+        <delete file="${log.dir}/npm-install3.txt"/>
+        <delete file="${log.dir}/npm-install4.txt"/>
+        <exec dir="${src.dir}" failonerror="true" executable="${npm.path}" output="${log.dir}/npm-install1.txt">
+            <arg line="install"/>
+        </exec>
+        <exec dir="${src.dir}" failonerror="true" executable="${npm.path}" output="${log.dir}/npm-install2.txt">
+            <arg line="install concurrently"/>
+        </exec>
+        <exec dir="${src.dir}/vendor/threadi/easy-dialog-for-wordpress/" failonerror="true" executable="${npm.path}" output="${log.dir}/npm-install3.txt">
+            <arg line="install"/>
+        </exec>
+     </target>
+
+    <!-- build the Blocks via npm -->
+    <target name="npm-build" depends="npm-install">
+        <delete file="${log.dir}/npm-build1.txt"/>
+        <delete file="${log.dir}/npm-build2.txt"/>
+        <delete file="${log.dir}/npm-build3.txt"/>
+        <delete file="${log.dir}/npm-build4.txt"/>
+        <delete file="${log.dir}/npm-build5.txt"/>
+        <delete file="${log.dir}/npm-build6.txt"/>
+        <delete file="${log.dir}/npm-build7.txt"/>
+        <exec dir="${src.dir}" failonerror="true" executable="${npm.path}" output="${log.dir}/npm-build1.txt">
+            <arg line="run build:awards"/>
+        </exec>
+        <exec dir="${src.dir}" failonerror="true" executable="${npm.path}" output="${log.dir}/npm-build2.txt">
+            <arg line="run build:bar"/>
+        </exec>
+        <exec dir="${src.dir}" failonerror="true" executable="${npm.path}" output="${log.dir}/npm-build3.txt">
+            <arg line="run build:circle"/>
+        </exec>
+        <exec dir="${src.dir}" failonerror="true" executable="${npm.path}" output="${log.dir}/npm-build4.txt">
+            <arg line="run build:landing"/>
+        </exec>
+        <exec dir="${src.dir}" failonerror="true" executable="${npm.path}" output="${log.dir}/npm-build5.txt">
+            <arg line="run build:proseal"/>
+        </exec>
+        <exec dir="${src.dir}" failonerror="true" executable="${npm.path}" output="${log.dir}/npm-build6.txt">
+            <arg line="run build:seal"/>
+        </exec>
+        <exec dir="${src.dir}/vendor/threadi/easy-dialog-for-wordpress/" failonerror="true" executable="${npm.path}" output="${log.dir}/npm-build7.txt">
+            <arg line="run build"/>
+        </exec>
+    </target>
+
+    <!-- generate json-translations -->
+    <target name="json-translations" depends="npm-build">
+        <delete file="${src.dir}/languages/*.json"/>
+        <exec dir="${src.dir}" failonerror="true" executable="wp">
+            <arg line="i18n make-json languages --no-purge"/>
+        </exec>
+    </target>
+
+    <!-- generate php-translations -->
+    <target name="php-translations" depends="json-translations">
+        <delete>
+            <fileset dir="${src.dir}/languages/" includes="**/*.php"/>
+        </delete>
+        <exec dir="${src.dir}" failonerror="true" executable="wp">
+            <arg line="i18n make-php languages"/>
+        </exec>
+    </target>
+
+    <!-- set version number in plugin-file for the release -->
+    <target name="setVersionNumber">
+        <delete file="${build.dir}/${plugin.slug}-release.php"/>
+        <copy file="${src.dir}/${plugin.slug}.php" tofile="${src.dir}/${plugin.slug}-release.php"/>
+        <replace file="${src.dir}/${plugin.slug}-release.php">
+            <replacefilter token="@@VersionNumber@@" value="${plugin.version}" />
+        </replace>
+
+        <delete file="${build.dir}/uninstall-release.php"/>
+        <copy file="${src.dir}/uninstall.php" tofile="${src.dir}/uninstall-release.php"/>
+        <replace file="${src.dir}/uninstall-release.php">
+            <replacefilter token="@@VersionNumber@@" value="${plugin.version}" />
+        </replace>
+    </target>
+
+    <!-- check WCS compatibility -->
+    <target name="check-wcs" depends="composer-install">
+        <exec dir="${src.dir}" failonerror="false" executable="vendor/bin/phpcbf">
+            <arg line="--extensions=php --ignore=*/vendor/*,*/build/*,*/node_modules/*,*/blocks/*,*/svn/*,*/languages/* --standard=ruleset.xml ."/>
+        </exec>
+        <exec dir="${src.dir}" failonerror="true" executable="vendor/bin/phpcs">
+            <arg line="--extensions=php --ignore=*/vendor/*,*/build/*,*/node_modules/*,*/blocks/*,*/svn/*,*/languages/* --standard=ruleset.xml ."/>
+        </exec>
+    </target>
+
+    <!-- generate documentation -->
+    <target name="generate-documentation" depends="composer-install">
+        <exec dir="${src.dir}" failonerror="false" executable="vendor/bin/wp-documentor">
+            <arg line="parse app --format=markdown --output=doc/hooks.md --prefix=provenexpert"/>
+        </exec>
+    </target>
+
+    <!-- init project -->
+    <target name="init" description="initialize the project" depends="composer-install,npm-build" />
+
+    <!-- create release-zip -->
+    <target name="build" description="builds a new release" depends="init,generate-documentation,autoloader-generation,json-translations,php-translations,check-wcs,setVersionNumber">
+        <delete file="${build.dir}/${plugin.slug}_${plugin.version}.zip"/>
+        <zip destfile="${build.dir}/${plugin.slug}_${plugin.version}.zip" comment="${plugin.slug} ${plugin.version} release">
+            <zipfileset dir="${src.dir}/admin" prefix="${plugin.slug}/admin" />
+            <zipfileset dir="${src.dir}/app" prefix="${plugin.slug}/app" />
+            <zipfileset dir="${src.dir}/blocks/awards/" includes="block.json" prefix="${plugin.slug}/blocks/awards/" />
+            <zipfileset dir="${src.dir}/blocks/awards/build" prefix="${plugin.slug}/blocks/awards/build" />
+            <zipfileset dir="${src.dir}/blocks/bar/" includes="block.json" prefix="${plugin.slug}/blocks/bar/" />
+            <zipfileset dir="${src.dir}/blocks/bar/build" prefix="${plugin.slug}/blocks/bar/build" />
+            <zipfileset dir="${src.dir}/blocks/circle/" includes="block.json" prefix="${plugin.slug}/blocks/circle/" />
+            <zipfileset dir="${src.dir}/blocks/circle/build" prefix="${plugin.slug}/blocks/circle/build" />
+            <zipfileset dir="${src.dir}/blocks/landing/" includes="block.json" prefix="${plugin.slug}/blocks/landing/" />
+            <zipfileset dir="${src.dir}/blocks/landing/build" prefix="${plugin.slug}/blocks/landing/build" />
+            <zipfileset dir="${src.dir}/blocks/proseal/" includes="block.json" prefix="${plugin.slug}/blocks/proseal/" />
+            <zipfileset dir="${src.dir}/blocks/proseal/build" prefix="${plugin.slug}/blocks/proseal/build" />
+            <zipfileset dir="${src.dir}/blocks/seal/" includes="block.json" prefix="${plugin.slug}/blocks/seal/" />
+            <zipfileset dir="${src.dir}/blocks/seal/build" prefix="${plugin.slug}/blocks/seal/build" />
+            <zipfileset dir="${src.dir}/gfx" prefix="${plugin.slug}/gfx" />
+            <zipfileset dir="${src.dir}/inc" prefix="${plugin.slug}/inc" />
+            <zipfileset dir="${src.dir}/languages" prefix="${plugin.slug}/languages" />
+            <zipfileset dir="${src.dir}/lib" prefix="${plugin.slug}/lib" />
+            <zipfileset dir="${src.dir}/vendor" includes="autoload.php" fullpath="${plugin.slug}/vendor/autoload.php" />
+            <zipfileset dir="${src.dir}/vendor/composer" prefix="${plugin.slug}/vendor/composer" />
+            <zipfileset dir="${src.dir}/vendor/threadi/easy-dialog-for-wordpress/build/" prefix="${plugin.slug}/vendor/threadi/easy-dialog-for-wordpress/build/" />
+            <zipfileset dir="${src.dir}" includes="readme.txt" prefix="${plugin.slug}" />
+            <zipfileset dir="${src.dir}" includes="uninstall-release.php" fullpath="${plugin.slug}/uninstall.php" />
+            <zipfileset dir="${src.dir}" includes="${plugin.slug}-release.php" fullpath="${plugin.slug}/${plugin.slug}.php" />
+        </zip>
+        <antcall target="autoloader-generation-dev" />
+        <delete file="${src.dir}/${plugin.slug}-release.php"/>
+		<delete file="${src.dir}/uninstall-release.php"/>
+    </target>
+
+    <target name="help">
+        <java classname="org.apache.tools.ant.Main">
+            <arg value="-projecthelp" />
+            <arg value="-buildfile" />
+            <arg value="build.xml" />
+        </java>
+    </target>
+
+</project>

@@ -1,0 +1,11 @@
+/.idea
+/blocks/awards/build/
+/blocks/bar/build/
+/blocks/circle/build/
+/blocks/landing/build/
+/blocks/seal/build/
+/build/build.properties
+*.zip
+languages/*.json
+/vendor/
+

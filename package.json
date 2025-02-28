@@ -1,0 +1,37 @@
+{
+  "name": "@provenexpert/provenexpert",
+  "version": "1.0.0",
+  "description": "Add widgets from ProvenExpert in your website.",
+  "author": "laOlaWeb GmbH",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "build": "concurrently --kill-others \"npm run build:awards\" \"npm run build:bar\" \"npm run build:circle\" \"npm run build:landing\" \"npm run build:proseal\" \"npm run build:seal\"",
+    "format": "wp-scripts format",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "start": "concurrently --kill-others \"npm run start:awards\" \"npm run start:bar\" \"npm run start:circle\" \"npm run start:landing\" \"npm run start:proseal\" \"npm run start:seal\"",
+    "packages-update": "wp-scripts packages-update",
+    "start:awards": "wp-scripts start blocks/awards/src/index.js --output-path=blocks/awards/build/",
+    "build:awards": "wp-scripts build blocks/awards/src/index.js --output-path=blocks/awards/build/",
+    "start:bar": "wp-scripts start blocks/bar/src/index.js --output-path=blocks/bar/build/",
+    "build:bar": "wp-scripts build blocks/bar/src/index.js --output-path=blocks/bar/build/",
+    "start:circle": "wp-scripts start blocks/circle/src/index.js --output-path=blocks/circle/build/",
+    "build:circle": "wp-scripts build blocks/circle/src/index.js --output-path=blocks/circle/build/",
+    "start:landing": "wp-scripts start blocks/landing/src/index.js --output-path=blocks/landing/build/",
+    "build:landing": "wp-scripts build blocks/landing/src/index.js --output-path=blocks/landing/build/",
+    "start:proseal": "wp-scripts start blocks/proseal/src/index.js --output-path=blocks/proseal/build/",
+    "build:proseal": "wp-scripts build blocks/proseal/src/index.js --output-path=blocks/proseal/build/",
+    "start:seal": "wp-scripts start blocks/seal/src/index.js --output-path=blocks/seal/build/",
+    "build:seal": "wp-scripts build blocks/seal/src/index.js --output-path=blocks/seal/build/",
+    "make-pot": "wp i18n make-pot . languages/provenexpert.pot --exclude=blocks/circle/src/,svn/",
+    "make-json": "wp i18n make-json languages"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "~27.9",
+    "npm-pack-zip": "^1.3.0"
+  },
+  "dependencies": {
+    "@wordpress/i18n": "^5.3.0",
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,0 +1,1029 @@
+# Copyright (C) 2024 laOlaWeb
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: ProvenExpert @@VersionNumber@@\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/provenexpert\n"
+"POT-Creation-Date: 2025-02-18T12:52:26+00:00\n"
+"PO-Revision-Date: 2025-02-18 13:58+0100\n"
+"Last-Translator: Thomas Zwirner <tz@laolaweb.com>\n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Domain: provenexpert\n"
+
+#. Plugin Name of the plugin
+#. Author of the plugin
+#: provenexpert.php app/PageBuilder/BlockEditor/BlockEditor.php:101
+#: app/Plugin/Settings.php:389
+msgid "ProvenExpert"
+msgstr "ProvenExpert"
+
+#. Description of the plugin
+#: provenexpert.php
+msgid "Add widgets from ProvenExpert in your website."
+msgstr "Verwende Widgets von ProvenExpert in deiner Website."
+
+#. Author URI of the plugin
+#: provenexpert.php
+msgid "https://www.provenexpert.com"
+msgstr "https://www.provenexpert.com"
+
+#: app/Account/Account.php:138
+msgid ""
+"No API credentials set. Therefore cannot retrieve any account information."
+msgstr ""
+"Keine API-Anmeldeinformationen festgelegt. Daher können keine "
+"Kontoinformationen abgerufen werden."
+
+#: app/Account/Account.php:158
+msgid "ProvenExpert account is blocked or does not exist. Got following value:"
+msgstr ""
+"ProvenExpert-Konto ist gesperrt oder existiert nicht. Hat folgenden Wert "
+"erhalten:"
+
+#. translators: %1$s will be replaced by an email.
+#: app/Account/Account.php:169
+msgid ""
+"Your ProvenExpert account is not available. This plugin will no longer "
+"provide you with ProvenExpert options."
+msgstr ""
+"Ihr Provenexpert-Konto ist nicht verfügbar. Dieses Plugin stellt Ihnen keine "
+"ProvenExpert Optionen mehr zur Verfügung."
+
+#. translators: %1$s will be replaced by an email.
+#: app/Account/Account.php:169
+msgid ""
+"Please <a href=\"mailto:%1$s\">contact ProvenExpert Support</a> to clarify "
+"this."
+msgstr ""
+"Bitte <a href=\"mailto:%1$s\">kontaktieren Sie den ProvenExpert Support</a>, "
+"um dies zu klären."
+
+#: app/Account/Account.php:180
+msgid ""
+"ProvenExpert API is not available to validate your ProvenExpert account. Got "
+"following value:"
+msgstr ""
+"Provenexpert API ist nicht verfügbar, um Ihr ProvenExpert Konto zu "
+"validieren. Habe folgenden Wert erhalten:"
+
+#: app/Account/Account.php:192
+msgid ""
+"Got faulty response from ProvenExpert API regarding the account infos. Will "
+"try again later."
+msgstr ""
+"Habe eine fehlerhafte Antwort von ProvenExpert API bezüglich der "
+"Kontoinformationen erhalten. Werde es später erneut versuchen."
+
+#: app/Account/Account.php:204
+msgid ""
+"Got response from ProvenExpert API that account info was not successfully."
+msgstr ""
+"Ich habe eine Antwort von ProvenExpert API erhalten, dass die "
+"Kontoinformationen nicht erfolgreich waren."
+
+#: app/Account/Account.php:214
+msgid "Got account infos and saved them."
+msgstr "Ich habe die Kontoinformationen erhalten und gespeichert."
+
+#. translators: %1$s will be replaced by a URL, %2$s be an email.
+#: app/Account/Account.php:236
+msgid ""
+"No data could be retrieved for your ProvenExpert account. Details can be "
+"found in the <a href=\"%1$s\">log</a>. If you have any questions, please <a "
+"href=\"mailto:%2$s\">contact ProvenExpert support</a>."
+msgstr ""
+"Für Ihr ProvenExpert -Konto konnten keine Daten abgerufen werden. Details "
+"finden Sie im <a href=\"%1$s\">Protokoll</a>. Wenn Sie Fragen haben, wenden "
+"Sie sich bitte <a href=\"mailto:%2$s\">an den ProvenExpert Support</a>."
+
+#: app/Api/Api.php:168
+msgid "API is not configured."
+msgstr "API ist nicht konfiguriert."
+
+#. translators: %1$s will be replaced by the log URL.
+#: app/Api/Api.php:187
+msgid ""
+"The ProvenExpert API is disabled. Check <a href=\"%1$s\" "
+"target=\"_blank\">your logs (opens new window)</a>"
+msgstr ""
+"Die ProvenExpert API ist deaktiviert. Prüfe <a href=\"%1$s\" "
+"target=\"_blank\">deine Protokolle (öffnet neues Fenster)</a>"
+
+#: app/Api/Api.php:198 app/Plugin/Settings.php:141
+msgid "API"
+msgstr "API"
+
+#: app/Api/Api.php:285
+msgid "Unexpected HTTP-Status from ProvenExpert:"
+msgstr "Unerwarteter HTTP-Status von ProvenExpert:"
+
+#: app/Api/Api.php:297 app/Api/Api.php:309
+msgid "Got empty response from ProvenExpert!"
+msgstr "Ich habe eine leere Antwort von ProvenExpert erhalten!"
+
+#: app/Api/Api.php:318
+msgid "Plugin could not be connected to ProvenExpert!"
+msgstr "Das Plugin konnte nicht mit ProvenExpert verbunden werden!"
+
+#: app/Api/Api.php:327
+msgid "ProvenExpert does not send API credentials!"
+msgstr "ProvenExpert sendet keine API-Anmeldedaten!"
+
+#: app/Api/Api.php:341
+msgid "Your ProvenExpert account is now connected to your WordPress website."
+msgstr "Ihr ProvenExpert -Konto ist nun mit Ihrer WordPress-Website verbunden."
+
+#. translators: %1$s will be replaced with a URL.
+#: app/Api/Api.php:343
+msgid ""
+"You are now able to use the ProvenExpert widgets in your website. You can "
+"see which widgets you can use <a href=\"%1$s\">here</a>."
+msgstr ""
+"Sie können jetzt die ProvenExpert Widgets auf Ihrer Website verwenden. Sie "
+"können <a href=\"%1$s\">hier</a> sehen, welche Widgets Sie verwenden können."
+
+#: app/Api/Api.php:353
+msgid "Got API credentials from ProvenExpert and saved them."
+msgstr "API Zugangsdaten von ProvenExpert erhalten und gespeichert."
+
+#: app/Api/Api.php:394
+msgid "No plugin ID available. Disconnect impossible."
+msgstr "Keine Plugin-ID verfügbar. Trennen der Verbindung unmöglich."
+
+#: app/Api/Api.php:404
+msgid "No API ID and key available. Disconnect impossible."
+msgstr ""
+"Keine API-ID und kein Schlüssel verfügbar. Trennen der Verbindung unmöglich."
+
+#: app/Api/Api.php:427
+msgid "Plugin is already disconnected from ProvenExpert."
+msgstr "Das Plugin ist bereits mit ProvenExpert verbunden."
+
+#: app/Api/Api.php:441
+msgid "Plugin has been disconnected from ProvenExpert."
+msgstr "Das Plugin wurde von ProvenExpert getrennt."
+
+#: app/Api/Api.php:465
+msgid "Saved pluginId from ProvenExpert:"
+msgstr "PluginId von ProvenExpert gespeichert:"
+
+#: app/Api/Request.php:187
+msgid "The request to the ProvenExpert API resulted in an error: "
+msgstr "Die Anfrage an die ProvenExpert API führte zu einem Fehler: "
+
+#: app/Api/Request.php:202
+msgid "Hidden in log"
+msgstr "Versteckt im Protokoll"
+
+#. translators: %1$s will be replaced by a URL, %2$s will be replaced by the request, %3$s by the response.
+#: app/Api/Request.php:212
+msgid "URL: %1$s<br><br>Request: %2$s<br><br>Response: %3$s"
+msgstr "URL: %1$s<br><br>Anfrage: %2$s<br><br>Antwort: %3$s"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Awards.php:28
+msgid "ProvenExpert Awards"
+msgstr "ProvenExpert Auszeichnungen"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Awards.php:30
+msgid "Provides a widget to show your ProvenExpert Awards."
+msgstr "Stellt ein Widget zur Anzeige deiner ProvenExpert Awards bereit."
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Awards.php:48
+#: blocks/awards/build/index.js:92 blocks/awards/build/index.js:73
+msgid "Award type"
+msgstr "Art der Auszeichnung"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Awards.php:51
+#: blocks/awards/build/index.js:99 blocks/awards/build/index.js:79
+msgid "Recommend"
+msgstr "Empfehlen"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Awards.php:52
+#: blocks/awards/build/index.js:102 blocks/awards/build/index.js:80
+msgid "Topservice"
+msgstr "Topservice"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Awards.php:53
+#: blocks/awards/build/index.js:105 blocks/awards/build/index.js:81
+msgid "Top recommend"
+msgstr "Top empfehlen"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Awards.php:58
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Circle.php:48
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:58
+#: blocks/awards/build/index.js:108 blocks/circle/build/index.js:81
+#: blocks/seal/build/index.js:237 blocks/awards/build/index.js:85
+#: blocks/circle/build/index.js:65 blocks/seal/build/index.js:172
+msgid "Width"
+msgstr "Breite der Farbfelder von Schriftbildern"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Awards.php:65
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Circle.php:55
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:75
+#: blocks/seal/build/index.js:254 blocks/seal/build/index.js:192
+msgid "Dock seal on browser margin"
+msgstr "Siegel am Browserrand andocken"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Awards.php:70
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Circle.php:60
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:80
+#: blocks/awards/build/index.js:120 blocks/seal/build/index.js:259
+#: blocks/awards/build/index.js:99 blocks/seal/build/index.js:198
+msgid "Distance of seal measured from top or bottom browser margin?"
+msgstr ""
+"Ob der Abstand des Siegels vom oberen oder unteren Browserrand gemessen wird?"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Awards.php:73
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Circle.php:63
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:83
+#: blocks/awards/build/index.js:127 blocks/circle/build/index.js:100
+#: blocks/seal/build/index.js:266 blocks/awards/build/index.js:100
+#: blocks/circle/build/index.js:80 blocks/seal/build/index.js:199
+msgid "Top"
+msgstr "Oben"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Awards.php:74
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Circle.php:64
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/ProSeal.php:89
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:84
+#: blocks/awards/build/index.js:130 blocks/circle/build/index.js:103
+#: blocks/proseal/build/index.js:369 blocks/seal/build/index.js:269
+#: blocks/awards/build/index.js:101 blocks/circle/build/index.js:81
+#: blocks/proseal/build/index.js:302 blocks/seal/build/index.js:200
+msgid "Bottom"
+msgstr "Unten"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Awards.php:79
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Circle.php:69
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:89
+#: blocks/awards/build/index.js:132 blocks/circle/build/index.js:105
+#: blocks/seal/build/index.js:271 blocks/awards/build/index.js:104
+#: blocks/circle/build/index.js:84 blocks/seal/build/index.js:203
+msgid "Position"
+msgstr "Pixelabstand vom oberen bzw. unteren Browserrand"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Bar.php:28
+msgid "ProvenExpert Bar"
+msgstr "ProvenExpert Bar"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Bar.php:30
+msgid "Provides a widget to show your ProvenExpert Bar."
+msgstr ""
+"Stellt ein Widget zur Anzeige deines ProvenExpert Bewertungssiegels bereit."
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Bar.php:48
+msgid "Style"
+msgstr "Stil"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Bar.php:51
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Landing.php:51
+#: blocks/bar/build/index.js:90 blocks/landing/build/index.js:231
+#: blocks/bar/build/index.js:61 blocks/landing/build/index.js:163
+msgid "White"
+msgstr "Weiß"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Bar.php:52
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Landing.php:52
+#: blocks/bar/build/index.js:87 blocks/landing/build/index.js:228
+#: blocks/bar/build/index.js:60 blocks/landing/build/index.js:162
+msgid "Black"
+msgstr "Schwarz"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Bar.php:57
+msgid "Feedback"
+msgstr "Feedback"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Circle.php:28
+msgid "ProvenExpert Circle"
+msgstr "ProvenExpert Qualitätssiegel"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Circle.php:30
+msgid "Provides a widget to show your ProvenExpert Circle."
+msgstr ""
+"Stellt ein Widget zur Anzeige deines ProvenExpert Qualitätssiegel bereit."
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Circle.php:76
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:96
+#: blocks/circle/build/index.js:112 blocks/seal/build/index.js:278
+#: blocks/circle/build/index.js:91 blocks/seal/build/index.js:210
+msgid "Browser side on which ratings seal is docked"
+msgstr "Browserseite an der das Bewertungssiegel angedockt wird"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Circle.php:79
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/ProSeal.php:97
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:99
+#: blocks/circle/build/index.js:119 blocks/proseal/build/index.js:383
+#: blocks/seal/build/index.js:285 blocks/circle/build/index.js:92
+#: blocks/proseal/build/index.js:311 blocks/seal/build/index.js:211
+msgid "Left"
+msgstr "Links"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Circle.php:80
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/ProSeal.php:98
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:100
+#: blocks/circle/build/index.js:122 blocks/proseal/build/index.js:386
+#: blocks/seal/build/index.js:288 blocks/circle/build/index.js:93
+#: blocks/proseal/build/index.js:312 blocks/seal/build/index.js:212
+msgid "Right"
+msgstr "Rechts"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Landing.php:28
+msgid "ProvenExpert Landing"
+msgstr "ProvenExpert Bewertungs-Widget"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Landing.php:30
+msgid "Provides a widget to show your ProvenExpert Landing."
+msgstr ""
+"Stellt ein Widget zur Anzeige deiner ProvenExpert Bewertungs-Siegel bereit."
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Landing.php:48
+#: blocks/landing/build/index.js:221 blocks/landing/build/index.js:161
+msgid "Color of the header"
+msgstr "Farbe der Headerzeile"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Landing.php:57
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:65
+#: blocks/bar/build/index.js:92 blocks/landing/build/index.js:233
+#: blocks/seal/build/index.js:244 blocks/bar/build/index.js:64
+#: blocks/landing/build/index.js:166 blocks/seal/build/index.js:180
+msgid "Display customer votes"
+msgstr "Kundenstimme anzeigen"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Landing.php:62
+#: blocks/landing/build/index.js:238 blocks/landing/build/index.js:172
+msgid "Show profile image"
+msgstr "Porträtbild anzeigen"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Landing.php:67
+#: blocks/landing/build/index.js:243 blocks/landing/build/index.js:178
+msgid "Show top competencies"
+msgstr "Top-Kompetenzen anzeigen"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/ProSeal.php:29
+msgid "ProvenExpert ProSeal"
+msgstr "ProvenExpert ProSeal"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/ProSeal.php:31
+msgid "Provides a widget to show your ProvenExpert ProSeal."
+msgstr "Stellt ein Widget zur Anzeige deines ProvenExpert ProSeal bereit."
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/ProSeal.php:49
+#: blocks/proseal/build/index.js:326 blocks/proseal/build/index.js:252
+msgid "Banner color"
+msgstr "Banner Farbe"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/ProSeal.php:54
+#: blocks/proseal/build/index.js:330 blocks/proseal/build/index.js:257
+msgid "Text color"
+msgstr "Schriftfarbe"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/ProSeal.php:59
+#: blocks/proseal/build/index.js:338 blocks/proseal/build/index.js:265
+msgid "Show back page"
+msgstr "Rückseite anzeigen"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/ProSeal.php:64
+#: blocks/proseal/build/index.js:343 blocks/proseal/build/index.js:271
+msgid "Show reviews"
+msgstr "Zeige Reviews"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/ProSeal.php:69
+#: blocks/proseal/build/index.js:348 blocks/proseal/build/index.js:277
+msgid "Hide date"
+msgstr "Datum ausblenden"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/ProSeal.php:74
+#: blocks/proseal/build/index.js:353 blocks/proseal/build/index.js:283
+msgid "Hide name"
+msgstr "Name ausblenden"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/ProSeal.php:79
+#: blocks/proseal/build/index.js:358 blocks/proseal/build/index.js:289
+msgid "Google Stars"
+msgstr "Google Sterne"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/ProSeal.php:84
+#: blocks/proseal/build/index.js:363 blocks/proseal/build/index.js:295
+msgid "Display reviewer last name"
+msgstr "Nachname des Reviewers anzeigen"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/ProSeal.php:94
+#: blocks/proseal/build/index.js:376 blocks/proseal/build/index.js:310
+msgid "Sticky to side"
+msgstr "An der Seite haftend"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/ProSeal.php:103
+#: blocks/proseal/build/index.js:389 blocks/proseal/build/index.js:316
+msgid "Z-Index"
+msgstr "Z-Index"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:28
+msgid "ProvenExpert Seal"
+msgstr "Bewertungssiegel"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:30
+msgid "Provides a widget to show your ProvenExpert Seal."
+msgstr ""
+"Stellt ein Widget zur Anzeige deines ProvenExpert Qualitätssiegel bereit."
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:48
+msgid "Seal type"
+msgstr "Art des Siegels"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:51
+msgid "Portrait"
+msgstr "Hochkant"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:52
+msgid "Square"
+msgstr "Quadratisch"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:53
+msgid "Landscape"
+msgstr "Quer"
+
+#: app/PageBuilder/ClassicWidgets/ClassicWidgets/Seal.php:70
+#: blocks/seal/build/index.js:249 blocks/seal/build/index.js:186
+msgid "Ratings seal on browser margin"
+msgstr "Bewertungssiegel als Slider am Browserrand anzeigen"
+
+#: app/Plugin/Admin/Admin.php:98
+msgid "Rate this plugin"
+msgstr "Bewerte dieses Plugin"
+
+#: app/Plugin/Admin/Admin.php:195
+msgid "All logs has been deleted."
+msgstr "Alle Protokolle wurden gelöscht."
+
+#: app/Plugin/Admin/Admin.php:200
+msgid "All previous logs has been deleted"
+msgstr "Alle früheren Protokolle wurden gelöscht"
+
+#: app/Plugin/Admin/Logs.php:33 app/Plugin/Settings.php:121
+msgid "Logs"
+msgstr "Protokolle"
+
+#: app/Plugin/Admin/Log_Table.php:28
+msgid "State"
+msgstr "Status"
+
+#: app/Plugin/Admin/Log_Table.php:29
+msgid "Date"
+msgstr "Datum"
+
+#: app/Plugin/Admin/Log_Table.php:30
+msgid "Log"
+msgstr "Protokoll"
+
+#: app/Plugin/Admin/Log_Table.php:31
+msgid "Category"
+msgstr "Kategorie"
+
+#: app/Plugin/Admin/Log_Table.php:104
+msgid "not defined"
+msgstr "nicht definiert"
+
+#: app/Plugin/Admin/Log_Table.php:122
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#. translators: %1$s will be replaced by the category name.
+#: app/Plugin/Admin/Log_Table.php:145
+msgid "No log entries for %1$s found."
+msgstr "Keine Protokoll-Einträge für %1$s gefunden."
+
+#: app/Plugin/Admin/Log_Table.php:150
+msgid "No log entries found."
+msgstr "Keine Protokoll-Einträge gefunden."
+
+#: app/Plugin/Admin/Log_Table.php:167
+msgid "All"
+msgstr "Alle"
+
+#: app/Plugin/Admin/Log_Table.php:254
+msgid "Delete all logs"
+msgstr "Alle Protokolle löschen"
+
+#: app/Plugin/Admin/Log_Table.php:256
+msgid "Do you really want to delete all logs?"
+msgstr "Bist Du sicher, dass Du alle Protokolle löschen willst?"
+
+#: app/Plugin/Admin/Log_Table.php:262
+msgid "Yes"
+msgstr "Ja"
+
+#: app/Plugin/Admin/Log_Table.php:267 app/Plugin/Settings.php:708
+#: app/Plugin/Settings.php:773 app/Plugin/Settings.php:801
+msgid "No"
+msgstr "Nein"
+
+#: app/Plugin/Admin/Log_Table.php:273 app/Plugin/Admin/Log_Table.php:277
+msgid "Delete all"
+msgstr "Alle löschen"
+
+#: app/Plugin/Admin/SettingsValidation/UrlTimeout.php:27
+msgid "A timeout must have a value greater than 0."
+msgstr "Ein Timeout muss einen Wert grösser als 0 haben."
+
+#. translators: %1$s will be replaced by our support-URL.
+#: app/Plugin/Crypt.php:103
+msgid ""
+"No supported encryption method found. Please contact <a href=\"%1$s\">our "
+"support forum</a> about this problem."
+msgstr ""
+"Keine Verschlüsselungsmethode gefunden. Bitte kontaktiere <a "
+"href=\"%1$s\">unser Supportforum</a> zu diesem Problem."
+
+#. translators: %1$s will nbe replaced by our support-URL.
+#: app/Plugin/Crypt/Sodium.php:73
+msgid ""
+"Error on encrypting with PHP-sodium. Please contact <a href=\"%1$s\">our "
+"support forum</a> about this problem."
+msgstr ""
+"Fehler bei Verschlüsselung mit PHP-sodium. Bitte kontaktiere <a "
+"href=\"%1$s\">unser Supportforum</a> zu diesem Problem."
+
+#. translators: %1$s will nbe replaced by our support-URL.
+#: app/Plugin/Crypt/Sodium.php:102
+msgid ""
+"Error on decrypting with PHP-sodium. Please contact <a href=\"%1$s\">our "
+"support forum</a> about this problem."
+msgstr ""
+"Fehler bei Entschlüsselung mit PHP-sodium. Bitte kontaktiere <a "
+"href=\"%1$s\">unser Supportforum</a> zu diesem Problem."
+
+#: app/Plugin/Helper.php:112
+msgctxt "Alt text for ProvenExpert logo"
+msgid "ProvenExpert Logo"
+msgstr "ProvenExpert Logo"
+
+#: app/Plugin/Log.php:131
+msgid "System"
+msgstr "System"
+
+#: app/Plugin/Object_Base.php:53
+msgid "Widget not activated for ProvenExpert account"
+msgstr "Widget für ProvenExpert-Konto nicht aktiviert"
+
+#. translators: %1$s will be replaced by the event name.
+#: app/Plugin/Schedules.php:140
+msgid "Missing cron event <i>%1$s</i> automatically re-installed."
+msgstr "Fehlendes Cron-Ereignis <i>%1$s</i> wurde automatisch neu installiert."
+
+#. translators: %1$s will be replaced by the event name.
+#: app/Plugin/Schedules.php:154
+msgid "Not enabled cron event <i>%1$s</i> automatically removed."
+msgstr ""
+"Nicht aktiviertes Cron-Ereignis <i>%1$s</i> wurde automatisch entfernt."
+
+#: app/Plugin/Settings.php:98 app/Plugin/Settings.php:393
+#: app/Plugin/Setup.php:181 blocks/awards/build/index.js:90
+#: blocks/bar/build/index.js:78 blocks/circle/build/index.js:78
+#: blocks/landing/build/index.js:219 blocks/proseal/build/index.js:336
+#: blocks/seal/build/index.js:219 blocks/awards/build/index.js:71
+#: blocks/bar/build/index.js:58 blocks/circle/build/index.js:62
+#: blocks/landing/build/index.js:160 blocks/proseal/build/index.js:263
+#: blocks/seal/build/index.js:164
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: app/Plugin/Settings.php:106 app/Plugin/Settings.php:166
+msgid "Cache"
+msgstr "Cache"
+
+#: app/Plugin/Settings.php:114
+msgid "Advanced"
+msgstr "Erweitert"
+
+#: app/Plugin/Settings.php:128
+msgid "Questions? Check our forum!"
+msgstr "Fragen? Schau in unser Forum!"
+
+#: app/Plugin/Settings.php:146
+msgid "ProvenExpert Widgets"
+msgstr "ProvenExpert Widgets"
+
+#: app/Plugin/Settings.php:151
+msgid "Usable widgets"
+msgstr "Verwendbare Widgets"
+
+#: app/Plugin/Settings.php:152
+msgid ""
+"This is the list of widgets you will be able to your according to your "
+"ProvenExpert account."
+msgstr ""
+"Dies ist die Liste der Widgets, die Sie in Ihrem ProvenExpert-Konto "
+"einstellen können."
+
+#: app/Plugin/Settings.php:157
+msgid "Not available widgets"
+msgstr "Nicht verfügbare Widgets"
+
+#. translators: %1$s will be replaced by an email.
+#: app/Plugin/Settings.php:159
+msgid ""
+"This is the list of widgets you are <strong>not</strong> able to use. If you "
+"have any question about this <a href=\"mailto:%1$s\">contact the "
+"ProvenExpert support</a>."
+msgstr ""
+"Dies ist die Liste der Widgets, die Sie <strong>nicht</strong> verwenden "
+"können. Wenn Sie Fragen dazu haben, wenden Sie sich <a href=\"mailto:"
+"%1$s\">an den ProvenExpert-Support</a>."
+
+#: app/Plugin/Settings.php:171 app/Plugin/Settings.php:695
+msgid "Clear cache"
+msgstr "Cache leeren"
+
+#: app/Plugin/Settings.php:172
+msgid ""
+"Clearing the cache reloads all widgets.<br><strong>Note:</strong> the cache "
+"is already emptied once a day."
+msgstr ""
+"Wenn Du den Cache löschst, werden alle Widgets neu geladen."
+"<br><strong>Hinweis:</strong> der Cache wird bereits einmal am Tag geleert."
+
+#: app/Plugin/Settings.php:179
+msgid "Advanced settings"
+msgstr "Erweiterte Einstellungen"
+
+#: app/Plugin/Settings.php:184
+msgid "Timeout for URL-request in Seconds"
+msgstr "Timeout für URL-Requests in Sekunden"
+
+#: app/Plugin/Settings.php:193
+msgid "Delete all imported data on uninstall"
+msgstr "Löschen aller importierten Daten bei der Deinstallation"
+
+#: app/Plugin/Settings.php:201
+msgid "Enable debug mode"
+msgstr "Aktiviere Debug-Modus"
+
+#: app/Plugin/Settings.php:697
+msgid "Are you sure you want to clear the cache?"
+msgstr "Bist Du sicher, dass Du den Cache leeren willst?"
+
+#: app/Plugin/Settings.php:703
+msgid "Yes, I want"
+msgstr "Ja, ich will"
+
+#: app/Plugin/Settings.php:712
+msgid "Execute"
+msgstr "Ausführen"
+
+#: app/Plugin/Settings.php:758 app/Plugin/Settings.php:779
+msgid "Disconnect from ProvenExpert"
+msgstr "Verbindung zu ProvenExpert trennen"
+
+#: app/Plugin/Settings.php:760
+msgid ""
+"Are you sure you want to disconnect your WordPress website from ProvenExpert?"
+msgstr ""
+"Sind Sie sicher, dass Sie die Verbindung zwischen Ihrer WordPress-Website "
+"und ProvenExperttrennen möchten?"
+
+#: app/Plugin/Settings.php:761
+msgid "You will no longer be able to use ProvenExpert widgets on your website."
+msgstr ""
+"Du kannst ProvenExpert-Widgets nicht mehr auf deiner Website verwenden."
+
+#: app/Plugin/Settings.php:762
+msgid "All existing widgets will no longer be visible."
+msgstr "Alle vorhandenen Widgets werden nicht mehr sichtbar sein."
+
+#: app/Plugin/Settings.php:768
+msgid "Yes, I want to disconnect"
+msgstr "Ja, ich möchte die Verbindung trennen"
+
+#: app/Plugin/Settings.php:787 app/Plugin/Settings.php:807
+#: app/Plugin/Setup.php:89 app/Plugin/Setup.php:184
+msgid "Connect with ProvenExpert"
+msgstr "Mit ProvenExpert verbinden"
+
+#: app/Plugin/Settings.php:789
+msgid ""
+"After clicking on the button below you will be redirected to your "
+"ProvenExpert account."
+msgstr ""
+"Nachdem Sie auf die Schaltfläche unten geklickt haben, werden Sie zu Ihrem "
+"ProvenExpert-Konto weitergeleitet."
+
+#: app/Plugin/Settings.php:790
+msgid ""
+"Click there on Administration > Integrations > WordPress and confirm the "
+"connection by clicking on the button there."
+msgstr ""
+"Klicken Sie dort auf Administration > Integrationen > WordPress und "
+"bestätigen Sie die Verbindung mit einem Klick auf die Schaltfläche."
+
+#: app/Plugin/Settings.php:796
+msgid "Yes, I want to connect"
+msgstr "Ja, ich will verbinden"
+
+#: app/Plugin/Settings.php:874
+msgid ""
+"Please connect your ProvenExpert account to this WordPress website first."
+msgstr ""
+"Bitte verbinden Sie zunächst Ihr ProvenExpert-Konto mit dieser WordPress-"
+"Website."
+
+#: app/Plugin/Settings.php:897
+msgid "Reload account data"
+msgstr "Kontodaten neu laden"
+
+#: app/Plugin/Settings.php:922
+msgid "All widgets are currently available to you."
+msgstr "Alle Widgets sind derzeit für Sie verfügbar."
+
+#. translators: %1$s will be replaced by an email.
+#: app/Plugin/Settings.php:941
+msgid ""
+"Here you will find information on which ProvenExpert widgets you can use. "
+"This depends on the package you have booked with ProvenExpert. If you have "
+"any questions, please <a href=\"mailto:%1$s\">contact ProvenExpert Support</"
+"a>."
+msgstr ""
+"Hier finden Sie Informationen darüber, welche Widgets von ProvenExpert Sie "
+"nutzen können. Dies hängt von dem Paket ab, das Sie bei ProvenExpert gebucht "
+"haben. Wenn Sie Fragen haben, wenden Sie sich bitte an <a href=\"mailto:"
+"%1$s\">den ProvenExpert Support</a>."
+
+#: app/Plugin/Setup.php:89
+msgid ""
+"<strong>You have installed ProvenExpert - nice and thank you!</strong> To be "
+"able to use the plugins features, please connect it to your ProvenExpert "
+"account. Click on the following button. Confirm the connection to your "
+"WordPress on the following page."
+msgstr ""
+"<strong>Du hast ProvenExpert installiert - schön und danke!</strong> Um die "
+"Funktionen des Plugins nutzen zu können, verbinden Sie es bitte mit Ihrem "
+"ProvenExpert-Konto. Klicken Sie auf die folgende Schaltfläche. Bestätigen "
+"Sie die Verbindung zu Ihrem WordPress auf der folgenden Seite."
+
+#. translators: %1$d will be replaced by the days this message will be hidden.
+#: app/Plugin/Transient.php:195
+msgid "Hide this message for %1$d days."
+msgstr "Blende diese Nachricht für %1$d Tage aus."
+
+#: app/Plugin/Transient.php:197
+msgid "Dismiss"
+msgstr "Ausblenden"
+
+#: app/ProvenExpertSeals/Seal_Base.php:165
+#: app/ProvenExpertSeals/Seal_Base.php:208
+#: app/ProvenExpertWidgets/Widget_Base.php:212
+msgid "API-request resulted in error:"
+msgstr "API-Anfrage führte zu einem Fehler:"
+
+#. translators: %1$s will be replaced by the settings URL.
+#: app/ProvenExpertSeals/Seal_Base.php:171
+#: app/ProvenExpertSeals/Seal_Base.php:214
+#: app/ProvenExpertWidgets/Widget_Base.php:218
+msgid ""
+"Your API credentials are wrong. You will not be able to use any widgets or "
+"seals. Check <a href=\"%1$s\">your settings</a>."
+msgstr ""
+"Deine API-Anmeldedaten sind falsch. Du wirst keine Widgets oder Siegel "
+"verwenden können. Überprüfe <a href=\"%1$s\">deine Einstellungen</a>."
+
+#: app/ProvenExpertSeals/Seal_Base.php:229
+msgid "No HTML-code returned for requested seal."
+msgstr "Kein HTML-Code für das angefragte Siegel erhalten."
+
+#: blocks/awards/build/index.js:115 blocks/circle/build/index.js:88
+#: blocks/awards/build/index.js:93 blocks/circle/build/index.js:73
+msgid "Dock on browser margin"
+msgstr "Siegel am Browserrand andocken"
+
+#: blocks/awards/build/index.js:140 blocks/circle/build/index.js:125
+#: blocks/seal/build/index.js:291 blocks/awards/build/index.js:115
+#: blocks/circle/build/index.js:99 blocks/seal/build/index.js:218
+msgid "Fixed positioned widget is only clearly visible in the frontend"
+msgstr "Fixiert positioniertes Widgets ist nur im Frontend sicher zu sehen."
+
+#: blocks/awards/build/index.js:142 blocks/bar/build/index.js:98
+#: blocks/landing/build/index.js:249 blocks/proseal/build/index.js:397
+#: blocks/awards/build/index.js:116 blocks/bar/build/index.js:71
+#: blocks/landing/build/index.js:185 blocks/proseal/build/index.js:324
+msgid "This widget is only clearly visible in the frontend"
+msgstr "Dieses Widgets ist nur im Frontend zu sehen"
+
+#: blocks/awards/build/index.js:202 blocks/awards/build/index.js:162
+msgid "Awards"
+msgstr "Award-Widgets"
+
+#: blocks/awards/build/index.js:203 blocks/awards/build/index.js:163
+msgid "Provides a block to show your ProvenExpert Awards."
+msgstr "Stellt einen Block zur Anzeige deiner ProvenExpert Awards bereit."
+
+#: blocks/bar/build/index.js:80 blocks/bar/build/index.js:59
+msgid "Background color"
+msgstr "Hintergrundfarbe"
+
+#: blocks/bar/build/index.js:430 blocks/bar/build/index.js:260
+msgid "Bar"
+msgstr "Bewertungssiegel am unteren Browser-Rand"
+
+#: blocks/bar/build/index.js:431 blocks/bar/build/index.js:261
+msgid "Provides a block to show your ProvenExpert Bar."
+msgstr ""
+"Stellt einen Block zur Anzeige deines ProvenExpert Bewertungssiegels bereit."
+
+#: blocks/circle/build/index.js:93 blocks/circle/build/index.js:79
+msgid "Distance measured from top or bottom browser margin?"
+msgstr ""
+"Ob der Abstand des Siegels vom oberen oder unteren Browserrand gemessen wird?"
+
+#: blocks/circle/build/index.js:457 blocks/circle/build/index.js:288
+msgid "Circle"
+msgstr "Qualitätssiegel"
+
+#: blocks/circle/build/index.js:458 blocks/circle/build/index.js:289
+msgid "Provides a block to show your ProvenExpert Circle."
+msgstr ""
+"Stellt einen Block zur Anzeige deines ProvenExpert Qualitätssiegel bereit."
+
+#: blocks/landing/build/index.js:464 blocks/landing/build/index.js:292
+msgid "Landing"
+msgstr "Bewertungs-Widget"
+
+#: blocks/landing/build/index.js:465 blocks/landing/build/index.js:293
+msgid "Provides a block to show your ProvenExpert Landing."
+msgstr ""
+"Stellt einen Block zur Anzeige deiner ProvenExpert Bewertungs-Siegel bereit."
+
+#: blocks/proseal/build/index.js:324 blocks/proseal/build/index.js:249
+msgid "Colors"
+msgstr "Farben"
+
+#: blocks/proseal/build/index.js:612 blocks/proseal/build/index.js:431
+msgid "ProSeal"
+msgstr "ProSeal"
+
+#: blocks/proseal/build/index.js:613 blocks/proseal/build/index.js:432
+msgid "Provides a block to show your ProvenExpert ProSeal."
+msgstr "Stellt einen Block zur Anzeige deines ProvenExpert ProSeal bereit."
+
+#: blocks/seal/build/index.js:221 blocks/seal/build/index.js:165
+msgid "Type of widget"
+msgstr "Art des Widgets"
+
+#: blocks/seal/build/index.js:228 blocks/seal/build/index.js:166
+msgid "vertical"
+msgstr "vertikal"
+
+#: blocks/seal/build/index.js:231 blocks/seal/build/index.js:167
+msgid "quadratic"
+msgstr "quadratisch"
+
+#: blocks/seal/build/index.js:234 blocks/seal/build/index.js:168
+msgid "horizontal"
+msgstr "horizontal"
+
+#: blocks/seal/build/index.js:506 blocks/seal/build/index.js:325
+msgid "Seal"
+msgstr "Siegel"
+
+#: blocks/seal/build/index.js:507 blocks/seal/build/index.js:326
+msgid "Provides a block to show your ProvenExpert Seal."
+msgstr ""
+"Stellt einen Block zur Anzeige deines ProvenExpert Qualitätssiegel bereit."
+
+#: blocks/awards/block.json
+msgctxt "block title"
+msgid "ProvenExpert Awards"
+msgstr "ProvenExpert Award-Widgets"
+
+#: blocks/awards/block.json
+msgctxt "block description"
+msgid "Provides a block to show your ProvenExpert Awards."
+msgstr "Stellt einen Block zur Anzeige deiner ProvenExpert Awards bereit."
+
+#: blocks/awards/block.json blocks/bar/block.json blocks/circle/block.json
+#: blocks/landing/block.json blocks/proseal/block.json blocks/seal/block.json
+msgctxt "block keyword"
+msgid "ProvenExpert"
+msgstr "ProvenExpert"
+
+#: blocks/bar/block.json
+msgctxt "block title"
+msgid "ProvenExpert Bar"
+msgstr "ProvenExpert Bewertungssiegels"
+
+#: blocks/bar/block.json
+msgctxt "block description"
+msgid "Provides a block to show your ProvenExpert Bar."
+msgstr ""
+"Stellt einen Block zur Anzeige deines ProvenExpert Bewertungssiegels bereit."
+
+#: blocks/circle/block.json
+msgctxt "block title"
+msgid "ProvenExpert Circle"
+msgstr "ProvenExpert Qualitätssiegel"
+
+#: blocks/circle/block.json
+msgctxt "block description"
+msgid "Provides a block to show your ProvenExpert Circle."
+msgstr ""
+"Stellt einen Block zur Anzeige deines ProvenExpert Qualitätssiegel bereit."
+
+#: blocks/landing/block.json
+msgctxt "block title"
+msgid "ProvenExpert Landing"
+msgstr "ProvenExpert Bewertungs-Widget"
+
+#: blocks/landing/block.json
+msgctxt "block description"
+msgid "Provides a block to show your ProvenExpert Landing."
+msgstr ""
+"Stellt einen Block zur Anzeige deiner ProvenExpert Bewertungs-Siegel bereit."
+
+#: blocks/proseal/block.json
+msgctxt "block title"
+msgid "ProvenExpert ProSeal"
+msgstr "ProvenExpert ProSeal"
+
+#: blocks/proseal/block.json
+msgctxt "block description"
+msgid "Provides a block to show your ProvenExpert ProSeal."
+msgstr "Stellt einen Block zur Anzeige deines ProvenExpert ProSeal bereit."
+
+#: blocks/seal/block.json
+msgctxt "block title"
+msgid "ProvenExpert Seal"
+msgstr "ProvenExpert Bewertungssiegel"
+
+#: blocks/seal/block.json
+msgctxt "block description"
+msgid "Provides a block to show your ProvenExpert Seal."
+msgstr ""
+"Stellt einen Block zur Anzeige deines ProvenExpert Qualitätssiegel bereit."
+
+#~ msgid "Disconnect from Provenexpert"
+#~ msgstr "Von ProvenExpert trennen"
+
+#~ msgid "Connect with Provenexpert"
+#~ msgstr "Verbindung mit Provenexpert"
+
+#~ msgid "Error on connecting plugin with ProvenExpert:"
+#~ msgstr "Fehler beim Verbinden des Plugins mit ProvenExpert:"
+
+#~ msgid "API ID"
+#~ msgstr "API ID"
+
+#~ msgid ""
+#~ "You find the API ID <a href=\"%1$s\" target=\"_blank\">in your "
+#~ "ProvenExpert-account (opens new window)</a>.<br>If you have any questions "
+#~ "about the API Key provided by ProvenExpert, please contact the <a "
+#~ "href=\"%2$s\" target=\"_blank\">ProvenExpert support (opens new window)</"
+#~ "a>."
+#~ msgstr ""
+#~ "Du findest die API ID <a href=\"%1$s\" target=\"_blank\">in deinem "
+#~ "ProvenExpert-Konto (öffnet neues Fenster)</a>.<br>Wenn Du Fragen zu dem "
+#~ "von ProvenExpert bereitgestellten API-Schlüssel hast, wende dich bitte an "
+#~ "den <a href=\"%2$s\" target=\"_blank\">ProvenExpert-Support (öffnet neues "
+#~ "Fenster)</a>."
+
+#~ msgid "API Key"
+#~ msgstr "API Schlüssel"
+
+#~ msgid ""
+#~ "You find the API Key <a href=\"%1$s\" target=\"_blank\">in your "
+#~ "ProvenExpert-account (opens new window)</a>.<br>If you have any questions "
+#~ "about the API Key provided by ProvenExpert, please contact the <a "
+#~ "href=\"%2$s\" target=\"_blank\">ProvenExpert support (opens new window)</"
+#~ "a>."
+#~ msgstr ""
+#~ "Du findest den API Schlüssel <a href=\"%1$s\" target=\"_blank\">in deinem "
+#~ "ProvenExpert-Konto (öffnet neues Fenster)</a>.<br>Wenn Du Fragen zu dem "
+#~ "von ProvenExpert bereitgestellten API-Schlüssel hast, wende dich bitte an "
+#~ "den <a href=\"%2$s\" target=\"_blank\">ProvenExpert-Support (öffnet neues "
+#~ "Fenster)</a>."
+
+#~ msgid "z-index"
+#~ msgstr "z-index"
+
+#~ msgid "Proven Expert"
+#~ msgstr "Ausgewiesene Expertin"
+
+#~ msgid "Fix the widget"
+#~ msgstr "Widget fixieren"
+
+#~ msgid "Origin"
+#~ msgstr "Abstand von oben bzw. unten"
+
+#~ msgid "Avatar"
+#~ msgstr "Avatar"
+
+#~ msgid "Competence"
+#~ msgstr "Kompetenz"
+
+#~ msgid "laOlaWeb"
+#~ msgstr "laOlaWeb"
+
+#~ msgid "https://laolaweb.com"
+#~ msgstr "https://laolaweb.com"

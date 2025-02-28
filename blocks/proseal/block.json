@@ -1,0 +1,73 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "provenexpert/proseal",
+	"version": "1.0.0",
+	"title": "ProvenExpert ProSeal",
+	"category": "widgets",
+	"description": "Provides a block to show your ProvenExpert ProSeal.",
+	"keywords": ["ProvenExpert"],
+	"supports": {},
+	"textdomain": "provenexpert",
+	"editorScript": "file:build/index.js",
+	"editorStyle": "file:build/index.css",
+    "style": "file:build/style-index.css",
+	"attributes": {
+        "preview": {
+            "type": "boolean",
+            "default": false
+        },
+		"blockId": {
+			"type": "string"
+		},
+        "bannercolor" : {
+            "type"    : "string",
+            "default" : "#000000"
+        },
+        "textcolor" : {
+            "type"    : "string",
+            "default" : "#ffffff"
+        },
+        "showbackpage" : {
+            "type"    : "boolean",
+            "default" : true
+        },
+        "showreviews" : {
+            "type"    : "boolean",
+            "default" : true
+        },
+        "hidedate" : {
+            "type"    : "boolean",
+            "default" : false
+        },
+        "hidename" : {
+            "type"    : "boolean",
+            "default" : false
+        },
+        "googlestars" : {
+            "type"    : "boolean",
+            "default" : false
+        },
+        "displayreviewerlastname" : {
+            "type"    : "boolean",
+            "default" : false
+        },
+        "bottom" : {
+            "type"    : "integer",
+            "default" : 130
+        },
+        "stickytoside" : {
+            "type"    : "string",
+            "default" : "right"
+        },
+        "zindex" : {
+            "type"    : "integer",
+            "default" : 9999
+        }
+    },
+	"example": {
+		"attributes": {
+            "preview": true
+        }
+	}
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="ProvenExpert" namespace="ProvenExpert\ProvenExpert" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
+
+	<description>ProvenExpert Coding Standards</description>
+
+	<rule ref="WordPress-Docs"/>
+	<rule ref="WordPress-Extra"/>
+    <rule ref="WordPress">
+        <!-- Excluded in favour to match PSR-4-namings of classes. -->
+        <exclude name="WordPress.Files.FileName"/>
+        <exclude name="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase"/>
+        <!-- Exclude direkt db query warnings -->
+        <exclude name="WordPress.DB.DirectDatabaseQuery"/>
+        <exclude name="WordPress.DB.PreparedSQL.NotPrepared"/>
+        <!-- Exclude base64-warnings for backwards-compatibility with older plugin-version, but it also disabled serialize-warning ... -->
+        <exclude name="WordPress.PHP.DiscouragedPHPFunctions"/>
+        <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+    </rule>
+</ruleset>

@@ -1,0 +1,49 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "provenexpert/circle",
+	"version": "1.0.0",
+	"title": "ProvenExpert Circle",
+	"category": "widgets",
+	"description": "Provides a block to show your ProvenExpert Circle.",
+	"keywords": ["ProvenExpert"],
+	"supports": {},
+	"textdomain": "provenexpert",
+	"editorScript": "file:build/index.js",
+	"editorStyle": "file:build/index.css",
+    "style": "file:build/style-index.css",
+	"attributes": {
+        "preview": {
+            "type": "boolean",
+            "default": false
+        },
+		"blockId": {
+			"type": "string"
+		},
+        "width": {
+            "type": "integer",
+            "default": 200
+        },
+        "fixed": {
+            "type": "boolean",
+            "default": false
+        },
+        "origin": {
+            "type": "string",
+            "default": "bottom"
+        },
+        "position": {
+            "type": "integer",
+            "default": 0
+        },
+        "side": {
+            "type": "string",
+            "default": "right"
+        }
+    },
+	"example": {
+		"attributes": {
+            "preview": true
+        }
+	}
+}

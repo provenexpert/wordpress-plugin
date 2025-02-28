@@ -1,0 +1,11 @@
+# Plugin-Slug
+plugin.slug=provenexpert
+
+# version number to use
+plugin.version=
+
+# set path to npm-binary
+npm.path=
+
+# set path to composer-binary
+composer.path=

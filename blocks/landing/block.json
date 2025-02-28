@@ -1,0 +1,45 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "provenexpert/landing",
+	"version": "1.0.0",
+	"title": "ProvenExpert Landing",
+	"category": "widgets",
+	"description": "Provides a block to show your ProvenExpert Landing.",
+	"keywords": ["ProvenExpert"],
+	"supports": {},
+	"textdomain": "provenexpert",
+	"editorScript": "file:build/index.js",
+	"editorStyle": "file:build/index.css",
+    "style": "file:build/style-index.css",
+	"attributes": {
+        "preview": {
+            "type": "boolean",
+            "default": false
+        },
+		"blockId": {
+			"type": "string"
+		},
+        "style": {
+            "type": "string",
+            "default": "white"
+        },
+        "feedback": {
+            "type": "boolean",
+            "default": true
+        },
+        "avatar": {
+            "type": "boolean",
+            "default": true
+        },
+        "competence": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+	"example": {
+		"attributes": {
+            "preview": true
+        }
+	}
+}
