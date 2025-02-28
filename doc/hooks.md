@@ -9,6 +9,60 @@
 
 ## Filters
 
+### `provenexpert_provenexpert_seals`
+
+*Filter the possible seals.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$seals` | `array` | List of the seals.
+
+**Changelog**
+
+Version | Description
+------- | -----------
+`1.0.0` | Available since 1.0.0.
+
+Source: [app/ProvenExpertSeals/Seals.php](ProvenExpertSeals/Seals.php), [line 57](ProvenExpertSeals/Seals.php#L57-L63)
+
+### `provenexpert_current_language`
+
+*Filter the resulting language.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$wp_language` | `string` | The language-name (e.g. "en").
+
+**Changelog**
+
+Version | Description
+------- | -----------
+`1.0.0` | Available since 1.0.0.
+
+Source: [app/Plugin/Languages.php](Plugin/Languages.php), [line 102](Plugin/Languages.php#L102-L109)
+
+### `provenexpert_current_locale`
+
+*Filter the resulting language.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$locale` | `string` | The language-name (e.g. "en-us").
+
+**Changelog**
+
+Version | Description
+------- | -----------
+`1.0.0` | Available since 1.0.0.
+
+Source: [app/Plugin/Languages.php](Plugin/Languages.php), [line 124](Plugin/Languages.php#L124-L131)
+
 ### `provenexpert_crypt_methods`
 
 *Filter the available crypt-methods.*
@@ -120,7 +174,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Init.php](Plugin/Init.php), [line 113](Plugin/Init.php#L113-L119)
+Source: [app/Plugin/Init.php](Plugin/Init.php), [line 140](Plugin/Init.php#L140-L146)
 
 ### `provenexpert_objects_with_db_tables`
 
@@ -138,7 +192,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Init.php](Plugin/Init.php), [line 136](Plugin/Init.php#L136-L142)
+Source: [app/Plugin/Init.php](Plugin/Init.php), [line 163](Plugin/Init.php#L163-L169)
 
 ### `provenexpert_log_categories`
 
@@ -156,7 +210,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Log.php](Plugin/Log.php), [line 129](Plugin/Log.php#L129-L136)
+Source: [app/Plugin/Log.php](Plugin/Log.php), [line 134](Plugin/Log.php#L134-L141)
 
 ### `provenexpert_log_limit`
 
@@ -174,7 +228,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Log.php](Plugin/Log.php), [line 162](Plugin/Log.php#L162-L168)
+Source: [app/Plugin/Log.php](Plugin/Log.php), [line 167](Plugin/Log.php#L167-L173)
 
 ### `provenexpert_setting_field_arguments`
 
@@ -194,7 +248,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Settings.php](Plugin/Settings.php), [line 297](Plugin/Settings.php#L297-L306)
+Source: [app/Plugin/Settings.php](Plugin/Settings.php), [line 344](Plugin/Settings.php#L344-L353)
 
 ### `provenexpert_settings`
 
@@ -212,7 +266,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0
 
-Source: [app/Plugin/Settings.php](Plugin/Settings.php), [line 481](Plugin/Settings.php#L481-L488)
+Source: [app/Plugin/Settings.php](Plugin/Settings.php), [line 529](Plugin/Settings.php#L529-L536)
 
 ### `provenexpert_settings_tabs`
 
@@ -230,7 +284,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0
 
-Source: [app/Plugin/Settings.php](Plugin/Settings.php), [line 531](Plugin/Settings.php#L531-L538)
+Source: [app/Plugin/Settings.php](Plugin/Settings.php), [line 587](Plugin/Settings.php#L587-L594)
 
 ### `provenexpert_file_version`
 
@@ -249,7 +303,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Helper.php](Plugin/Helper.php), [line 179](Plugin/Helper.php#L179-L187)
+Source: [app/Plugin/Helper.php](Plugin/Helper.php), [line 185](Plugin/Helper.php#L185-L193)
 
 ### `provenexpert_log_table_filter`
 
@@ -269,15 +323,16 @@ Version | Description
 
 Source: [app/Plugin/Admin/Log_Table.php](Plugin/Admin/Log_Table.php), [line 176](Plugin/Admin/Log_Table.php#L176-L182)
 
-### `provenexpert_do_not_encrypt`
+### `provenexpert_do_not_decrypt`
 
-*Do not encrypt a given value if requested.*
+*Do not decrypt a given value if requested.*
 
 **Arguments**
 
 Argument | Type | Description
 -------- | ---- | -----------
 `$false` | `bool` | Return true to prevent decrypting.
+`$value` | `string` | The requested value.
 
 **Changelog**
 
@@ -285,7 +340,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Admin/SettingsSavings/Api.php](Plugin/Admin/SettingsSavings/Api.php), [line 33](Plugin/Admin/SettingsSavings/Api.php#L33-L42)
+Source: [app/Plugin/Admin/SettingsRead/GetDecryptValue.php](Plugin/Admin/SettingsRead/GetDecryptValue.php), [line 33](Plugin/Admin/SettingsRead/GetDecryptValue.php#L33-L43)
 
 ### `provenexpert_schedule_our_events`
 
@@ -342,7 +397,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Schedules.php](Plugin/Schedules.php), [line 207](Plugin/Schedules.php#L207-L216)
+Source: [app/Plugin/Schedules.php](Plugin/Schedules.php), [line 214](Plugin/Schedules.php#L214-L223)
 
 ### `provenexpert_shortcodes`
 
@@ -360,7 +415,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/PageBuilder/Shortcodes/Shortcodes.php](PageBuilder/Shortcodes/Shortcodes.php), [line 53](PageBuilder/Shortcodes/Shortcodes.php#L53-L59)
+Source: [app/PageBuilder/Shortcodes/Shortcodes.php](PageBuilder/Shortcodes/Shortcodes.php), [line 54](PageBuilder/Shortcodes/Shortcodes.php#L54-L60)
 
 ### `provenexpert_shortcode_name`
 
@@ -379,7 +434,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/PageBuilder/Shortcodes/Shortcode_Base.php](PageBuilder/Shortcodes/Shortcode_Base.php), [line 74](PageBuilder/Shortcodes/Shortcode_Base.php#L74-L81)
+Source: [app/PageBuilder/Shortcodes/Shortcode_Base.php](PageBuilder/Shortcodes/Shortcode_Base.php), [line 83](PageBuilder/Shortcodes/Shortcode_Base.php#L83-L90)
 
 ### `provenexpert_classic_widgets`
 
@@ -397,7 +452,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/PageBuilder/ClassicWidgets/ClassicWidgets.php](PageBuilder/ClassicWidgets/ClassicWidgets.php), [line 58](PageBuilder/ClassicWidgets/ClassicWidgets.php#L58-L64)
+Source: [app/PageBuilder/ClassicWidgets/ClassicWidgets.php](PageBuilder/ClassicWidgets/ClassicWidgets.php), [line 60](PageBuilder/ClassicWidgets/ClassicWidgets.php#L60-L66)
 
 ### `provenexpert_pagebuilder`
 
@@ -434,7 +489,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/PageBuilder/BlockEditor/Blocks_Base.php](PageBuilder/BlockEditor/Blocks_Base.php), [line 150](PageBuilder/BlockEditor/Blocks_Base.php#L150-L157)
+Source: [app/PageBuilder/BlockEditor/Blocks_Base.php](PageBuilder/BlockEditor/Blocks_Base.php), [line 156](PageBuilder/BlockEditor/Blocks_Base.php#L156-L163)
 
 ### `provenexpert_block_editor_blocks`
 
@@ -452,7 +507,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/PageBuilder/BlockEditor/BlockEditor.php](PageBuilder/BlockEditor/BlockEditor.php), [line 63](PageBuilder/BlockEditor/BlockEditor.php#L63-L69)
+Source: [app/PageBuilder/BlockEditor/BlockEditor.php](PageBuilder/BlockEditor/BlockEditor.php), [line 64](PageBuilder/BlockEditor/BlockEditor.php#L64-L70)
 
 ### `provenexpert_provenexpert_widgets`
 
@@ -489,7 +544,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0
 
-Source: [app/Api/Request.php](Api/Request.php), [line 126](Api/Request.php#L126-L134)
+Source: [app/Api/Request.php](Api/Request.php), [line 146](Api/Request.php#L146-L154)
 
 ### `provenexpert_request_api_id`
 
@@ -508,7 +563,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Api/Request.php](Api/Request.php), [line 250](Api/Request.php#L250-L258)
+Source: [app/Api/Request.php](Api/Request.php), [line 285](Api/Request.php#L285-L293)
 
 ### `provenexpert_request_api_key`
 
@@ -527,7 +582,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Api/Request.php](Api/Request.php), [line 269](Api/Request.php#L269-L277)
+Source: [app/Api/Request.php](Api/Request.php), [line 304](Api/Request.php#L304-L312)
 
 
 <p align="center"><a href="https://github.com/pronamic/wp-documentor"><img src="https://cdn.jsdelivr.net/gh/pronamic/wp-documentor@main/logos/pronamic-wp-documentor.svgo-min.svg" alt="Pronamic WordPress Documentor" width="32" height="32"></a><br><em>Generated by <a href="https://github.com/pronamic/wp-documentor">Pronamic WordPress Documentor</a> <code>1.2.0</code></em><p>
