@@ -73,11 +73,13 @@ jobs:
                   rm readme.md
                   rm ruleset.xml
                   cd ..
-                  zip -r -q ${{ github.event.repository.name }}_${{ github.ref_name }}.zip ${{ github.event.repository.name }}/* -x "*/.git/*" "*/.github/*" "*/blocks/*/src/*" "*/doc/*" "*/phpcs.xml" "*/composer.json" "*/composer.lock" "*/package.json" "*/package-lock.json" "*/.gitignore" "*/vendor/*" "*/node_modules/*" "/.editorconfig"
-                  zip -ur ${{ github.event.repository.name }}_${{ github.ref_name }}.zip ${{ github.event.repository.name }}/vendor/autoload.php
-                  zip -ur ${{ github.event.repository.name }}_${{ github.ref_name }}.zip ${{ github.event.repository.name }}/vendor/composer/*
-                  zip -ur ${{ github.event.repository.name }}_${{ github.ref_name }}.zip ${{ github.event.repository.name }}/vendor/threadi/*/build/*
-                  cp ${{ github.event.repository.name }}_${{ github.ref_name }}.zip ${{ github.event.repository.name }}/
+                  mv ${{ github.event.repository.name }} provenexpert
+                  zip -r -q provenexpert_${{ github.ref_name }}.zip provenexpert/* -x "*/.git/*" "*/.github/*" "*/blocks/*/src/*" "*/doc/*" "*/phpcs.xml" "*/composer.json" "*/composer.lock" "*/package.json" "*/package-lock.json" "*/.gitignore" "*/vendor/*" "*/node_modules/*" "/.editorconfig"
+                  zip -ur provenexpert_${{ github.ref_name }}.zip provenexpert/vendor/autoload.php
+                  zip -ur provenexpert_${{ github.ref_name }}.zip provenexpert/vendor/composer/*
+                  zip -ur provenexpert_${{ github.ref_name }}.zip provenexpert/vendor/threadi/*/build/*
+                  cp provenexpert_${{ github.ref_name }}.zip provenexpert/
+                  mv provenexpert ${{ github.event.repository.name }}
 
             - name: Create Release
               uses: softprops/action-gh-release@v2
@@ -85,4 +87,4 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                  files: ${{ github.event.repository.name }}_${{ github.ref_name }}.zip
+                  files: provenexpert_${{ github.ref_name }}.zip
