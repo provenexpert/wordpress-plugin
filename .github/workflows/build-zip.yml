@@ -74,7 +74,7 @@ jobs:
                   rm ruleset.xml
                   cd ..
                   mv ${{ github.event.repository.name }} provenexpert
-                  zip -r -q provenexpert_${{ github.ref_name }}.zip provenexpert/* -x "*/.git/*" "*/.github/*" "*/blocks/*/src/*" "*/doc/*" "*/phpcs.xml" "*/composer.json" "*/composer.lock" "*/package.json" "*/package-lock.json" "*/.gitignore" "*/vendor/*" "*/node_modules/*" "/.editorconfig"
+                  zip -r -q provenexpert_${{ github.ref_name }}.zip provenexpert/* -x "*/.git/*" "*/.github/*" "*/blocks/*/src/*" "*/doc/*" "*/phpcs.xml" "*/composer.lock" "*/package.json" "*/package-lock.json" "*/.gitignore" "*/vendor/*" "*/node_modules/*" "/.editorconfig"
                   zip -ur provenexpert_${{ github.ref_name }}.zip provenexpert/vendor/autoload.php
                   zip -ur provenexpert_${{ github.ref_name }}.zip provenexpert/vendor/composer/*
                   zip -ur provenexpert_${{ github.ref_name }}.zip provenexpert/vendor/threadi/*/build/*
