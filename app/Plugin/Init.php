@@ -55,9 +55,6 @@ class Init {
 	 * @return void
 	 */
 	public function init(): void {
-		// get translations for this plugin.
-		add_action( 'init', array( $this, 'load_languages' ), 0 );
-
 		// initialize the transients.
 		Transients::get_instance()->init();
 
@@ -95,17 +92,6 @@ class Init {
 		} else {
 			add_filter( 'http_request_reject_unsafe_urls', '__return_false' );
 		}
-	}
-
-	/**
-	 * Load texts depending on actual language.
-	 *
-	 * TODO bei Release entfernen!
-	 *
-	 * @return void
-	 */
-	public function load_languages(): void {
-		load_plugin_textdomain( 'provenexpert', false, dirname( plugin_basename( PROVENEXPERT_PLUGIN ) ) . '/languages' );
 	}
 
 	/**

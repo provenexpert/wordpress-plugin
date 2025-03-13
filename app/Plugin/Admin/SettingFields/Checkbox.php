@@ -23,6 +23,11 @@ class Checkbox {
 	 * @return void
 	 */
 	public static function get( array $attributes ): void {
+		// check for nonce.
+		if ( isset( $_GET['nonce'] ) && ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'provenexpert-nonce' ) ) {
+			return;
+		}
+
 		if ( ! empty( $attributes['fieldId'] ) ) {
 			// get title.
 			$title = '';

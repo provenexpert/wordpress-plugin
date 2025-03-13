@@ -184,7 +184,7 @@ class Request {
 		// bail on error.
 		if ( ! $response || is_wp_error( $response ) ) {
 			// add event in log.
-			Log::get_instance()->add_log( __( 'The request to the ProvenExpert API resulted in an error: ', 'provenexpert' ) . wp_json_encode( $response ), 'error', 'application', $this->get_md5() );
+			Log::get_instance()->add_log( __( 'The request to the ProvenExpert API resulted in an error: ', 'provenexpert' ) . wp_json_encode( $response ), 'error', 'api', $this->get_md5() );
 
 			// return false as request resulted in unspecific http error.
 			return false;
