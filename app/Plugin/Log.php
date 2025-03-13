@@ -72,6 +72,7 @@ class Log {
 	 * Delete the logging-table in the database.
 	 *
 	 * @return void
+	 * @noinspection PhpUnused
 	 */
 	public function delete_table(): void {
 		global $wpdb;
@@ -151,11 +152,12 @@ class Log {
 	public function get_entries(): array {
 		global $wpdb;
 
-		// order table.
-		$order_by = filter_input( INPUT_GET, 'orderby', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-		if ( is_null( $order_by ) ) {
-			$order_by = 'date';
+		// check for nonce.
+		if ( isset( $_GET['nonce'] ) && ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'provenexpert-nonce' ) ) {
+			return array();
 		}
+
+		// order table.
 		$order = filter_input( INPUT_GET, 'order', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 		if ( ! is_null( $order ) ) {
 			$order = sanitize_sql_orderby( $order );
@@ -175,18 +177,29 @@ class Log {
 		// get filter.
 		$category = filter_input( INPUT_GET, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 
-		// get md5.
-		$md5 = filter_input( INPUT_GET, 'md5', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-
-		// if only category is set.
-		if ( ! is_null( $category ) && is_null( $md5 ) ) {
-			// get and return the entries.
-			return $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		// if category is set.
+		if ( ! is_null( $category ) ) {
+			if ( 'ASC' === strtoupper( $order ) ) {
+				// get and return the entries ASC sorted.
+				return $wpdb->get_results(
+					$wpdb->prepare(
+						'SELECT `state`, `time` AS `date`, `log`, `category`
+                    FROM `' . $wpdb->prefix . 'provenexpert_logs`
+                    WHERE `category` = %s
+                    ORDER BY `time` ASC
+                    LIMIT %d',
+						array( $category, $limit )
+					),
+					ARRAY_A
+				);
+			}
+			// get and return the entries DESC sorted.
+			return $wpdb->get_results(
 				$wpdb->prepare(
 					'SELECT `state`, `time` AS `date`, `log`, `category`
                     FROM `' . $wpdb->prefix . 'provenexpert_logs`
                     WHERE `category` = %s
-                    ORDER BY ' . $order_by . ' ' . $order . '
+                    ORDER BY `time` DESC
                     LIMIT %d',
 					array( $category, $limit )
 				),
@@ -194,44 +207,26 @@ class Log {
 			);
 		}
 
-		// if only md5 is set.
-		if ( is_null( $category ) && ! is_null( $md5 ) ) {
-			// get and return the entries.
-			return $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		// return all ASC sorted.
+		if ( 'ASC' === strtoupper( $order ) ) {
+			return $wpdb->get_results(
 				$wpdb->prepare(
 					'SELECT `state`, `time` AS `date`, `log`, `category`
-                    FROM `' . $wpdb->prefix . 'provenexpert_logs`
-                    WHERE `md5` = %s
-                    ORDER BY ' . $order_by . ' ' . $order . '
-                    LIMIT %d',
-					array( $md5, $limit )
+                FROM `' . $wpdb->prefix . 'provenexpert_logs`
+                ORDER BY `time` ASC
+                LIMIT %d',
+					array( $limit )
 				),
 				ARRAY_A
 			);
 		}
 
-		// if both are set.
-		if ( ! is_null( $category ) && ! is_null( $md5 ) ) {
-			// get and return the entries.
-			return $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
-				$wpdb->prepare(
-					'SELECT `state`, `time` AS `date`, `log`, `category`
-                    FROM `' . $wpdb->prefix . 'provenexpert_logs`
-                    WHERE `md5` = %s AND `category` = %s
-                    ORDER BY ' . $order_by . ' ' . $order . '
-                    LIMIT %d',
-					array( $md5, $category, $limit )
-				),
-				ARRAY_A
-			);
-		}
-
-		// return all.
-		return $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		// return all DESC sorted.
+		return $wpdb->get_results(
 			$wpdb->prepare(
 				'SELECT `state`, `time` AS `date`, `log`, `category`
                 FROM `' . $wpdb->prefix . 'provenexpert_logs`
-                ORDER BY ' . $order_by . ' ' . $order . '
+                ORDER BY `time` DESC
                 LIMIT %d',
 				array( $limit )
 			),

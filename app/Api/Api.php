@@ -232,6 +232,11 @@ class Api {
 	 * @return bool
 	 */
 	public function connect_by_request(): bool {
+		// check for nonce.
+		if ( isset( $_GET['nonce'] ) && ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'provenexpert-nonce' ) ) {
+			return false;
+		}
+
 		// get the pluginId.
 		$plugin_id = filter_input( INPUT_GET, 'pluginId', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 

@@ -1,7 +1,7 @@
 === ProvenExpert ===
 Contributors: provenexpert, laolaweb, threadi
 Tags: provenexpert
-Requires at least: 4.9.24
+Requires at least: 4.9.25
 Tested up to: 6.7
 Requires PHP: 8.0
 License: GPL-2.0-or-later
@@ -25,6 +25,12 @@ Official WordPress plugin to add widgets from ProvenExpert on your website.
 The development repository is on [GitHub](https://github.com/provenexpert/wordpress-plugin).
 
 We also provide a number of [hooks](https://github.com/provenexpert/wordpress-plugin/blob/master/doc/hooks.md) as help for developers.
+
+#### API
+
+This plugin connects to the ProvenExpert API via https://www.provenexpert.com to obtain the widgets which will be used in your website.
+
+This API service is provided by ProvenExpert: [terms and conditions](https://www.provenexpert.com/en-us/terms-and-conditions-of-use/), [privacy policy](https://www.provenexpert.com/en-us/privacy-policy/).
 
 #### ClassicPress
 

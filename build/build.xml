@@ -176,7 +176,6 @@
             <zipfileset dir="${src.dir}/blocks/seal/build" prefix="${plugin.slug}/blocks/seal/build" />
             <zipfileset dir="${src.dir}/gfx" prefix="${plugin.slug}/gfx" />
             <zipfileset dir="${src.dir}/inc" prefix="${plugin.slug}/inc" />
-            <zipfileset dir="${src.dir}/languages" prefix="${plugin.slug}/languages" />
             <zipfileset dir="${src.dir}/lib" prefix="${plugin.slug}/lib" />
             <zipfileset dir="${src.dir}/vendor" includes="autoload.php" fullpath="${plugin.slug}/vendor/autoload.php" />
             <zipfileset dir="${src.dir}/vendor/composer" prefix="${plugin.slug}/vendor/composer" />

@@ -5,6 +5,9 @@
  * @package provenexpert
  */
 
+// prevent direct access.
+defined( 'ABSPATH' ) || exit;
+
 /**
  * The API URL of ProvenExpert for widgets.
  */

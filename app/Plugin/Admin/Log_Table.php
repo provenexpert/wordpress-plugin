@@ -157,7 +157,7 @@ class Log_Table extends WP_List_Table {
 	 */
 	protected function get_views(): array {
 		// get main url without filter.
-		$url = remove_query_arg( array( 'category', 'md5' ) );
+		$url = remove_query_arg( array( 'category' ) );
 
 		// get actual filter.
 		$category = $this->get_category_filter();
@@ -188,24 +188,16 @@ class Log_Table extends WP_List_Table {
 	 * @return string
 	 */
 	private function get_category_filter(): string {
+		// check for nonce.
+		if ( isset( $_GET['nonce'] ) && ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'provenexpert-nonce' ) ) {
+			return false;
+		}
+
 		$category = filter_input( INPUT_GET, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 		if ( is_null( $category ) ) {
 			return '';
 		}
 		return $category;
-	}
-
-	/**
-	 * Get actual category-filter-value.
-	 *
-	 * @return string
-	 */
-	private function get_md5_filter(): string {
-		$md5 = filter_input( INPUT_GET, 'md5', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-		if ( is_null( $md5 ) ) {
-			return '';
-		}
-		return $md5;
 	}
 
 	/**

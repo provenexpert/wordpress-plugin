@@ -164,6 +164,11 @@ class Setup {
 	 * @return string
 	 */
 	public function check_for_setup_return( string $template ): string {
+		// check for nonce.
+		if ( isset( $_GET['nonce'] ) && ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'provenexpert-nonce' ) ) {
+			return $template;
+		}
+
 		// get our query var.
 		$provenexpert = get_query_var( 'provenexpert' );
 
