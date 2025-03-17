@@ -172,6 +172,14 @@ class Log {
 		// get filter.
 		$category = filter_input( INPUT_GET, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 
+		// check if given category does exist.
+		if ( ! empty( $category ) ) {
+			$categories = self::get_instance()->get_categories();
+			if ( empty( $categories[ $category ] ) ) {
+				$category = '';
+			}
+		}
+
 		// if category is set.
 		if ( ! is_null( $category ) ) {
 			if ( 'ASC' === strtoupper( $order ) ) {

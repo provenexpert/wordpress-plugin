@@ -188,10 +188,21 @@ class Log_Table extends WP_List_Table {
 	 * @return string
 	 */
 	private function get_category_filter(): string {
+		// get the value from request, if set.
 		$category = filter_input( INPUT_GET, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+		// bail if no value is set.
 		if ( is_null( $category ) ) {
 			return '';
 		}
+
+		// bail if given category does not exist.
+		$categories = Log::get_instance()->get_categories();
+		if ( empty( $categories[ $category ] ) ) {
+			return '';
+		}
+
+		// return the category name.
 		return $category;
 	}
 
