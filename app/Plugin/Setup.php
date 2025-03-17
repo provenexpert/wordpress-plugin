@@ -164,8 +164,13 @@ class Setup {
 	 * @return string
 	 */
 	public function check_for_setup_return( string $template ): string {
-		// check for nonce.
-		if ( isset( $_GET['nonce'] ) && ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'provenexpert-nonce' ) ) {
+		// bail if user is not logged in.
+		if ( ! is_user_logged_in() ) {
+			return $template;
+		}
+
+		// check user capabilities.
+		if ( ! current_user_can( 'manage_options' ) ) {
 			return $template;
 		}
 

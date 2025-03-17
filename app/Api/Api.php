@@ -232,8 +232,13 @@ class Api {
 	 * @return bool
 	 */
 	public function connect_by_request(): bool {
-		// check for nonce.
-		if ( isset( $_GET['nonce'] ) && ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'provenexpert-nonce' ) ) {
+		// bail if user is not logged in.
+		if ( ! is_user_logged_in() ) {
+			return false;
+		}
+
+		// check user capabilities.
+		if ( ! current_user_can( 'manage_options' ) ) {
 			return false;
 		}
 

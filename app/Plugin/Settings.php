@@ -410,11 +410,6 @@ class Settings {
 	 * @return void
 	 */
 	public function add_settings_content(): void {
-		// check for nonce.
-		if ( isset( $_GET['nonce'] ) && ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'provenexpert-nonce' ) ) {
-			return;
-		}
-
 		// check user capabilities.
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;

@@ -23,11 +23,6 @@ class Checkbox {
 	 * @return void
 	 */
 	public static function get( array $attributes ): void {
-		// check for nonce.
-		if ( isset( $_GET['nonce'] ) && ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'provenexpert-nonce' ) ) {
-			return;
-		}
-
 		if ( ! empty( $attributes['fieldId'] ) ) {
 			// get title.
 			$title = '';
@@ -40,7 +35,7 @@ class Checkbox {
 			if ( isset( $attributes['readonly'] ) && false !== $attributes['readonly'] ) {
 				$readonly = ' disabled';
 				?>
-				<input type="hidden" name="<?php echo esc_attr( $attributes['fieldId'] ); ?>_ro" value="<?php echo ( 1 === absint( get_option( $attributes['fieldId'], 0 ) ) || 1 === absint( filter_input( INPUT_POST, $attributes['fieldId'], FILTER_SANITIZE_NUMBER_INT ) ) ) ? '1' : '0'; ?>">
+				<input type="hidden" name="<?php echo esc_attr( $attributes['fieldId'] ); ?>_ro" value="<?php echo ( 1 === absint( get_option( $attributes['fieldId'], 0 ) ) ) ? '1' : '0'; ?>">
 				<?php
 			}
 
@@ -49,7 +44,7 @@ class Checkbox {
 					name="<?php echo esc_attr( $attributes['fieldId'] ); ?>"
 					value="1"
 				<?php
-				echo ( 1 === absint( get_option( $attributes['fieldId'] ) ) || 1 === absint( filter_input( INPUT_GET, $attributes['fieldId'], FILTER_SANITIZE_NUMBER_INT ) ) ) ? ' checked="checked"' : '';
+				echo ( 1 === absint( get_option( $attributes['fieldId'] ) ) ) ? ' checked="checked"' : '';
 				?>
 				<?php echo esc_attr( $readonly ); ?>
 					class="provenexpert-field-width"

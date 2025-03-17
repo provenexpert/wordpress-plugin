@@ -23,20 +23,9 @@ class Number {
 	 * @return void
 	 */
 	public static function get( array $attributes ): void {
-		// check for nonce.
-		if ( isset( $_GET['nonce'] ) && ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'provenexpert-nonce' ) ) {
-			return;
-		}
-
 		if ( ! empty( $attributes['fieldId'] ) ) {
 			// get value from config.
 			$value = get_option( $attributes['fieldId'] );
-
-			// or get it from request.
-			$request_value = sanitize_text_field( wp_unslash( filter_input( INPUT_POST, $attributes['fieldId'], FILTER_SANITIZE_FULL_SPECIAL_CHARS ) ) );
-			if ( ! empty( $request_value ) ) {
-				$value = $request_value;
-			}
 
 			// get title.
 			$title = '';
