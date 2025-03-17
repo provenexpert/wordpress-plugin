@@ -62,7 +62,7 @@ class Admin {
 
 		// add action hooks.
 		add_action( 'admin_action_provenexpert_clear_cache', array( $this, 'clear_cache_by_request' ) );
-		add_action( 'admin_action_provenexpert_delete_all_logs', array( $this, 'delete_all_logs' ) );
+		add_action( 'admin_action_provenexpert_delete_all_logs', array( $this, 'delete_all_logs_by_request' ) );
 	}
 
 	/**
@@ -181,9 +181,9 @@ class Admin {
 	 * @return void
 	 * @noinspection PhpNoReturnAttributeCanBeAddedInspection
 	 */
-	public function delete_all_logs(): void {
+	public function delete_all_logs_by_request(): void {
 		// check nonce.
-		check_ajax_referer( 'provenexpert-delete-all-logs', 'nonce' );
+		check_admin_referer( 'provenexpert-delete-all-logs', 'nonce' );
 
 		// delete all entries of logs.
 		\ProvenExpert\Plugin\Log::get_instance()->truncate_table();
