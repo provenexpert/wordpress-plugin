@@ -152,11 +152,6 @@ class Log {
 	public function get_entries(): array {
 		global $wpdb;
 
-		// check for nonce.
-		if ( isset( $_GET['nonce'] ) && ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'provenexpert-nonce' ) ) {
-			return array();
-		}
-
 		// order table.
 		$order = filter_input( INPUT_GET, 'order', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 		if ( ! is_null( $order ) ) {

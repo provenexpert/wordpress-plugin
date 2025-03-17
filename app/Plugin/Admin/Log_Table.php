@@ -188,11 +188,6 @@ class Log_Table extends WP_List_Table {
 	 * @return string
 	 */
 	private function get_category_filter(): string {
-		// check for nonce.
-		if ( isset( $_GET['nonce'] ) && ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'provenexpert-nonce' ) ) {
-			return false;
-		}
-
 		$category = filter_input( INPUT_GET, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 		if ( is_null( $category ) ) {
 			return '';
