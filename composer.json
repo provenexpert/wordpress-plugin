@@ -9,7 +9,7 @@
         }
     ],
     "type": "wordpress-plugin",
-    "homepage": "https://laolaweb.com",
+    "homepage": "https://www.provenexpert.com",
     "minimum-stability": "stable",
     "scripts": {
         "post-install-cmd": [
