@@ -5,14 +5,14 @@ msgstr ""
 "Project-Id-Version: ProvenExpert @@VersionNumber@@\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/provenexpert\n"
 "POT-Creation-Date: 2025-02-18T12:52:26+00:00\n"
-"PO-Revision-Date: 2025-02-18 13:58+0100\n"
+"PO-Revision-Date: 2025-04-17 09:27+0200\n"
 "Last-Translator: Thomas Zwirner <tz@laolaweb.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 "X-Domain: provenexpert\n"
 
 #. Plugin Name of the plugin
@@ -511,7 +511,7 @@ msgstr "Alle Protokolle löschen"
 
 #: app/Plugin/Admin/Log_Table.php:256
 msgid "Do you really want to delete all logs?"
-msgstr "Bist Du sicher, dass Du alle Protokolle löschen willst?"
+msgstr "Sind Sie sicher, dass sie alle Protokolle löschen wollen?"
 
 #: app/Plugin/Admin/Log_Table.php:262
 msgid "Yes"
@@ -689,7 +689,7 @@ msgstr ""
 #: app/Plugin/Settings.php:761
 msgid "You will no longer be able to use ProvenExpert widgets on your website."
 msgstr ""
-"Du kannst ProvenExpert-Widgets nicht mehr auf deiner Website verwenden."
+"Sie können ProvenExpert-Widgets nicht mehr auf ihrer Website verwenden."
 
 #: app/Plugin/Settings.php:762
 msgid "All existing widgets will no longer be visible."
@@ -787,8 +787,8 @@ msgid ""
 "Your API credentials are wrong. You will not be able to use any widgets or "
 "seals. Check <a href=\"%1$s\">your settings</a>."
 msgstr ""
-"Deine API-Anmeldedaten sind falsch. Du wirst keine Widgets oder Siegel "
-"verwenden können. Überprüfe <a href=\"%1$s\">deine Einstellungen</a>."
+"Deine API-Anmeldedaten sind falsch. Sie werden keine Widgets oder Siegel "
+"verwenden können. Überprüfen Sie <a href=\"%1$s\">ihre Einstellungen</a>."
 
 #: app/ProvenExpertSeals/Seal_Base.php:229
 msgid "No HTML-code returned for requested seal."

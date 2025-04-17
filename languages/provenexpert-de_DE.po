@@ -5,14 +5,14 @@ msgstr ""
 "Project-Id-Version: ProvenExpert @@VersionNumber@@\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/provenexpert\n"
 "POT-Creation-Date: 2025-02-18T12:52:26+00:00\n"
-"PO-Revision-Date: 2025-02-18 13:58+0100\n"
+"PO-Revision-Date: 2025-04-17 09:28+0200\n"
 "Last-Translator: Thomas Zwirner <tz@laolaweb.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 "X-Domain: provenexpert\n"
 
 #. Plugin Name of the plugin
@@ -511,7 +511,7 @@ msgstr "Alle Protokolle löschen"
 
 #: app/Plugin/Admin/Log_Table.php:256
 msgid "Do you really want to delete all logs?"
-msgstr "Bist Du sicher, dass Du alle Protokolle löschen willst?"
+msgstr "Bist du sicher, dass du alle Protokolle löschen willst?"
 
 #: app/Plugin/Admin/Log_Table.php:262
 msgid "Yes"
@@ -644,7 +644,7 @@ msgid ""
 "Clearing the cache reloads all widgets.<br><strong>Note:</strong> the cache "
 "is already emptied once a day."
 msgstr ""
-"Wenn Du den Cache löschst, werden alle Widgets neu geladen."
+"Wenn du den Cache löschst, werden alle Widgets neu geladen."
 "<br><strong>Hinweis:</strong> der Cache wird bereits einmal am Tag geleert."
 
 #: app/Plugin/Settings.php:179
@@ -665,7 +665,7 @@ msgstr "Aktiviere Debug-Modus"
 
 #: app/Plugin/Settings.php:697
 msgid "Are you sure you want to clear the cache?"
-msgstr "Bist Du sicher, dass Du den Cache leeren willst?"
+msgstr "Bist du sicher, dass du den Cache leeren willst?"
 
 #: app/Plugin/Settings.php:703
 msgid "Yes, I want"
