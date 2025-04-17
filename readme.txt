@@ -53,4 +53,7 @@ The plugin can be installed even without ProvenExpert account. However, it is no
 == Changelog ==
 
 = @@VersionNumber@@ =
-* Initial release
+- Added new changelog format
+- Set compatibility to WordPress 6.8
+
+[older changes](https://github.com/provenexpert/wordpress-plugin/blob/master/changelog.md)
