@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: ProvenExpert @@VersionNumber@@\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/provenexpert\n"
 "POT-Creation-Date: 2025-02-18T12:52:26+00:00\n"
-"PO-Revision-Date: 2025-04-17 09:28+0200\n"
+"PO-Revision-Date: 2025-04-25 12:31+0200\n"
 "Last-Translator: Thomas Zwirner <tz@laolaweb.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -51,7 +51,7 @@ msgid ""
 "Your ProvenExpert account is not available. This plugin will no longer "
 "provide you with ProvenExpert options."
 msgstr ""
-"Ihr Provenexpert-Konto ist nicht verfügbar. Dieses Plugin stellt Ihnen keine "
+"Dein Provenexpert-Konto ist nicht verfügbar. Dieses Plugin stellt dir keine "
 "ProvenExpert Optionen mehr zur Verfügung."
 
 #. translators: %1$s will be replaced by an email.
@@ -60,15 +60,15 @@ msgid ""
 "Please <a href=\"mailto:%1$s\">contact ProvenExpert Support</a> to clarify "
 "this."
 msgstr ""
-"Bitte <a href=\"mailto:%1$s\">kontaktieren Sie den ProvenExpert Support</a>, "
-"um dies zu klären."
+"Bitte <a href=\"mailto:%1$s\">kontaktiere den ProvenExpert Support</a>, um "
+"dies zu klären."
 
 #: app/Account/Account.php:180
 msgid ""
 "ProvenExpert API is not available to validate your ProvenExpert account. Got "
 "following value:"
 msgstr ""
-"Provenexpert API ist nicht verfügbar, um Ihr ProvenExpert Konto zu "
+"Provenexpert API ist nicht verfügbar, um dein ProvenExpert Konto zu "
 "validieren. Habe folgenden Wert erhalten:"
 
 #: app/Account/Account.php:192
@@ -97,9 +97,9 @@ msgid ""
 "found in the <a href=\"%1$s\">log</a>. If you have any questions, please <a "
 "href=\"mailto:%2$s\">contact ProvenExpert support</a>."
 msgstr ""
-"Für Ihr ProvenExpert -Konto konnten keine Daten abgerufen werden. Details "
-"finden Sie im <a href=\"%1$s\">Protokoll</a>. Wenn Sie Fragen haben, wenden "
-"Sie sich bitte <a href=\"mailto:%2$s\">an den ProvenExpert Support</a>."
+"Für dein ProvenExpert-Konto konnten keine Daten abgerufen werden. Details "
+"findest Du im <a href=\"%1$s\">Protokoll</a>. Wenn du Fragen hast, wende "
+"dich bitte <a href=\"mailto:%2$s\">an den ProvenExpert Support</a>."
 
 #: app/Api/Api.php:168
 msgid "API is not configured."
@@ -124,7 +124,7 @@ msgstr "Unerwarteter HTTP-Status von ProvenExpert:"
 
 #: app/Api/Api.php:297 app/Api/Api.php:309
 msgid "Got empty response from ProvenExpert!"
-msgstr "Ich habe eine leere Antwort von ProvenExpert erhalten!"
+msgstr "Leere Antwort von ProvenExpert erhalten!"
 
 #: app/Api/Api.php:318
 msgid "Plugin could not be connected to ProvenExpert!"
@@ -136,7 +136,8 @@ msgstr "ProvenExpert sendet keine API-Anmeldedaten!"
 
 #: app/Api/Api.php:341
 msgid "Your ProvenExpert account is now connected to your WordPress website."
-msgstr "Ihr ProvenExpert -Konto ist nun mit Ihrer WordPress-Website verbunden."
+msgstr ""
+"Dein ProvenExpert -Konto ist nun mit deiner WordPress-Website verbunden."
 
 #. translators: %1$s will be replaced with a URL.
 #: app/Api/Api.php:343
@@ -144,8 +145,9 @@ msgid ""
 "You are now able to use the ProvenExpert widgets in your website. You can "
 "see which widgets you can use <a href=\"%1$s\">here</a>."
 msgstr ""
-"Sie können jetzt die ProvenExpert Widgets auf Ihrer Website verwenden. Sie "
-"können <a href=\"%1$s\">hier</a> sehen, welche Widgets Sie verwenden können."
+"Du kannst jetzt die ProvenExpert Widgets auf deiner Website verwenden. Du "
+"kannst <a href=\"%1$s\">hier</a> sehen, welche Widgets dir zur Verfügung "
+"stehen."
 
 #: app/Api/Api.php:353
 msgid "Got API credentials from ProvenExpert and saved them."
@@ -617,8 +619,8 @@ msgid ""
 "This is the list of widgets you will be able to your according to your "
 "ProvenExpert account."
 msgstr ""
-"Dies ist die Liste der Widgets, die Sie in Ihrem ProvenExpert-Konto "
-"einstellen können."
+"Dies ist die Liste der Widgets, die du laut deinem ProvenExpert-Konto "
+"verwenden kannst."
 
 #: app/Plugin/Settings.php:157
 msgid "Not available widgets"
@@ -631,9 +633,9 @@ msgid ""
 "have any question about this <a href=\"mailto:%1$s\">contact the "
 "ProvenExpert support</a>."
 msgstr ""
-"Dies ist die Liste der Widgets, die Sie <strong>nicht</strong> verwenden "
-"können. Wenn Sie Fragen dazu haben, wenden Sie sich <a href=\"mailto:"
-"%1$s\">an den ProvenExpert-Support</a>."
+"Dies ist die Liste der Widgets, die du <strong>nicht</strong> verwenden "
+"kannst. Wenn du Fragen dazu hast, wende dich <a href=\"mailto:%1$s\">an den "
+"ProvenExpert-Support</a>."
 
 #: app/Plugin/Settings.php:171 app/Plugin/Settings.php:695
 msgid "Clear cache"
@@ -683,8 +685,8 @@ msgstr "Verbindung zu ProvenExpert trennen"
 msgid ""
 "Are you sure you want to disconnect your WordPress website from ProvenExpert?"
 msgstr ""
-"Sind Sie sicher, dass Sie die Verbindung zwischen Ihrer WordPress-Website "
-"und ProvenExperttrennen möchten?"
+"Bist du sicher, dass du die Verbindung zwischen deiner WordPress-Website und "
+"ProvenExpert trennen möchtest?"
 
 #: app/Plugin/Settings.php:761
 msgid "You will no longer be able to use ProvenExpert widgets on your website."
@@ -709,7 +711,7 @@ msgid ""
 "After clicking on the button below you will be redirected to your "
 "ProvenExpert account."
 msgstr ""
-"Nachdem Sie auf die Schaltfläche unten geklickt haben, werden Sie zu Ihrem "
+"Nachdem du auf die Schaltfläche unten geklickt hast, wirst du zu deinem "
 "ProvenExpert-Konto weitergeleitet."
 
 #: app/Plugin/Settings.php:790
@@ -717,8 +719,8 @@ msgid ""
 "Click there on Administration > Integrations > WordPress and confirm the "
 "connection by clicking on the button there."
 msgstr ""
-"Klicken Sie dort auf Administration > Integrationen > WordPress und "
-"bestätigen Sie die Verbindung mit einem Klick auf die Schaltfläche."
+"Klicke dort auf Administration > Integrationen > WordPress und bestätige die "
+"Verbindung mit einem Klick auf die Schaltfläche."
 
 #: app/Plugin/Settings.php:796
 msgid "Yes, I want to connect"
@@ -728,8 +730,7 @@ msgstr "Ja, ich will verbinden"
 msgid ""
 "Please connect your ProvenExpert account to this WordPress website first."
 msgstr ""
-"Bitte verbinden Sie zunächst Ihr ProvenExpert-Konto mit dieser WordPress-"
-"Website."
+"Bitte verbinde zunächst dein ProvenExpert-Konto mit dieser WordPress-Website."
 
 #: app/Plugin/Settings.php:897
 msgid "Reload account data"
@@ -737,7 +738,7 @@ msgstr "Kontodaten neu laden"
 
 #: app/Plugin/Settings.php:922
 msgid "All widgets are currently available to you."
-msgstr "Alle Widgets sind derzeit für Sie verfügbar."
+msgstr "Alle Widgets sind derzeit für dich verfügbar."
 
 #. translators: %1$s will be replaced by an email.
 #: app/Plugin/Settings.php:941
@@ -747,10 +748,10 @@ msgid ""
 "any questions, please <a href=\"mailto:%1$s\">contact ProvenExpert Support</"
 "a>."
 msgstr ""
-"Hier finden Sie Informationen darüber, welche Widgets von ProvenExpert Sie "
-"nutzen können. Dies hängt von dem Paket ab, das Sie bei ProvenExpert gebucht "
-"haben. Wenn Sie Fragen haben, wenden Sie sich bitte an <a href=\"mailto:"
-"%1$s\">den ProvenExpert Support</a>."
+"Hier findest Du Informationen darüber, welche Widgets von ProvenExpert du "
+"nutzen kannst. Dies hängt von dem Paket ab, dass du bei ProvenExpert gebucht "
+"hast. Wenn du Fragen hast, wende dich bitte an <a href=\"mailto:%1$s\">den "
+"ProvenExpert Support</a>."
 
 #: app/Plugin/Setup.php:89
 msgid ""
@@ -760,9 +761,9 @@ msgid ""
 "WordPress on the following page."
 msgstr ""
 "<strong>Du hast ProvenExpert installiert - schön und danke!</strong> Um die "
-"Funktionen des Plugins nutzen zu können, verbinden Sie es bitte mit Ihrem "
-"ProvenExpert-Konto. Klicken Sie auf die folgende Schaltfläche. Bestätigen "
-"Sie die Verbindung zu Ihrem WordPress auf der folgenden Seite."
+"Funktionen des Plugins nutzen zu können, verbinde es bitte mit deinem "
+"ProvenExpert-Konto. Klicke dazu auf die folgende Schaltfläche. Bestätige die "
+"Verbindung zu deinem WordPress auf der dann folgenden Seite."
 
 #. translators: %1$d will be replaced by the days this message will be hidden.
 #: app/Plugin/Transient.php:195

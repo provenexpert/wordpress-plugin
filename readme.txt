@@ -16,11 +16,11 @@ Official WordPress plugin to add widgets from ProvenExpert on your website.
 
 #### Requirements
 
-You need a [ProvenExpert](https://www.provenexpert.com) account to use the widgets this plugin provides
+You need a [ProvenExpert](https://www.provenexpert.com) account to use the widgets this plugin provides.
 
 #### Features
 
-Use ProvenExpert widgets in Block Editor, as classic widgets or via shortcode
+Use ProvenExpert widgets in Block Editor, as classic widgets or via shortcode.
 
 The development repository is on [GitHub](https://github.com/provenexpert/wordpress-plugin).
 
