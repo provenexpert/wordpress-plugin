@@ -286,7 +286,7 @@ class Helper {
 	 * @return string
 	 */
 	public static function get_review_url(): string {
-		return 'https://wordpress.org/support/plugin/provenexpert/#reviews';
+		return 'https://wordpress.org/support/plugin/provenexpert/reviews/#new-post';
 	}
 
 	/**
