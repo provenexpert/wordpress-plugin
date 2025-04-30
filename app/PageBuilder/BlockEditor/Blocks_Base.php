@@ -76,8 +76,16 @@ class Blocks_Base {
 	 * @return void
 	 */
 	public function register(): void {
+		// get the block registry.
+		$block_registry = WP_Block_Type_Registry::get_instance();
+
+		// bail if block type registry is not available.
+		if( is_null( $block_registry ) ) {
+			return;
+		}
+
 		// bail if block is already registered.
-		if ( WP_Block_Type_Registry::get_instance()->is_registered( 'provenexpert/' . $this->get_name() ) ) {
+		if ( $block_registry->is_registered( 'provenexpert/' . $this->get_name() ) ) {
 			return;
 		}
 

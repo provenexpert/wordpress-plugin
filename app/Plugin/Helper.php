@@ -212,7 +212,7 @@ class Helper {
 	 * @return string
 	 */
 	public static function get_current_url(): string {
-		if ( is_admin() && ! empty( $_SERVER['REQUEST_URI'] ) ) {
+		if ( ! empty( $_SERVER['REQUEST_URI'] ) && is_admin() ) {
 			return admin_url( basename( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) );
 		}
 
