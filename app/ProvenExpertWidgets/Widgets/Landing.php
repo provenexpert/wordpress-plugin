@@ -22,7 +22,7 @@ class Landing extends Widget_Base {
 	 *
 	 * @var string
 	 */
-	protected string $label = 'Landing';
+	protected string $label = 'Evaluation Widget';
 
 	/**
 	 * The widget type.

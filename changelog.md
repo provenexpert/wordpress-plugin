@@ -8,6 +8,7 @@
 
 ### Changed
 
+- Changed widget titles
 - Set compatibility to WordPress 6.8
 
 ### Fixed

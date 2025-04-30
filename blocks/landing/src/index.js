@@ -25,8 +25,8 @@ import { provenExpertIcon } from '../../components'
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 registerBlockType( 'provenexpert/landing', {
-	title: __( 'Landing', 'provenexpert' ),
-	description: __('Provides a block to show your ProvenExpert Landing.', 'provenexpert'),
+	title: __( 'Evaluation Widget', 'provenexpert' ),
+	description: __('Provides a block to show your ProvenExpert Evaluation Widget.', 'provenexpert'),
   category: 'provenexpert',
 	icon: provenExpertIcon,
 

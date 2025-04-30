@@ -25,9 +25,9 @@ class Circle extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'ProvenExpertClassicWidgetCircle',
-			__( 'ProvenExpert Circle', 'provenexpert' ),
+			__( 'ProvenExpert Quality Seal', 'provenexpert' ),
 			array(
-				'description' => __( 'Provides a widget to show your ProvenExpert Circle.', 'provenexpert' ),
+				'description' => __( 'Provides a widget to show your ProvenExpert Quality Seal.', 'provenexpert' ),
 			)
 		);
 	}

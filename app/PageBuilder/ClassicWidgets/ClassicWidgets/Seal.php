@@ -25,9 +25,9 @@ class Seal extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'ProvenExpertClassicWidgetSeal',
-			__( 'ProvenExpert Seal', 'provenexpert' ),
+			__( 'ProvenExpert Evaluation Seal', 'provenexpert' ),
 			array(
-				'description' => __( 'Provides a widget to show your ProvenExpert Seal.', 'provenexpert' ),
+				'description' => __( 'Provides a widget to show your ProvenExpert Evaluation Seal.', 'provenexpert' ),
 			)
 		);
 	}

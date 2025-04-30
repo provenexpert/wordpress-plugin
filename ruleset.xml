@@ -30,5 +30,6 @@
         <!-- Exclude base64-warnings for backwards-compatibility with older plugin-version, but it also disabled serialize-warning ... -->
         <exclude name="WordPress.PHP.DiscouragedPHPFunctions"/>
         <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+        <exclude name="WordPress.WP.I18n.NonSingularStringLiteralText" />
     </rule>
 </ruleset>

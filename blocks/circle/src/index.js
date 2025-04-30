@@ -25,8 +25,8 @@ import { provenExpertIcon } from '../../components'
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 registerBlockType( 'provenexpert/circle', {
-	title: __( 'Circle', 'provenexpert' ),
-	description: __('Provides a block to show your ProvenExpert Circle.', 'provenexpert'),
+	title: __( 'Quality Seal', 'provenexpert' ),
+	description: __('Provides a block to show your ProvenExpert Quality Seal.', 'provenexpert'),
   category: 'provenexpert',
 	icon: provenExpertIcon,
 

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: ProvenExpert @@VersionNumber@@\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/provenexpert\n"
 "POT-Creation-Date: 2025-02-18T12:52:26+00:00\n"
-"PO-Revision-Date: 2025-04-17 09:27+0200\n"
+"PO-Revision-Date: 2025-04-25 12:31+0200\n"
 "Last-Translator: Thomas Zwirner <tz@laolaweb.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -124,7 +124,7 @@ msgstr "Unerwarteter HTTP-Status von ProvenExpert:"
 
 #: app/Api/Api.php:297 app/Api/Api.php:309
 msgid "Got empty response from ProvenExpert!"
-msgstr "Ich habe eine leere Antwort von ProvenExpert erhalten!"
+msgstr "Leere Antwort von ProvenExpert erhalten!"
 
 #: app/Api/Api.php:318
 msgid "Plugin could not be connected to ProvenExpert!"

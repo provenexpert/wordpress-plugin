@@ -22,7 +22,7 @@ class Circle extends Widget_Base {
 	 *
 	 * @var string
 	 */
-	protected string $label = 'Circle';
+	protected string $label = 'Quality Seal';
 
 	/**
 	 * The widget type.

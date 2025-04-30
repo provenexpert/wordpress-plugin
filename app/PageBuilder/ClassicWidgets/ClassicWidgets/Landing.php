@@ -25,9 +25,9 @@ class Landing extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'ProvenExpertClassicWidgetLanding',
-			__( 'ProvenExpert Landing', 'provenexpert' ),
+			__( 'ProvenExpert Evaluation Widget', 'provenexpert' ),
 			array(
-				'description' => __( 'Provides a widget to show your ProvenExpert Landing.', 'provenexpert' ),
+				'description' => __( 'Provides a widget to show your ProvenExpert Evaluation Widget.', 'provenexpert' ),
 			)
 		);
 	}
