@@ -80,7 +80,7 @@ class Blocks_Base {
 		$block_registry = WP_Block_Type_Registry::get_instance();
 
 		// bail if block type registry is not available.
-		if( is_null( $block_registry ) ) {
+		if ( is_null( $block_registry ) ) {
 			return;
 		}
 
