@@ -22,7 +22,7 @@ class Seal extends Widget_Base {
 	 *
 	 * @var string
 	 */
-	protected string $label = 'Seal';
+	protected string $label = 'Evaluation Seal';
 
 	/**
 	 * The widget type.

@@ -22,7 +22,7 @@ class Bar extends Widget_Base {
 	 *
 	 * @var string
 	 */
-	protected string $label = 'Bar';
+	protected string $label = 'Browser Bar';
 
 	/**
 	 * The widget type.

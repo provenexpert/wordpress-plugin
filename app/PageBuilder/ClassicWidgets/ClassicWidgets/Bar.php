@@ -25,9 +25,9 @@ class Bar extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'ProvenExpertClassicWidgetBar',
-			__( 'ProvenExpert Bar', 'provenexpert' ),
+			__( 'ProvenExpert Browser Bar', 'provenexpert' ),
 			array(
-				'description' => __( 'Provides a widget to show your ProvenExpert Bar.', 'provenexpert' ),
+				'description' => __( 'Provides a widget to show your ProvenExpert Browser Bar.', 'provenexpert' ),
 			)
 		);
 	}

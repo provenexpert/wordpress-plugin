@@ -25,8 +25,8 @@ import { provenExpertIcon } from '../../components'
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 registerBlockType( 'provenexpert/bar', {
-	title: __( 'Bar', 'provenexpert' ),
-	description: __('Provides a block to show your ProvenExpert Bar.', 'provenexpert'),
+	title: __( 'Browser Bar', 'provenexpert' ),
+	description: __('Provides a block to show your ProvenExpert Browser Bar.', 'provenexpert'),
   category: 'provenexpert',
 	icon: provenExpertIcon,
 

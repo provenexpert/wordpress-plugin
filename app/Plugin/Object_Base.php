@@ -27,7 +27,7 @@ class Object_Base {
 	 * @return string
 	 */
 	public function get_label(): string {
-		return $this->label;
+		return __( $this->label, 'provenexpert' );
 	}
 
 	/**
