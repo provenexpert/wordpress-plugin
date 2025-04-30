@@ -22,32 +22,6 @@ class Languages {
 	private static ?Languages $instance = null;
 
 	/**
-	 * List of languages (format: "xx") and their mappings to WP-language (format: "xx_YY")
-	 *
-	 * @var array
-	 */
-	private array $language_to_wp_lang_mapping = array(
-		'de' => array(
-			'de_DE',
-			'de_DE_format',
-			'de_CH',
-			'de_CH_informal',
-			'de_AT',
-		),
-		'en' => array(
-			'en_US',
-			'en_UK',
-		),
-	);
-
-	/**
-	 * Fallback-language.
-	 *
-	 * @var string
-	 */
-	private string $fallback_language_name = 'en';
-
-	/**
 	 * Constructor for this object.
 	 */
 	private function __construct() {}

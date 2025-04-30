@@ -373,12 +373,10 @@ class Settings {
 	 */
 	public function register_field_callbacks(): void {
 		foreach ( $this->get_settings() as $section_settings ) {
-			if ( ! empty( $section_settings ) && ! empty( $section_settings['settings_page'] ) ) {
-				if ( ! empty( $section_settings['fields'] ) ) {
-					foreach ( $section_settings['fields'] as $field_name => $field_settings ) {
-						if ( ! empty( $field_settings['callback'] ) ) {
-							add_filter( 'pre_update_option_' . $field_name, $field_settings['callback'], 10, 2 );
-						}
+			if ( ! empty( $section_settings ) && ! empty( $section_settings['settings_page'] ) && ! empty( $section_settings['fields'] ) ) {
+				foreach ( $section_settings['fields'] as $field_name => $field_settings ) {
+					if ( ! empty( $field_settings['callback'] ) ) {
+						add_filter( 'pre_update_option_' . $field_name, $field_settings['callback'], 10, 2 );
 					}
 				}
 			}
@@ -510,7 +508,7 @@ class Settings {
 			}
 
 			if ( ! empty( $callback ) ) {
-				call_user_func( $callback );
+				$callback();
 			}
 			?>
 			</div>
@@ -730,12 +728,10 @@ class Settings {
 	 */
 	public function register_additional_field_callbacks(): void {
 		foreach ( $this->get_settings() as $section_settings ) {
-			if ( ! empty( $section_settings ) && ! empty( $section_settings['settings_page'] ) && ! empty( $section_settings['label'] ) && ! empty( $section_settings['callback'] ) ) {
-				if ( ! empty( $section_settings['fields'] ) ) {
-					foreach ( $section_settings['fields'] as $field_name => $field_settings ) {
-						if ( ! empty( $field_settings['read_callback'] ) ) {
-							add_filter( 'option_' . $field_name, $field_settings['read_callback'] );
-						}
+			if ( ! empty( $section_settings ) && ! empty( $section_settings['settings_page'] ) && ! empty( $section_settings['label'] ) && ! empty( $section_settings['callback'] ) && ! empty( $section_settings['fields'] ) ) {
+				foreach ( $section_settings['fields'] as $field_name => $field_settings ) {
+					if ( ! empty( $field_settings['read_callback'] ) ) {
+						add_filter( 'option_' . $field_name, $field_settings['read_callback'] );
 					}
 				}
 			}
@@ -888,7 +884,7 @@ class Settings {
 		if ( empty( $list ) ) {
 			// show hint.
 			/* translators: %1$s will be replaced by an email. */
-			echo '<p>' . sprintf( wp_kses_post( 'Unfortunately, there are currently no widgets available. Please check the ProvenExpert package you have booked. If you have any questions, please <a href="mailto:%1$s">contact ProvenExpert support</a>.', 'provenexpert' ), esc_html( Helper::get_support_email() ) ) . '</p>';
+			echo '<p>' . wp_kses_post( sprintf( __( 'Unfortunately, there are currently no widgets available. Please check the ProvenExpert package you have booked. If you have any questions, please <a href="mailto:%1$s">contact ProvenExpert support</a>.', 'provenexpert' ), esc_html( Helper::get_support_email() ) ) ) . '</p>';
 
 			// create URL to check account data.
 			$url = add_query_arg(

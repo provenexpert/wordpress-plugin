@@ -148,10 +148,8 @@ class Crypt {
 	private function get_method_by_name( string $method ): false|Crypt_Base {
 		foreach ( $this->get_available_methods() as $method_class_name ) {
 			$obj = call_user_func( $method_class_name . '::get_instance' );
-			if ( $obj instanceof Crypt_Base ) {
-				if ( $method === $obj->get_name() ) {
-					return $obj;
-				}
+			if ( ( $obj instanceof Crypt_Base ) && $method === $obj->get_name() ) {
+				return $obj;
 			}
 		}
 

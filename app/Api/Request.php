@@ -167,6 +167,7 @@ class Request {
 
 		// send request and get the result-object.
 		switch ( $this->get_method() ) {
+			case 'DELETE':
 			case 'GET':
 				$response = wp_safe_remote_get( $this->get_url(), $args );
 				break;
@@ -175,9 +176,6 @@ class Request {
 					$args['body'] = wp_json_encode( $args['body'] );
 				}
 				$response = wp_safe_remote_post( $this->get_url(), $args );
-				break;
-			case 'DELETE':
-				$response = wp_safe_remote_get( $this->get_url(), $args );
 				break;
 		}
 
