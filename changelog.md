@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed potential error with reading HTTP-status of not successfully processed API requests
+
+## [1.0.1] - 02.05.2025
+
 ### Added
 
 - Added new changelog format
