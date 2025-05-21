@@ -67,11 +67,11 @@ class Request {
 	private string $response;
 
 	/**
-	 * The http-status.
+	 * The HTTP-status.
 	 *
 	 * @var int
 	 */
-	private int $http_status;
+	private int $http_status = 0;
 
 	/**
 	 * JSON-encode the post data.
