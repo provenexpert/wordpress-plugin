@@ -89,7 +89,7 @@ class Api {
 	 * @return string
 	 */
 	public function get_id(): string {
-		return Crypt::get_instance()->decrypt( get_option( 'provenExpertApiId' ) );
+		return get_option( 'provenExpertApiId' );
 	}
 
 	/**
@@ -99,8 +99,8 @@ class Api {
 	 *
 	 * @return void
 	 */
-	private function set_id( string $api_id ): void {
-		update_option( 'provenExpertApiId', Crypt::get_instance()->encrypt( $api_id ) );
+	public function set_id( string $api_id ): void {
+		update_option( 'provenExpertApiId', $api_id );
 	}
 
 	/**
@@ -118,7 +118,7 @@ class Api {
 	 * @return string
 	 */
 	public function get_key(): string {
-		return Crypt::get_instance()->decrypt( get_option( 'provenExpertApiKey' ) );
+		return get_option( 'provenExpertApiKey' );
 	}
 
 	/**
@@ -128,8 +128,8 @@ class Api {
 	 *
 	 * @return void
 	 */
-	private function set_key( string $api_key ): void {
-		update_option( 'provenExpertApiKey', Crypt::get_instance()->encrypt( $api_key ) );
+	public function set_key( string $api_key ): void {
+		update_option( 'provenExpertApiKey', $api_key );
 	}
 
 	/**
@@ -341,7 +341,7 @@ class Api {
 			return false;
 		}
 
-		// save given API credentials as encrypted values.
+		// save given API credentials.
 		$this->set_id( $content_array['connect']['apiUser'] );
 		$this->set_key( $content_array['connect']['apiKey'] );
 
@@ -428,18 +428,6 @@ class Api {
 
 		// send request to API.
 		$request_obj->send();
-
-		// get the response.
-		$http_status = $request_obj->get_http_status();
-
-		// bail if status is 404.
-		if ( 404 === $http_status ) {
-			// log event.
-			Log::get_instance()->add_log( __( 'Plugin is already disconnected from ProvenExpert.', 'provenexpert' ), 'error', 'api' );
-
-			// do not process any more tasks here.
-			return;
-		}
 
 		// delete API ID and Key.
 		$this->remove_id();

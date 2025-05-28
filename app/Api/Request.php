@@ -197,7 +197,7 @@ class Request {
 		// if debug is enabled, log this request and response.
 		if ( 1 === absint( get_option( 'provenExpertDebug' ) ) ) {
 			// hide credentials.
-			$args['headers']['Authorization'] = __( 'Hidden in log', 'provenexpert' );
+			$args['headers']['Authorization'] = __( 'Hidden for log', 'provenexpert' );
 
 			// check state.
 			$state = 'info';

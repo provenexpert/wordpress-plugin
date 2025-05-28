@@ -19,11 +19,11 @@ class GetDecryptValue {
 	/**
 	 * Generate the crypt value.
 	 *
-	 * @param string|null $value The value to save.
+	 * @param string|null $value The value to return decrypted.
 	 *
 	 * @return string|null
 	 */
-	public static function save( string|null $value ): null|string {
+	public static function get( string|null $value ): null|string {
 		// bail if value is empty.
 		if ( empty( $value ) ) {
 			return '';

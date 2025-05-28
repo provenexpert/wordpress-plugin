@@ -95,12 +95,18 @@ class Settings {
 		// set tabs.
 		$this->tabs = array(
 			array(
-				'label'         => __( 'Settings', 'provenexpert' ),
+				'label'         => __( 'Connect', 'provenexpert' ),
 				'key'           => '',
-				'settings_page' => 'provenExpertMainSettings',
+				'settings_page' => 'provenExpertConnect',
 				'page'          => 'provenExpert',
 				'order'         => 10,
-				'do_not_save'   => true,
+			),
+			array(
+				'label'         => __( 'Your widgets', 'provenexpert' ),
+				'key'           => 'widgets',
+				'settings_page' => 'provenExpertWidgets',
+				'page'          => 'provenExpert',
+				'order'         => 20,
 			),
 			array(
 				'label'         => __( 'Cache', 'provenexpert' ),
@@ -137,14 +143,45 @@ class Settings {
 
 		// define settings for this plugin.
 		$this->settings = array(
-			'settings_section_main'     => array(
-				'label'         => __( 'API', 'provenexpert' ),
-				'settings_page' => 'provenExpertMainSettings',
-				'callback'      => array( $this, 'show_api_hint' ),
+			'settings_section_quick_connect'  => array(
+				'label'         => __( 'Quick connect', 'provenexpert' ),
+				'settings_page' => 'provenExpertConnect',
+				'callback'      => array( $this, 'show_connect_button' ),
 			),
-			'settings_section_widgets'  => array(
+			'settings_section_manual_connect' => array(
+				'label'         => __( 'Connect manually', 'provenexpert' ),
+				'settings_page' => 'provenExpertConnect',
+				'callback'      => '__return_true',
+				'fields'        => array(
+					'provenExpertApiId'  => array(
+						'label'               => __( 'Username', 'provenexpert' ),
+						'field'               => array( 'ProvenExpert\Plugin\Admin\SettingFields\Text', 'get' ),
+						'register_attributes' => array(
+							'default'           => '',
+							'show_in_rest'      => true,
+							'type'              => 'string',
+							'sanitize_callback' => array( 'ProvenExpert\Plugin\Admin\SettingsValidation\Api', 'validate' ),
+						),
+						'callback'            => array( 'ProvenExpert\Plugin\Admin\SettingsSave\ApiId', 'save' ),
+						'read_callback'       => array( 'ProvenExpert\Plugin\Admin\SettingsRead\GetDecryptValue', 'get' ),
+					),
+					'provenExpertApiKey' => array(
+						'label'               => __( 'API key', 'provenexpert' ),
+						'field'               => array( 'ProvenExpert\Plugin\Admin\SettingFields\Text', 'get' ),
+						'register_attributes' => array(
+							'default'           => '',
+							'show_in_rest'      => true,
+							'type'              => 'string',
+							'sanitize_callback' => array( 'ProvenExpert\Plugin\Admin\SettingsValidation\Api', 'validate' ),
+						),
+						'callback'            => array( 'ProvenExpert\Plugin\Admin\SettingsSave\ApiKey', 'save' ),
+						'read_callback'       => array( 'ProvenExpert\Plugin\Admin\SettingsRead\GetDecryptValue', 'get' ),
+					),
+				),
+			),
+			'settings_section_widgets'        => array(
 				'label'         => __( 'ProvenExpert Widgets', 'provenexpert' ),
-				'settings_page' => 'provenExpertMainSettings',
+				'settings_page' => 'provenExpertWidgets',
 				'callback'      => array( $this, 'show_widget_hint' ),
 				'fields'        => array(
 					'provenExpertAvailableWidgets'    => array(
@@ -162,7 +199,7 @@ class Settings {
 					),
 				),
 			),
-			'settings_section_cache'    => array(
+			'settings_section_cache'          => array(
 				'label'         => __( 'Cache', 'provenexpert' ),
 				'settings_page' => 'provenExpertCacheSettings',
 				'callback'      => '__return_true',
@@ -175,7 +212,7 @@ class Settings {
 					),
 				),
 			),
-			'settings_section_advanced' => array(
+			'settings_section_advanced'       => array(
 				'label'         => __( 'Advanced settings', 'provenexpert' ),
 				'settings_page' => 'provenExpertAdvancedSettings',
 				'callback'      => '__return_true',
@@ -207,23 +244,9 @@ class Settings {
 					),
 				),
 			),
-			'hidden_settings'           => array(
+			'hidden_settings'                 => array(
 				'settings_page' => 'hidden_provenexpert_page',
 				'fields'        => array(
-					'provenExpertApiId'       => array(
-						'register_attributes' => array(
-							'default'      => '',
-							'show_in_rest' => true,
-							'type'         => 'string',
-						),
-					),
-					'provenExpertApiKey'      => array(
-						'register_attributes' => array(
-							'default'      => '',
-							'show_in_rest' => true,
-							'type'         => 'string',
-						),
-					),
 					'provenExpertWidgets'     => array(
 						'register_attributes' => array(
 							'type'    => 'array',
@@ -743,7 +766,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function show_api_hint(): void {
+	public function show_connect_button(): void {
 		// bail if API is configured => show disconnect button.
 		if ( Api::get_instance()->is_prepared() ) {
 			// create URL to disconnect.
@@ -772,13 +795,13 @@ class Settings {
 					array(
 						'action'  => 'closeDialog();',
 						'variant' => 'secondary',
-						'text'    => __( 'No', 'provenexpert' ),
+						'text'    => __( 'Cancel', 'provenexpert' ),
 					),
 				),
 			);
 
 			// show disconnect button.
-			echo '<a href="" class="button button-primary easy-dialog-for-wordpress" data-dialog="' . esc_attr( wp_json_encode( $dialog ) ) . '">' . esc_html__( 'Disconnect from ProvenExpert', 'provenexpert' ) . '</a>';
+			echo '<a href="" class="button button-primary quick-connect easy-dialog-for-wordpress" data-dialog="' . esc_attr( wp_json_encode( $dialog ) ) . '">' . esc_html__( 'Disconnect from ProvenExpert', 'provenexpert' ) . '</a>';
 
 			// do not run any more tasks here.
 			return;
@@ -800,13 +823,13 @@ class Settings {
 				array(
 					'action'  => 'closeDialog();',
 					'variant' => 'secondary',
-					'text'    => __( 'No', 'provenexpert' ),
+					'text'    => __( 'Cancel', 'provenexpert' ),
 				),
 			),
 		);
 
 		// show magic link to connect the plugin.
-		echo '<a href="' . esc_url( Setup::get_instance()->get_setup_link() ) . '" class="button button-primary easy-dialog-for-wordpress" data-dialog="' . esc_attr( wp_json_encode( $dialog ) ) . '">' . esc_html__( 'Connect with ProvenExpert', 'provenexpert' ) . '</a>';
+		echo '<a href="' . esc_url( Setup::get_instance()->get_setup_link() ) . '" class="button quick-connect button-primary easy-dialog-for-wordpress" data-dialog="' . esc_attr( wp_json_encode( $dialog ) ) . '">' . esc_html__( 'Connect with ProvenExpert', 'provenexpert' ) . '</a>';
 	}
 
 	/**
@@ -886,17 +909,8 @@ class Settings {
 			/* translators: %1$s will be replaced by an email. */
 			echo '<p>' . wp_kses_post( sprintf( __( 'Unfortunately, there are currently no widgets available. Please check the ProvenExpert package you have booked. If you have any questions, please <a href="mailto:%1$s">contact ProvenExpert support</a>.', 'provenexpert' ), esc_html( Helper::get_support_email() ) ) ) . '</p>';
 
-			// create URL to check account data.
-			$url = add_query_arg(
-				array(
-					'action' => 'provenexpert_check_account_data',
-					'nonce'  => wp_create_nonce( 'provenexpert-check-account-data' ),
-				),
-				get_admin_url() . 'admin.php'
-			);
-
 			// show button to check profile.
-			echo '<p><a href="' . esc_url( $url ) . '" class="button button-primary">' . esc_html__( 'Reload account data', 'provenexpert' ) . '</a></p>';
+			$this->show_account_reload_button();
 
 			// do nothing more.
 			return;
@@ -941,5 +955,28 @@ class Settings {
 	public function show_widget_hint(): void {
 		/* translators: %1$s will be replaced by an email. */
 		echo '<p>' . wp_kses_post( sprintf( __( 'Here you will find information on which ProvenExpert widgets you can use. This depends on the package you have booked with ProvenExpert. If you have any questions, please <a href="mailto:%1$s">contact ProvenExpert Support</a>.', 'provenexpert' ), esc_html( Helper::get_support_email() ) ) ) . '</p>';
+	}
+
+	/**
+	 * Show account reload button if API is prepared.
+	 *
+	 * @return void
+	 */
+	public function show_account_reload_button(): void {
+		if ( ! Api::get_instance()->is_prepared() ) {
+			echo '<p>' . esc_html__( 'Please enter your API credentials first.', 'provenexpert' ) . '</p>';
+			return;
+		}
+
+		// create URL to check account data.
+		$url = add_query_arg(
+			array(
+				'action' => 'provenexpert_check_account_data',
+				'nonce'  => wp_create_nonce( 'provenexpert-check-account-data' ),
+			),
+			get_admin_url() . 'admin.php'
+		);
+
+		echo '<p><a href="' . esc_url( $url ) . '" class="button button-primary">' . esc_html__( 'Reload account data', 'provenexpert' ) . '</a></p>';
 	}
 }

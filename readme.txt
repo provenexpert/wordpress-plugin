@@ -53,7 +53,9 @@ The plugin can be installed even without ProvenExpert account. However, it is no
 == Changelog ==
 
 = @@VersionNumber@@ =
-- Added new changelog format
-- Set compatibility to WordPress 6.8
+- Enter your ProvenExpert API credentials direct instead of using the quick connect tool
+- New setting tabs for connection and widgets
+- Changed some texts for a better understanding
+- Fixed potential error with reading HTTP-status of not successfully processed API requests
 
 [older changes](https://github.com/provenexpert/wordpress-plugin/blob/master/changelog.md)

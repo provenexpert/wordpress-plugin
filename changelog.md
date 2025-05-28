@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+### Added
+
+- Enter your ProvenExpert API credentials direct instead of using the quick connect tool
+
+### Changed
+
+- New setting tabs for connection and widgets
+- Changed some texts for a better understanding
+
 ### Fixed
 
 - Fixed potential error with reading HTTP-status of not successfully processed API requests
