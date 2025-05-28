@@ -28,3 +28,5 @@ body.settings_page_provenExpert .review-hint-button:after {
 }
 
 .settings_page_provenexpert #category, .settings_page_provenexpert #state { width: 90px }
+
+.provenexpert-settings .button.quick-connect { margin: 1em 0 }

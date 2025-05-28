@@ -12,6 +12,7 @@ defined( 'ABSPATH' ) || exit;
 
 use ProvenExpert\Api\Api;
 use ProvenExpert\Api\Request;
+use ProvenExpert\Plugin\Crypt;
 use ProvenExpert\Plugin\Helper;
 use ProvenExpert\Plugin\Log;
 use ProvenExpert\Plugin\Transients;
@@ -58,6 +59,7 @@ class Account {
 	public function init(): void {
 		// use admin actions.
 		add_action( 'admin_action_provenexpert_check_account_data', array( $this, 'check_via_request' ) );
+		add_action( 'update_option_provenExpertApiKey', array( $this, 'load_account_info' ), 10, 2 );
 	}
 
 	/**
@@ -240,5 +242,23 @@ class Account {
 		// forward user to previous page.
 		wp_safe_redirect( wp_get_referer() );
 		exit;
+	}
+
+	/**
+	 * Load account info after API key has been changed.
+	 *
+	 * @param string $old_value The old value.
+	 * @param string $new_value The new value.
+	 *
+	 * @return void
+	 */
+	public function load_account_info( string $old_value, string $new_value ): void {
+		// bail if value has not been changed.
+		if ( Crypt::get_instance()->decrypt( $new_value ) === $old_value ) {
+			return;
+		}
+
+		// run the check.
+		$this->check();
 	}
 }
