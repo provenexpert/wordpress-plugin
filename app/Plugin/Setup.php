@@ -209,7 +209,7 @@ class Setup {
 			$links[] = "<a href='" . esc_url( Helper::get_settings_url() ) . "'>" . __( 'Settings', 'provenexpert' ) . '</a>';
 		} else {
 			// adds the link to for setup.
-			$links[] = "<a href='" . esc_url( $this->get_setup_link() ) . "' style='font-weight: bold'>" . __( 'Connect with ProvenExpert', 'provenexpert' ) . '</a>';
+			$links[] = "<a href='" . esc_url( Helper::get_settings_url() ) . "' style='font-weight: bold'>" . __( 'Connect with ProvenExpert', 'provenexpert' ) . '</a>';
 		}
 
 		// return resulting list of links.
