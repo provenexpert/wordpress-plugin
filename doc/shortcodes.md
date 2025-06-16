@@ -201,6 +201,60 @@ Possible attributes:
   * Values 1 or 0
   * Default value: 0
 
+### ProSeal
+
+Structure: `[provenexpert_proseal]`
+
+Possible attributes:
+
+* bannercolor
+    * Specifies the color of the banner.
+    * Hexadecimal value
+    * Default value: #000000
+* textcolor
+    * Specifies the color of the text.
+    * Hexadecimal value
+    * Default value: #ffffff
+* showbackpage
+    * Whether the back page should be displayed.
+    * Value 1 or 0
+    * Default value: 1
+* showreviews
+    * Whether reviews should be displayed.
+    * Value 1 or 0
+    * Default value: 1
+* hidedate
+    * Whether the date of the review should be hidden.
+    * Value 1 or 0
+    * Default value: 0
+* hidename
+    * Whether the name of the reviewer should be hidden.
+    * Value 1 or 0
+    * Default value: 0
+* googlestars
+    * Whether to use the JSON snippet for Google stars.
+        * Note: only available with ProvenExpert PLUS
+    * Value 1 0or 0
+    * Default value: 0
+* displayreviewerlastname
+    * Whether the reviewer's surname should be displayed.
+    * Value 1 or 0
+    * Default value: 0
+* bottom
+    * Distance of the widget from the bottom in pixels.
+    * Number value
+    * Default value: 130
+* stickytoside
+    * Specifies on which side the widget is displayed.
+    * Values “right” or “left”
+    * Default value: “right”
+* zindex
+    * Specification of the z-index value to change overlaps with other widgets
+    * Numerical value
+    * Default value: 9999
+
+Translated with DeepL.com (free version)
+
 ## Questions?
 
 If you have any questions about shortcodes, please contact the WordPress plugin support forum: https://wordpress.org/support/plugin/provenexpert/
