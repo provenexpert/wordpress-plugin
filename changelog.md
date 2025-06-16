@@ -1,6 +1,13 @@
 # Changelog
 
-## [Unreleased]
+## [1.1.1] - 16.06.2025
+
+### Changed
+
+- Link to settings in plugin list instead of setup-link if API is not configured
+- Updated the documentation for shortcodes
+
+## [1.1.0] - 28.05.2025
 
 ### Added
 
