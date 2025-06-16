@@ -151,7 +151,7 @@ class Settings {
 			'settings_section_manual_connect' => array(
 				'label'         => __( 'Connect manually', 'provenexpert' ),
 				'settings_page' => 'provenExpertConnect',
-				'callback'      => '__return_true',
+				'callback'      => array( $this, 'show_manually_connect_hint' ),
 				'fields'        => array(
 					'provenExpertApiId'  => array(
 						'label'               => __( 'Username', 'provenexpert' ),
@@ -978,5 +978,15 @@ class Settings {
 		);
 
 		echo '<p><a href="' . esc_url( $url ) . '" class="button button-primary">' . esc_html__( 'Reload account data', 'provenexpert' ) . '</a></p>';
+	}
+
+	/**
+	 * Show hint where to find the API credentials for manual connect.
+	 *
+	 * @return void
+	 */
+	public function show_manually_connect_hint(): void {
+		/* translators: %1$s will be replaced by a URL. */
+		echo '<p>' . wp_kses_post( sprintf( __( 'You can find your API access data <a href="%1$s" target="_blank">here</a>.', 'provenexpert' ), esc_url( Helper::get_provenexpert_api_page_url() ) ) ) . '</p>';
 	}
 }

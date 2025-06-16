@@ -201,6 +201,58 @@ Mögliche Attribute:
   * Werte 1 oder 0
   * Standard-Wert: 0
 
+### ProSeal
+
+Aufbau: `[provenexpert_proseal]`
+
+Mögliche Attribute:
+
+* bannercolor
+  * Legt die Farbe des Banners fest.
+  * Hexadezimal-Wert
+  * Standard-Wert: #000000
+* textcolor
+  * Legt die Farbe des Textes fest.
+  * Hexadezimal-Wert
+  * Standard-Wert: #ffffff
+* showbackpage
+  * Ob die Rückseite angezeigt werden soll.
+  * Wert 1 oder 0
+  * Standard-Wert: 1
+* showreviews
+  * Ob Reviews angezeigt werden sollen.
+  * Wert 1 oder 0
+  * Standard-Wert: 1
+* hidedate
+  * Ob das Datum der Review versteckt werden soll.
+  * Wert 1 oder 0
+  * Standard-Wert: 0
+* hidename
+  * Ob der Name des Reviewers versteckt werden soll.
+  * Wert 1 oder 0
+  * Standard-Wert: 0
+* googlestars
+  * Ob das JSON-Snippet für Google-Sterne verwendet werden soll.
+    * Hinweis: nur verfügbar mit ProvenExpert PLUS
+  * Wert 1 0der 0
+  * Standard-Wert: 0
+* displayreviewerlastname
+  * Ob der Nachname des Reviewers angezeigt werden soll.
+  * Wert 1 oder 0
+  * Standard-Wert: 0
+* bottom
+  * Abstand des Widgets von unten in Pixeln.
+  * Zahlen-Wert
+  * Standard-Wert: 130
+* stickytoside
+  * Angabe auf welcher Seite das Widgets ausgegeben wird.
+  * Werte "right" oder "left"
+  * Standard-Wert: "right"
+* zindex
+  * Angabe des z-index Wertes um Überlappungen mit anderen Widgets zu verändern
+  * Zahlen-Wert
+  * Standard-Wert: 9999
+
 ## Fragen?
 
 Bei Fragen zu Shortcodes gerne im Supportforum des WordPress-Plugins melden: https://wordpress.org/support/plugin/provenexpert/
