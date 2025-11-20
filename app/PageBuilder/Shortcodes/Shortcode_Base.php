@@ -31,7 +31,7 @@ class Shortcode_Base {
 	/**
 	 * Constructor, not used as this a Singleton object.
 	 */
-	private function __construct() {}
+	protected function __construct() {}
 
 	/**
 	 * Prevent cloning of this object.
@@ -44,11 +44,11 @@ class Shortcode_Base {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): Shortcode_Base {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
@@ -80,20 +80,21 @@ class Shortcode_Base {
 	protected function get_name(): string {
 		$name = $this->name;
 
+		$interface = $this;
 		/**
 		 * Filter the used shortcode name.
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
 		 * @param string $name The name.
-		 * @param Shortcode_Base $this The shortcode-object.
+		 * @param Shortcode_Base $interface The shortcode-object.
 		 */
-		return apply_filters( 'provenexpert_shortcode_name', $name, $this );
+		return apply_filters( 'provenexpert_shortcode_name', $name, $interface );
 	}
 
 	/**
 	 * Return the rendered content of this shortcode.
 	 *
-	 * @param array $attributes List of attributes for this widget.
+	 * @param array<string,mixed> $attributes List of attributes for this widget.
 	 *
 	 * @return string
 	 */

@@ -36,7 +36,7 @@ class ProSeal extends WP_Widget {
 	/**
 	 * Get the fields for this widget.
 	 *
-	 * @return array[]
+	 * @return array<string,mixed>
 	 */
 	private function get_fields(): array {
 		// get the object for default values.
@@ -115,6 +115,7 @@ class ProSeal extends WP_Widget {
 	 * @noinspection PhpMissingReturnTypeInspection
 	 **/
 	public function form( $instance ) {
+		// @phpstan-ignore missingType.iterableValue
 		$this->create_widget_field_output( $this->get_fields(), $instance );
 	}
 
@@ -126,6 +127,7 @@ class ProSeal extends WP_Widget {
 	 * @return array
 	 */
 	public function update( $new_instance, $old_instance ): array {
+		// @phpstan-ignore-line
 		return $this->secure_widget_fields( $this->get_fields(), $new_instance, $old_instance );
 	}
 
@@ -141,6 +143,7 @@ class ProSeal extends WP_Widget {
 	 * @noinspection PhpMissingReturnTypeInspection
 	 */
 	public function widget( $args, $settings ) {
+		// @phpstan-ignore-line
 		// get the object.
 		$obj = \ProvenExpert\ProvenExpertSeals\Seals\ProSeal::get_instance();
 

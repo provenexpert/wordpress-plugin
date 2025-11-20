@@ -56,11 +56,12 @@ export default function Edit( object ) {
     <div {...useBlockProps()}>
       <InspectorControls>
         <PanelBody initialOpen={true} title={ __( 'Settings', 'provenexpert' ) }>
-          <ToggleGroupControl label={ __( 'Background color', 'provenexpert' ) } onChange={ value => onChangeStyle( value, object ) } isBlock value={ object.attributes.style } disabled={ ! window.provenexpert_config.enable_fields }>
+          <ToggleGroupControl label={ __( 'Background color', 'provenexpert' ) } onChange={ value => onChangeStyle( value, object ) } isBlock value={ object.attributes.style } disabled={ ! window.provenexpert_config.enable_fields } __next40pxDefaultSize __nextHasNoMarginBottom>
             <ToggleGroupControlOption value="black" label={ __( 'Black', 'provenexpert' ) } />
             <ToggleGroupControlOption value="white" label={ __( 'White', 'provenexpert' ) } />
           </ToggleGroupControl>
           <ToggleControl
+            __nextHasNoMarginBottom
             label={__('Display customer votes', 'provenexpert')}
             checked={ object.attributes.feedback }
             onChange={ value => onChangeFeedback( value, object ) }

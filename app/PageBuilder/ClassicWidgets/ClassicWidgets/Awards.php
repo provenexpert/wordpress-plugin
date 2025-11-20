@@ -11,6 +11,7 @@ namespace ProvenExpert\PageBuilder\ClassicWidgets\ClassicWidgets;
 defined( 'ABSPATH' ) || exit;
 
 use ProvenExpert\PageBuilder\ClassicWidgets\ClassicWidgets_Trait;
+use ProvenExpert\Plugin\Init;
 use WP_Widget;
 
 /**
@@ -35,7 +36,7 @@ class Awards extends WP_Widget {
 	/**
 	 * Get the fields for this widget.
 	 *
-	 * @return array[]
+	 * @return array<string,mixed>
 	 */
 	private function get_fields(): array {
 		// get the Seal widget object.
@@ -93,6 +94,7 @@ class Awards extends WP_Widget {
 	 * @noinspection PhpMissingReturnTypeInspection
 	 **/
 	public function form( $instance ) {
+		// @phpstan-ignore missingType.iterableValue
 		$this->create_widget_field_output( $this->get_fields(), $instance );
 	}
 
@@ -104,6 +106,7 @@ class Awards extends WP_Widget {
 	 * @return array
 	 */
 	public function update( $new_instance, $old_instance ): array {
+		// @phpstan-ignore-line
 		return $this->secure_widget_fields( $this->get_fields(), $new_instance, $old_instance );
 	}
 
@@ -119,6 +122,7 @@ class Awards extends WP_Widget {
 	 * @noinspection PhpMissingReturnTypeInspection
 	 */
 	public function widget( $args, $settings ) {
+		// @phpstan-ignore-line
 		// get the object.
 		$obj = \ProvenExpert\ProvenExpertWidgets\Widgets\Awards::get_instance();
 
@@ -138,6 +142,9 @@ class Awards extends WP_Widget {
 		if ( isset( $settings['award_type'] ) ) {
 			$obj->set_award_type( $settings['award_type'] );
 		}
+
+		// allow scripts.
+		Init::get_instance()->prepare_kses();
 
 		// return the resulting HTML-code from object.
 		echo wp_kses_post( $obj->get_html() );

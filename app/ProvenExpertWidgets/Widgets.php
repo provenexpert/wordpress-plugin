@@ -37,17 +37,17 @@ class Widgets {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): Widgets {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
 	 * Return the list of ProvenExpert widgets we support.
 	 *
-	 * @return array
+	 * @return array<int,string>
 	 */
 	public function get_widgets(): array {
 		$widgets = array(
@@ -62,7 +62,7 @@ class Widgets {
 		 * Filter the possible widgets.
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
-		 * @param array $widgets List of the widgets.
+		 * @param array<int,string> $widgets List of the widgets.
 		 */
 		return apply_filters( 'provenexpert_provenexpert_widgets', $widgets );
 	}

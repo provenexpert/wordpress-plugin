@@ -54,9 +54,27 @@ class Awards extends Widget_Base {
 	protected string $award_type = 'recommend';
 
 	/**
-	 * Return the config of this widget as array.
+	 * Instance of this object.
 	 *
-	 * @return array
+	 * @var ?Awards
+	 */
+	private static ?Awards $instance = null;
+
+	/**
+	 * Return the instance of this Singleton object.
+	 */
+	public static function get_instance(): Awards {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * Return the config of this widget as an array.
+	 *
+	 * @return array<string,mixed>
 	 */
 	protected function get_config(): array {
 		return array(

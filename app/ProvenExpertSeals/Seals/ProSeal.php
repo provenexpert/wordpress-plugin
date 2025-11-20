@@ -111,9 +111,27 @@ class ProSeal extends Seal_Base {
 	private int $z_index = 9999;
 
 	/**
-	 * Return the config of this seal as array.
+	 * Instance of this object.
 	 *
-	 * @return array
+	 * @var ?ProSeal
+	 */
+	private static ?ProSeal $instance = null;
+
+	/**
+	 * Return the instance of this Singleton object.
+	 */
+	public static function get_instance(): ProSeal {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * Return the config of this seal as an array.
+	 *
+	 * @return array<string,mixed>
 	 */
 	protected function get_config(): array {
 		return array(
@@ -365,7 +383,7 @@ class ProSeal extends Seal_Base {
 	 * @return void
 	 */
 	public function set_banner_color( string $banner_color ): void {
-		$this->banner_color = sanitize_hex_color( $banner_color );
+		$this->banner_color = (string) sanitize_hex_color( $banner_color );
 	}
 
 	/**
@@ -385,7 +403,7 @@ class ProSeal extends Seal_Base {
 	 * @return void
 	 */
 	public function set_text_color( string $text_color ): void {
-		$this->text_color = sanitize_hex_color( $text_color );
+		$this->text_color = (string) sanitize_hex_color( $text_color );
 	}
 
 	/**

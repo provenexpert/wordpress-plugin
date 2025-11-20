@@ -21,7 +21,7 @@ class Log_Table extends WP_List_Table {
 	/**
 	 * Override the parent columns method. Defines the columns to use in your listing table
 	 *
-	 * @return array
+	 * @return array<string,string>
 	 */
 	public function get_columns(): array {
 		return array(
@@ -35,7 +35,7 @@ class Log_Table extends WP_List_Table {
 	/**
 	 * Get the table data
 	 *
-	 * @return array
+	 * @return array<string,mixed>
 	 */
 	private function table_data(): array {
 		return Log::get_instance()->get_entries();
@@ -73,7 +73,7 @@ class Log_Table extends WP_List_Table {
 	/**
 	 * Define which columns are hidden
 	 *
-	 * @return array
+	 * @return array<int,string>
 	 */
 	public function get_hidden_columns(): array {
 		return array();
@@ -82,7 +82,7 @@ class Log_Table extends WP_List_Table {
 	/**
 	 * Define the sortable columns
 	 *
-	 * @return array
+	 * @return array<string,array<int,string|bool>>
 	 */
 	public function get_sortable_columns(): array {
 		return array( 'date' => array( 'date', false ) );
@@ -91,8 +91,8 @@ class Log_Table extends WP_List_Table {
 	/**
 	 * Define what data to show on each column of the table
 	 *
-	 * @param  array  $item        Data.
-	 * @param  String $column_name - Current column name.
+	 * @param  array<string,mixed> $item        Data.
+	 * @param  String              $column_name - Current column name.
 	 *
 	 * @return string
 	 */
@@ -153,10 +153,10 @@ class Log_Table extends WP_List_Table {
 	/**
 	 * Define filter for categories.
 	 *
-	 * @return array
+	 * @return array<string,string>
 	 */
 	protected function get_views(): array {
-		// get main url without filter.
+		// get the main url without filter.
 		$url = remove_query_arg( array( 'category' ) );
 
 		// get actual filter.
@@ -177,7 +177,7 @@ class Log_Table extends WP_List_Table {
 		 * Filter the list before output.
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
-		 * @param array $list List of filter.
+		 * @param array<string,string> $list List of filter.
 		 */
 		return apply_filters( 'provenexpert_log_table_filter', $list );
 	}
@@ -268,7 +268,7 @@ class Log_Table extends WP_List_Table {
 				);
 
 				// output.
-				?><a href="<?php echo esc_url( $url ); ?>" class="button easy-dialog-for-wordpress" data-dialog="<?php echo esc_attr( wp_json_encode( $dialog_config ) ); ?>"><?php echo esc_html__( 'Delete all', 'provenexpert' ); ?></a>
+				?><a href="<?php echo esc_url( $url ); ?>" class="button easy-dialog-for-wordpress" data-dialog="<?php echo esc_attr( (string) wp_json_encode( $dialog_config ) ); ?>"><?php echo esc_html__( 'Delete all', 'provenexpert' ); ?></a>
 				<?php
 			} else {
 				?>

@@ -37,17 +37,17 @@ class Seals {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): Seals {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
 	 * Return the list of ProvenExpert seals we support.
 	 *
-	 * @return array
+	 * @return array<int,string>
 	 */
 	public function get_seals(): array {
 		$seals = array(
@@ -58,7 +58,7 @@ class Seals {
 		 * Filter the possible seals.
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
-		 * @param array $seals List of the seals.
+		 * @param array<int,string> $seals List of the seals.
 		 */
 		return apply_filters( 'provenexpert_provenexpert_seals', $seals );
 	}

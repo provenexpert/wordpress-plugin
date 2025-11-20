@@ -1,10 +1,24 @@
 # Changelog
 
+## [1.1.2] - 17.11.2025
+
+### Changed
+
+- Updated Block usage for WordPress 6.9
+- Updated dependencies
+- Set compatibility to WordPress 6.9
+- Using PHPStan for additional security checks on every release
+- Removed unused embedding of translation files from development
+
+### Fixed
+
+- Fixed missing output of some classic widgets
+
 ## [1.1.1] - 16.06.2025
 
 ### Changed
 
-- Link to settings in plugin list instead of setup-link if API is not configured
+- Link to settings in the plugin list instead of setup-link if API is not configured
 - Updated the documentation for shortcodes
 
 ## [1.1.0] - 28.05.2025
@@ -20,7 +34,7 @@
 
 ### Fixed
 
-- Fixed potential error with reading HTTP-status of not successfully processed API requests
+- Fixed a potential error with reading HTTP-status of not successfully processed API requests
 
 ## [1.0.1] - 02.05.2025
 

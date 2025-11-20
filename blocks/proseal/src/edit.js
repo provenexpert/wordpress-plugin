@@ -180,42 +180,49 @@ export default function Edit( object ) {
         />
         <PanelBody initialOpen={true} title={ __( 'Settings', 'provenexpert' ) }>
           <ToggleControl
+            __nextHasNoMarginBottom
             label={__('Show back page', 'provenexpert')}
             checked={ object.attributes.showbackpage }
             onChange={ value => onChangeShowBackPage( value, object ) }
             disabled={ ! window.provenexpert_config.enable_fields }
           />
           <ToggleControl
+            __nextHasNoMarginBottom
             label={__('Show reviews', 'provenexpert')}
             checked={ object.attributes.showreviews }
             onChange={ value => onChangeShowReviews( value, object ) }
             disabled={ ! window.provenexpert_config.enable_fields }
           />
           <ToggleControl
+            __nextHasNoMarginBottom
             label={__('Hide date', 'provenexpert')}
             checked={ object.attributes.hidedate }
             onChange={ value => onChangeHideDate( value, object ) }
             disabled={ ! window.provenexpert_config.enable_fields }
           />
           <ToggleControl
+            __nextHasNoMarginBottom
             label={__('Hide name', 'provenexpert')}
             checked={ object.attributes.hidename }
             onChange={ value => onChangeHideName( value, object ) }
             disabled={ ! window.provenexpert_config.enable_fields }
           />
           <ToggleControl
+            __nextHasNoMarginBottom
             label={__('Google Stars', 'provenexpert')}
             checked={ object.attributes.googlestars }
             onChange={ value => onChangeGoogleStars( value, object ) }
             disabled={ ! window.provenexpert_config.enable_fields }
           />
           <ToggleControl
+            __nextHasNoMarginBottom
             label={__('Display reviewer last name', 'provenexpert')}
             checked={ object.attributes.displayreviewerlastname }
             onChange={ value => onChangeDisplayReviewerLastName( value, object ) }
             disabled={ ! window.provenexpert_config.enable_fields }
           />
           <RangeControl
+            __next40pxDefaultSize
             __nextHasNoMarginBottom
             label={ __( 'Bottom', 'provenexpert' ) }
             value={ object.attributes.bottom }
@@ -225,11 +232,12 @@ export default function Edit( object ) {
             disabled={ ! window.provenexpert_config.enable_fields }
           />
         </PanelBody>
-        <ToggleGroupControl label={ __( 'Sticky to side', 'provenexpert' ) } isBlock onChange={ value => onChangeStickyToSide( value, object ) } value={ object.attributes.stickytoside } disabled={ ! window.provenexpert_config.enable_fields }>
+        <ToggleGroupControl label={ __( 'Sticky to side', 'provenexpert' ) } isBlock onChange={ value => onChangeStickyToSide( value, object ) } value={ object.attributes.stickytoside } disabled={ ! window.provenexpert_config.enable_fields } __nextHasNoMarginBottom __next40pxDefaultSize>
           <ToggleGroupControlOption value="left" label={ __( 'Left', 'provenexpert' ) } />
           <ToggleGroupControlOption value="right" label={ __( 'Right', 'provenexpert' ) } />
         </ToggleGroupControl>
         <RangeControl
+          __next40pxDefaultSize
           __nextHasNoMarginBottom
           label={ __( 'Z-Index', 'provenexpert' ) }
           value={ object.attributes.zindex }

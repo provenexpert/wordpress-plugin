@@ -24,9 +24,27 @@ class Awards extends Shortcode_Base {
 	protected string $name = 'awards';
 
 	/**
+	 * Instance of this object.
+	 *
+	 * @var ?Awards
+	 */
+	private static ?Awards $instance = null;
+
+	/**
+	 * Return the instance of this Singleton object.
+	 */
+	public static function get_instance(): Awards {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
 	 * Get the content for this widget.
 	 *
-	 * @param array $attributes List of attributes for this widget.
+	 * @param array<string,mixed> $attributes List of attributes for this widget.
 	 * @return string
 	 */
 	public function render( array $attributes ): string {

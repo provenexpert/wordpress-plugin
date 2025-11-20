@@ -76,23 +76,26 @@ export default function Edit( object ) {
     <div {...useBlockProps()}>
       <InspectorControls>
         <PanelBody initialOpen={true} title={ __( 'Settings', 'provenexpert' ) }>
-          <ToggleGroupControl label={ __( 'Color of the header', 'provenexpert' ) } onChange={ value => onChangeStyle( value, object ) } isBlock value={ object.attributes.style } disabled={ ! window.provenexpert_config.enable_fields }>
+          <ToggleGroupControl label={ __( 'Color of the header', 'provenexpert' ) } onChange={ value => onChangeStyle( value, object ) } isBlock value={ object.attributes.style } disabled={ ! window.provenexpert_config.enable_fields } __nextHasNoMarginBottom __next40pxDefaultSize>
             <ToggleGroupControlOption value="black" label={ __( 'Black', 'provenexpert' ) } />
             <ToggleGroupControlOption value="white" label={ __( 'White', 'provenexpert' ) } />
           </ToggleGroupControl>
           <ToggleControl
+            __nextHasNoMarginBottom
             label={__('Display customer votes', 'provenexpert')}
             checked={ object.attributes.feedback }
             onChange={ value => onChangeFeedback( value, object ) }
             disabled={ ! window.provenexpert_config.enable_fields }
           />
           <ToggleControl
+            __nextHasNoMarginBottom
             label={__('Show profile image', 'provenexpert')}
             checked={ object.attributes.avatar }
             onChange={ value => onChangeAvatar( value, object ) }
             disabled={ ! window.provenexpert_config.enable_fields }
           />
           <ToggleControl
+            __nextHasNoMarginBottom
             label={__('Show top competencies', 'provenexpert')}
             checked={ object.attributes.competence }
             onChange={ value => onChangeCompetence( value, object ) }

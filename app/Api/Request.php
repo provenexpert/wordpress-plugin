@@ -50,16 +50,16 @@ class Request {
 	/**
 	 * Set default http header.
 	 *
-	 * @var array
+	 * @var array<string,string>
 	 */
 	private array $header = array();
 
 	/**
-	 * The HTTP-Post-data as array.
+	 * The HTTP-Post-data.
 	 *
-	 * @var array
+	 * @var string|array<string,mixed>
 	 */
-	private array $post_data;
+	private string|array $post_data = array();
 
 	/**
 	 * The response.
@@ -107,7 +107,7 @@ class Request {
 	/**
 	 * Set header for request additional to authentication-header which is set by this object.
 	 *
-	 * @param array $header List of headers.
+	 * @param array<string,string> $header List of headers.
 	 * @return void
 	 */
 	public function set_header( array $header ): void {
@@ -117,10 +117,10 @@ class Request {
 	/**
 	 * Set post data for the request.
 	 *
-	 * @param array $post_data The post-data as array.
+	 * @param string|array<string,mixed> $post_data The post-data as array.
 	 * @return void
 	 */
-	public function set_post_data( array $post_data ): void {
+	public function set_post_data( string|array $post_data ): void {
 		$this->post_data = $post_data;
 	}
 
@@ -145,15 +145,16 @@ class Request {
 			);
 		}
 
+		$instance = $this;
 		/**
 		 * Filter the headers for the request.
 		 *
 		 * @since 1.0.0 Available since 1.0.0
 		 *
 		 * @param array $headers List of headers.
-		 * @param Request $this The request-object.
+		 * @param Request $instance The request-object.
 		 */
-		$headers = apply_filters( 'provenexpert_request_header', $headers, $this );
+		$headers = apply_filters( 'provenexpert_request_header', $headers, $instance );
 
 		// collect arguments for request.
 		$args = array(
@@ -175,7 +176,7 @@ class Request {
 				break;
 			case 'POST':
 				if ( $this->get_post_data_json_encode() ) {
-					$args['body'] = wp_json_encode( $args['body'] );
+					$args['body'] = (string) wp_json_encode( $args['body'] );
 				}
 				$response = wp_safe_remote_post( $this->get_url(), $args );
 				break;
@@ -209,7 +210,7 @@ class Request {
 
 			// log event.
 			/* translators: %1$s will be replaced by a URL, %2$s will be replaced by the request, %3$s by the response. */
-			Log::get_instance()->add_log( sprintf( __( 'URL: %1$s<br><br>Request: %2$s<br><br>Response: %3$s<br><br>HTTP-Status: %4$s', 'provenexpert' ), '<code>' . esc_url( $this->get_url() ) . '</code>', '<code>' . wp_json_encode( $args ) . '</code>', '<code>' . esc_html( wp_json_encode( $this->get_response() ) ) . '</code>', '<code>' . $this->get_http_status() . '</code>' ), $state, 'api' );
+			Log::get_instance()->add_log( sprintf( __( 'URL: %1$s<br><br>Request: %2$s<br><br>Response: %3$s<br><br>HTTP-Status: %4$s', 'provenexpert' ), '<code>' . esc_html( $this->get_url() ) . '</code>', '<code>' . (string) wp_json_encode( $args ) . '</code>', '<code>' . esc_html( (string) wp_json_encode( $this->get_response() ) ) . '</code>', '<code>' . $this->get_http_status() . '</code>' ), $state, 'api' );
 		}
 
 		// return true as request itself was successful.
@@ -246,9 +247,9 @@ class Request {
 	/**
 	 * Return the POST-data.
 	 *
-	 * @return array
+	 * @return string|array<string,mixed>
 	 */
-	public function get_post_data(): array {
+	public function get_post_data(): string|array {
 		return $this->post_data;
 	}
 
@@ -282,15 +283,16 @@ class Request {
 	private function get_api_id(): string {
 		$api_id = $this->api_id;
 
+		$instance = $this;
 		/**
 		 * Filter the API ID the request is using.
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
 		 *
 		 * @param string $api_id The API ID.
-		 * @param Request $this The request-object.
+		 * @param Request $instance The request-object.
 		 */
-		return apply_filters( 'provenexpert_request_api_id', $api_id, $this );
+		return apply_filters( 'provenexpert_request_api_id', $api_id, $instance );
 	}
 
 	/**
@@ -301,15 +303,16 @@ class Request {
 	private function get_api_key(): string {
 		$api_key = $this->api_key;
 
+		$instance = $this;
 		/**
 		 * Filter the API key the request is using.
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
 		 *
 		 * @param string $api_key The API key.
-		 * @param Request $this The request-object.
+		 * @param Request $instance The request-object.
 		 */
-		return apply_filters( 'provenexpert_request_api_key', $api_key, $this );
+		return apply_filters( 'provenexpert_request_api_key', $api_key, $instance );
 	}
 
 	/**
@@ -344,14 +347,14 @@ class Request {
 	/**
 	 * Return the method to use.
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	private function get_method(): string {
 		return $this->method;
 	}
 
 	/**
-	 * Set method to use for this request.
+	 * Set the method to use for this request.
 	 *
 	 * @param string $method The method (must be one of POST, GET or DELETE).
 	 *
@@ -365,7 +368,7 @@ class Request {
 	}
 
 	/**
-	 * Set if post data should be JSON encoded.
+	 * Set if the post data should be JSON encoded.
 	 *
 	 * @param bool $enable Set true to enable this.
 	 *
@@ -376,7 +379,7 @@ class Request {
 	}
 
 	/**
-	 * Return whether post data should be encoded.
+	 * Return whether the post data should be encoded.
 	 *
 	 * @return bool
 	 */

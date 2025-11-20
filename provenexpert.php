@@ -20,12 +20,12 @@ defined( 'ABSPATH' ) || exit;
 use ProvenExpert\Plugin\Init;
 use ProvenExpert\Plugin\Update;
 
-// do nothing if PHP-version is not 8.0 or newer.
-if ( version_compare( PHP_VERSION, '8.0', '<' ) ) {
+// do nothing if the PHP-version is not 8.0 or newer.
+if ( version_compare( PHP_VERSION, '8.0', '<' ) ) { // @phpstan-ignore if.alwaysFalse
 	return;
 }
 
-// set version number.
+// set the version number.
 define( 'PROVENEXPERT_VERSION', '@@VersionNumber@@' );
 
 // save plugin-path.

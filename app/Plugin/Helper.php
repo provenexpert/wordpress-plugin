@@ -8,19 +8,19 @@
 namespace ProvenExpert\Plugin;
 
 // prevent direct access.
+defined( 'ABSPATH' ) || exit;
+
 use WP_Post;
 use WP_Post_Type;
-
-defined( 'ABSPATH' ) || exit;
 
 /**
  * The helper class itself.
  */
 class Helper {
 	/**
-	 * Get list of blogs in a multisite-installation.
+	 * Return the list of blogs in a multisite-installation.
 	 *
-	 * @return array
+	 * @return array<int,mixed>
 	 */
 	public static function get_blogs(): array {
 		if ( false === is_multisite() ) {
@@ -172,12 +172,12 @@ class Helper {
 	public static function get_file_version( string $filepath ): string {
 		// check for WP_DEBUG.
 		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			return filemtime( $filepath );
+			return (string) filemtime( $filepath );
 		}
 
 		// check for own debug.
 		if ( 1 === absint( get_option( 'provenExpertDebug', 0 ) ) ) {
-			return filemtime( $filepath );
+			return (string) filemtime( $filepath );
 		}
 
 		$plugin_version = PROVENEXPERT_VERSION;
@@ -200,14 +200,14 @@ class Helper {
 	 */
 	public static function get_plugin_name(): string {
 		$plugin_data = get_plugin_data( PROVENEXPERT_PLUGIN );
-		if ( ! empty( $plugin_data ) && ! empty( $plugin_data['Name'] ) ) {
+		if ( ! empty( $plugin_data ) && ! empty( $plugin_data['Name'] ) ) { // @phpstan-ignore empty.variable
 			return $plugin_data['Name'];
 		}
 		return '';
 	}
 
 	/**
-	 * Get current URL in frontend and backend.
+	 * Return the current URL in frontend and backend.
 	 *
 	 * @return string
 	 */
@@ -226,6 +226,10 @@ class Helper {
 		}
 		if ( $object instanceof WP_Post ) {
 			$page_url = get_permalink( $object->ID );
+		}
+
+		if ( ! $page_url ) {
+			return '';
 		}
 
 		// return result.

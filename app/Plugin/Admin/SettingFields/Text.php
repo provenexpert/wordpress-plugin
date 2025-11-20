@@ -18,7 +18,7 @@ class Text {
 	/**
 	 * Get the output.
 	 *
-	 * @param array $attributes The settings for this field.
+	 * @param array<string,mixed> $attributes The settings for this field.
 	 *
 	 * @return void
 	 */
@@ -53,7 +53,7 @@ class Text {
 				<?php
 				echo ! empty( $attributes['placeholder'] ) ? ' placeholder="' . esc_attr( $attributes['placeholder'] ) . '"' : '';
 				?>
-				<?php echo esc_attr( $readonly ); ?> class="widefat" title="<?php echo esc_attr( $title ); ?>" data-depends="<?php echo esc_attr( wp_json_encode( $attributes['depends'] ) ); ?>">
+				<?php echo esc_attr( $readonly ); ?> class="widefat" title="<?php echo esc_attr( $title ); ?>" data-depends="<?php echo esc_attr( (string) wp_json_encode( $attributes['depends'] ) ); ?>">
 			<?php
 			if ( ! empty( $attributes['description'] ) ) {
 				echo '<p>' . wp_kses_post( $attributes['description'] ) . '</p>';

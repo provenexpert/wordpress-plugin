@@ -25,11 +25,29 @@ class ProSeal extends Shortcode_Base {
 	protected string $name = 'proseal';
 
 	/**
+	 * Instance of this object.
+	 *
+	 * @var ?ProSeal
+	 */
+	private static ?ProSeal $instance = null;
+
+	/**
+	 * Return the instance of this Singleton object.
+	 */
+	public static function get_instance(): ProSeal {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
 	 * Get the content for this widget.
 	 *
 	 * Example: [provenexpert_proseal bannerColor="#ffffff" textcolor="#000000" showbackpage="1" showreviews="1" hidedate="1" hidename="1" googlestars="1" displayreviewerlastName="1" bottom="42" stickytoside="right" zindex="84"]
 	 *
-	 * @param array $attributes List of attributes for this widget.
+	 * @param array<string,mixed> $attributes List of attributes for this widget.
 	 * @return string
 	 */
 	public function render( array $attributes ): string {

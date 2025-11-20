@@ -31,5 +31,8 @@
         <exclude name="WordPress.PHP.DiscouragedPHPFunctions"/>
         <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter"/>
         <exclude name="WordPress.WP.I18n.NonSingularStringLiteralText" />
+
+        <!-- prevent WCS hint for list types which are necessary for PHPStan -->
+        <exclude name="Squiz.Commenting.FunctionComment.IncorrectTypeHint"/>
     </rule>
 </ruleset>

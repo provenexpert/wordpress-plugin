@@ -46,9 +46,27 @@ class Landing extends Widget_Base {
 	protected int $competence = 1;
 
 	/**
-	 * Return the config of this widget as array.
+	 * Instance of this object.
 	 *
-	 * @return array
+	 * @var ?Landing
+	 */
+	private static ?Landing $instance = null;
+
+	/**
+	 * Return the instance of this Singleton object.
+	 */
+	public static function get_instance(): Landing {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * Return the config of this widget as an array.
+	 *
+	 * @return array<string,mixed>
 	 */
 	protected function get_config(): array {
 		return array(

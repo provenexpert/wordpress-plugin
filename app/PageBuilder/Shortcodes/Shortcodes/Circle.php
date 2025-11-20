@@ -25,9 +25,27 @@ class Circle extends Shortcode_Base {
 	protected string $name = 'circle';
 
 	/**
+	 * Instance of this object.
+	 *
+	 * @var ?Circle
+	 */
+	private static ?Circle $instance = null;
+
+	/**
+	 * Return the instance of this Singleton object.
+	 */
+	public static function get_instance(): Circle {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
 	 * Get the content for this widget.
 	 *
-	 * @param array $attributes List of attributes for this widget.
+	 * @param array<string,mixed> $attributes List of attributes for this widget.
 	 * @return string
 	 */
 	public function render( array $attributes ): string {

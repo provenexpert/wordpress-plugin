@@ -62,6 +62,7 @@ export default function Edit( object ) {
         <PanelBody initialOpen={true} title={ __( 'Settings', 'provenexpert' ) }>
           <RangeControl
             __nextHasNoMarginBottom
+            __next40pxDefaultSize
             label={ __( 'Width', 'provenexpert' ) }
             value={ object.attributes.width }
             onChange={ ( value ) => onChangeWidth( value, object ) }
@@ -70,13 +71,14 @@ export default function Edit( object ) {
             disabled={ ! window.provenexpert_config.enable_fields }
           />
           <ToggleControl
+            __nextHasNoMarginBottom
             label={__('Dock on browser margin', 'provenexpert')}
             checked={ object.attributes.fixed }
             onChange={ value => onChangeFixed( value, object ) }
             disabled={ ! window.provenexpert_config.enable_fields }
           />
           {object.attributes.fixed && <div>
-              <ToggleGroupControl label={ __( 'Distance measured from top or bottom browser margin?', 'provenexpert' ) } isBlock onChange={ value => onChangeOrigin( value, object ) } value={ object.attributes.origin } disabled={ ! window.provenexpert_config.enable_fields }>
+              <ToggleGroupControl label={ __( 'Distance measured from top or bottom browser margin?', 'provenexpert' ) } isBlock onChange={ value => onChangeOrigin( value, object ) } value={ object.attributes.origin } disabled={ ! window.provenexpert_config.enable_fields } __nextHasNoMarginBottom __next40pxDefaultSize>
                 <ToggleGroupControlOption value="top" label={ __( 'Top', 'provenexpert' ) } />
                 <ToggleGroupControlOption value="bottom" label={ __( 'Bottom', 'provenexpert' ) } />
               </ToggleGroupControl>
@@ -88,7 +90,7 @@ export default function Edit( object ) {
                 max={ 1200 }
                 disabled={ ! window.provenexpert_config.enable_fields }
               />
-              <ToggleGroupControl label={ __( 'Browser side on which ratings seal is docked', 'provenexpert' ) } isBlock onChange={ value => onChangeSide( value, object ) } value={ object.attributes.side } disabled={ ! window.provenexpert_config.enable_fields }>
+              <ToggleGroupControl label={ __( 'Browser side on which ratings seal is docked', 'provenexpert' ) } isBlock onChange={ value => onChangeSide( value, object ) } value={ object.attributes.side } disabled={ ! window.provenexpert_config.enable_fields } __nextHasNoMarginBottom __next40pxDefaultSize>
                 <ToggleGroupControlOption value="left" label={ __( 'Left', 'provenexpert' ) } />
                 <ToggleGroupControlOption value="right" label={ __( 'Right', 'provenexpert' ) } />
               </ToggleGroupControl>

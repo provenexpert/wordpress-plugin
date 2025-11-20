@@ -70,6 +70,8 @@ export default function Edit( object ) {
       <InspectorControls>
         <PanelBody initialOpen={true} title={ __( 'Settings', 'provenexpert' ) }>
           <ToggleGroupControl
+            __nextHasNoMarginBottom
+            __next40pxDefaultSize
             label={ __( 'Award type', 'provenexpert' ) }
             onChange={ value => onChangeAwardType( value, object ) }
             value={ object.attributes.award_type }
@@ -81,6 +83,7 @@ export default function Edit( object ) {
             <ToggleGroupControlOption value="toprecommend" label={ __( 'Top recommend', 'provenexpert' ) } />
           </ToggleGroupControl>
           <RangeControl
+            __next40pxDefaultSize
             __nextHasNoMarginBottom
             label={ __( 'Width', 'provenexpert' ) }
             value={ object.attributes.width }
@@ -90,13 +93,14 @@ export default function Edit( object ) {
             disabled={ ! window.provenexpert_config.enable_fields }
           />
           <ToggleControl
+            __nextHasNoMarginBottom
             label={__('Dock on browser margin', 'provenexpert')}
             checked={ object.attributes.fixed }
             onChange={ value => onChangeFixed( value, object ) }
             disabled={ ! window.provenexpert_config.enable_fields }
           />
           {object.attributes.fixed && <div>
-              <ToggleGroupControl label={ __( 'Distance of seal measured from top or bottom browser margin?', 'provenexpert' ) } isBlock onChange={ value => onChangeOrigin( value, object ) } value={ object.attributes.origin } disabled={ ! window.provenexpert_config.enable_fields }>
+              <ToggleGroupControl label={ __( 'Distance of seal measured from top or bottom browser margin?', 'provenexpert' ) } isBlock onChange={ value => onChangeOrigin( value, object ) } value={ object.attributes.origin } disabled={ ! window.provenexpert_config.enable_fields } __next40pxDefaultSize __nextHasNoMarginBottom>
                 <ToggleGroupControlOption value="top" label={ __( 'Top', 'provenexpert' ) } />
                 <ToggleGroupControlOption value="bottom" label={ __( 'Bottom', 'provenexpert' ) } />
               </ToggleGroupControl>

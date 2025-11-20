@@ -39,11 +39,11 @@ class Setup {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): Setup {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
@@ -101,8 +101,16 @@ class Setup {
 	 * @return string
 	 */
 	public function get_setup_link(): string {
+		// get the crypt method.
+		$crypt_method = Crypt::get_instance()->get_method();
+
+		// bail if crypt is not set.
+		if ( ! $crypt_method instanceof Crypt_Base ) {
+			return '';
+		}
+
 		// get the installation hash.
-		$hash = Crypt::get_instance()->get_method()->get_hash();
+		$hash = $crypt_method->get_hash();
 
 		// create return URL depending on permalink settings.
 		$return_url = add_query_arg(
@@ -147,9 +155,9 @@ class Setup {
 	/**
 	 * Add our custom query var during setup.
 	 *
-	 * @param array $query_vars List of query vars.
+	 * @param array<int,mixed> $query_vars List of query vars.
 	 *
-	 * @return array
+	 * @return array<int,mixed>
 	 */
 	public function add_setup_vars( array $query_vars ): array {
 		$query_vars[] = 'provenexpert';
@@ -157,7 +165,7 @@ class Setup {
 	}
 
 	/**
-	 * Check for magic link return URL request.
+	 * Check for a magic link return URL request.
 	 *
 	 * @param string $template The called template.
 	 *
@@ -200,8 +208,8 @@ class Setup {
 	/**
 	 * Add link to plugin-settings in plugin-list.
 	 *
-	 * @param array $links List of links.
-	 * @return array
+	 * @param array<int,string> $links List of links.
+	 * @return array<int,string>
 	 */
 	public function add_setting_link( array $links ): array {
 		if ( Api::get_instance()->is_prepared() ) {

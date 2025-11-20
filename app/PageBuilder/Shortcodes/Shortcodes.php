@@ -24,6 +24,24 @@ class Shortcodes extends PageBuilder_Base {
 	protected string $name = 'shortcodes';
 
 	/**
+	 * Instance of this object.
+	 *
+	 * @var ?Shortcodes
+	 */
+	private static ?Shortcodes $instance = null;
+
+	/**
+	 * Return the instance of this Singleton object.
+	 */
+	public static function get_instance(): Shortcodes {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
 	 * Initialize this PageBuilders support.
 	 *
 	 * @return void
@@ -39,7 +57,7 @@ class Shortcodes extends PageBuilder_Base {
 	/**
 	 * Return list of available shortcodes.
 	 *
-	 * @return array
+	 * @return array<int,string>
 	 */
 	public function get_widgets(): array {
 		$list = array(
@@ -55,7 +73,7 @@ class Shortcodes extends PageBuilder_Base {
 		 * Return list of shortcode class names.
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
-		 * @param array $list List of shortcodes.
+		 * @param array<int,string> $list List of shortcodes.
 		 */
 		return apply_filters( 'provenexpert_shortcodes', $list );
 	}
@@ -67,10 +85,24 @@ class Shortcodes extends PageBuilder_Base {
 	 */
 	public function register_shortcodes(): void {
 		foreach ( $this->get_widgets() as $shortcode_class_name ) {
-			$obj = call_user_func( $shortcode_class_name . '::get_instance' );
-			if ( $obj instanceof Shortcode_Base ) {
-				$obj->register();
+			// get the object name.
+			$obj_name = $shortcode_class_name . '::get_instance';
+
+			// bail if the object is not callable.
+			if ( ! is_callable( $obj_name ) ) {
+				continue;
 			}
+
+			// get the object.
+			$obj = $obj_name();
+
+			// bail if the object could not be loaded.
+			if ( ! $obj instanceof Shortcode_Base ) {
+				continue;
+			}
+
+			// register this shortcode.
+			$obj->register();
 		}
 	}
 }

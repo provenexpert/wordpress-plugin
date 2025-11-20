@@ -36,6 +36,10 @@ jobs:
             - name: Generate autoloader
               run: composer dump-autoload -oa --no-dev
 
+            - name: Run PHPStan check
+              run: vendor/bin/phpstan analyse
+              continue-on-error: true
+
             - name: Run WordPress Coding Standard fixes
               run: vendor/bin/phpcbf --standard=ruleset.xml .
               continue-on-error: true

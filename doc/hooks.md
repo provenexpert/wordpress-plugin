@@ -17,7 +17,7 @@
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$seals` | `array` | List of the seals.
+`$seals` | `array<int,string>` | List of the seals.
 
 **Changelog**
 
@@ -43,7 +43,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Languages.php](Plugin/Languages.php), [line 102](Plugin/Languages.php#L102-L109)
+Source: [app/Plugin/Languages.php](Plugin/Languages.php), [line 77](Plugin/Languages.php#L77-L84)
 
 ### `provenexpert_current_locale`
 
@@ -61,7 +61,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Languages.php](Plugin/Languages.php), [line 124](Plugin/Languages.php#L124-L131)
+Source: [app/Plugin/Languages.php](Plugin/Languages.php), [line 99](Plugin/Languages.php#L99-L106)
 
 ### `provenexpert_crypt_methods`
 
@@ -71,7 +71,7 @@ Source: [app/Plugin/Languages.php](Plugin/Languages.php), [line 124](Plugin/Lang
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$methods` | `array` | List of methods.
+`$methods` | `array<int,string>` | List of methods.
 
 **Changelog**
 
@@ -110,7 +110,7 @@ Source: [app/Plugin/Transients.php](Plugin/Transients.php), [line 191](Plugin/Tr
 Argument | Type | Description
 -------- | ---- | -----------
 `$interval` | `string` | The interval.
-`$this` | `\ProvenExpert\Plugin\Schedules_Base` | The schedule-object.
+`$interface` | `\ProvenExpert\Plugin\Schedules_Base` | The schedule-object.
 
 **Changelog**
 
@@ -118,7 +118,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Schedules_Base.php](Plugin/Schedules_Base.php), [line 82](Plugin/Schedules_Base.php#L82-L89)
+Source: [app/Plugin/Schedules_Base.php](Plugin/Schedules_Base.php), [line 83](Plugin/Schedules_Base.php#L83-L90)
 
 ### `provenexpert_schedule_enabling`
 
@@ -129,7 +129,7 @@ Source: [app/Plugin/Schedules_Base.php](Plugin/Schedules_Base.php), [line 82](Pl
 Argument | Type | Description
 -------- | ---- | -----------
 `$false` | `bool` | True if this object should NOT be enabled.
-`$this` | `\ProvenExpert\Plugin\Schedules_Base` | Actual object.
+`$interface` | `\ProvenExpert\Plugin\Schedules_Base` | Actual object.
 
 **Changelog**
 
@@ -137,7 +137,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Schedules_Base.php](Plugin/Schedules_Base.php), [line 194](Plugin/Schedules_Base.php#L194-L204)
+Source: [app/Plugin/Schedules_Base.php](Plugin/Schedules_Base.php), [line 196](Plugin/Schedules_Base.php#L196-L206)
 
 ### `provenexpert_transient_hide_on`
 
@@ -147,8 +147,8 @@ Source: [app/Plugin/Schedules_Base.php](Plugin/Schedules_Base.php), [line 194](P
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$hide_on` | `array` | List of absolute URLs.
-`$this` | `\ProvenExpert\Plugin\Transient` | The actual transient object.
+`$hide_on` | `array<int,string>` | List of absolute URLs.
+`$interface` | `\ProvenExpert\Plugin\Transient` | The actual transient object.
 
 **Changelog**
 
@@ -156,7 +156,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Transient.php](Plugin/Transient.php), [line 366](Plugin/Transient.php#L366-L374)
+Source: [app/Plugin/Transient.php](Plugin/Transient.php), [line 363](Plugin/Transient.php#L363-L371)
 
 ### `provenexpert_objects_with_db_tables`
 
@@ -166,7 +166,7 @@ Source: [app/Plugin/Transient.php](Plugin/Transient.php), [line 366](Plugin/Tran
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$objects` | `array` | List of objects.
+`$objects` | `array<int,string>` | List of objects.
 
 **Changelog**
 
@@ -174,7 +174,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Init.php](Plugin/Init.php), [line 140](Plugin/Init.php#L140-L146)
+Source: [app/Plugin/Init.php](Plugin/Init.php), [line 127](Plugin/Init.php#L127-L133)
 
 ### `provenexpert_objects_with_db_tables`
 
@@ -184,7 +184,7 @@ Source: [app/Plugin/Init.php](Plugin/Init.php), [line 140](Plugin/Init.php#L140-
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$objects` | `array` | List of objects.
+`$objects` | `array<int,string>` | List of objects.
 
 **Changelog**
 
@@ -192,7 +192,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Init.php](Plugin/Init.php), [line 163](Plugin/Init.php#L163-L169)
+Source: [app/Plugin/Init.php](Plugin/Init.php), [line 165](Plugin/Init.php#L165-L171)
 
 ### `provenexpert_log_categories`
 
@@ -202,7 +202,7 @@ Source: [app/Plugin/Init.php](Plugin/Init.php), [line 163](Plugin/Init.php#L163-
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$list` | `array` | List of categories.
+`$list` | `array<string,string>` | List of categories.
 
 **Changelog**
 
@@ -210,7 +210,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Log.php](Plugin/Log.php), [line 134](Plugin/Log.php#L134-L141)
+Source: [app/Plugin/Log.php](Plugin/Log.php), [line 135](Plugin/Log.php#L135-L142)
 
 ### `provenexpert_log_limit`
 
@@ -228,7 +228,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Log.php](Plugin/Log.php), [line 167](Plugin/Log.php#L167-L173)
+Source: [app/Plugin/Log.php](Plugin/Log.php), [line 164](Plugin/Log.php#L164-L170)
 
 ### `provenexpert_setting_field_arguments`
 
@@ -248,7 +248,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Settings.php](Plugin/Settings.php), [line 344](Plugin/Settings.php#L344-L353)
+Source: [app/Plugin/Settings.php](Plugin/Settings.php), [line 367](Plugin/Settings.php#L367-L376)
 
 ### `provenexpert_settings`
 
@@ -258,7 +258,7 @@ Source: [app/Plugin/Settings.php](Plugin/Settings.php), [line 344](Plugin/Settin
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$settings` | `array` | The settings as array.
+`$settings` | `array<string,mixed>` | The settings as array.
 
 **Changelog**
 
@@ -266,7 +266,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0
 
-Source: [app/Plugin/Settings.php](Plugin/Settings.php), [line 529](Plugin/Settings.php#L529-L536)
+Source: [app/Plugin/Settings.php](Plugin/Settings.php), [line 550](Plugin/Settings.php#L550-L557)
 
 ### `provenexpert_settings_tabs`
 
@@ -276,7 +276,7 @@ Source: [app/Plugin/Settings.php](Plugin/Settings.php), [line 529](Plugin/Settin
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$tabs` |  | 
+`$tabs` | `array` | Set true to hide the buttons.
 
 **Changelog**
 
@@ -284,7 +284,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0
 
-Source: [app/Plugin/Settings.php](Plugin/Settings.php), [line 587](Plugin/Settings.php#L587-L594)
+Source: [app/Plugin/Settings.php](Plugin/Settings.php), [line 608](Plugin/Settings.php#L608-L615)
 
 ### `provenexpert_file_version`
 
@@ -313,7 +313,7 @@ Source: [app/Plugin/Helper.php](Plugin/Helper.php), [line 185](Plugin/Helper.php
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$list` | `array` | List of filter.
+`$list` | `array<string,string>` | List of filter.
 
 **Changelog**
 
@@ -344,14 +344,15 @@ Source: [app/Plugin/Admin/SettingsRead/GetDecryptValue.php](Plugin/Admin/Setting
 
 ### `provenexpert_schedule_our_events`
 
-*Filter the list of our own events,
-e.g. to check if all which are enabled in setting are active.*
+*Filter the list of our own events.*
+
+E.g. to check if all which are enabled in setting are active.
 
 **Arguments**
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$our_events` | `array` | List of our own events in WP-cron.
+`$our_events` | `array<string,array<string,mixed>>` | List of our own events in WP-cron.
 
 **Changelog**
 
@@ -359,7 +360,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Schedules.php](Plugin/Schedules.php), [line 86](Plugin/Schedules.php#L86-L94)
+Source: [app/Plugin/Schedules.php](Plugin/Schedules.php), [line 87](Plugin/Schedules.php#L87-L95)
 
 ### `provenexpert_disable_cron_check`
 
@@ -377,7 +378,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Schedules.php](Plugin/Schedules.php), [line 111](Plugin/Schedules.php#L111-L119)
+Source: [app/Plugin/Schedules.php](Plugin/Schedules.php), [line 112](Plugin/Schedules.php#L112-L120)
 
 ### `provenexpert_schedules`
 
@@ -389,7 +390,7 @@ This must be objects based on ProvenExpert\Plugin\Schedules_Base.
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$list_of_schedules` | `array` | List of additional schedules.
+`$list_of_schedules` | `array<int,string>` | List of additional schedules.
 
 **Changelog**
 
@@ -397,7 +398,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Plugin/Schedules.php](Plugin/Schedules.php), [line 214](Plugin/Schedules.php#L214-L223)
+Source: [app/Plugin/Schedules.php](Plugin/Schedules.php), [line 215](Plugin/Schedules.php#L215-L224)
 
 ### `provenexpert_shortcodes`
 
@@ -407,7 +408,7 @@ Source: [app/Plugin/Schedules.php](Plugin/Schedules.php), [line 214](Plugin/Sche
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$list` | `array` | List of shortcodes.
+`$list` | `array<int,string>` | List of shortcodes.
 
 **Changelog**
 
@@ -426,7 +427,7 @@ Source: [app/PageBuilder/Shortcodes/Shortcodes.php](PageBuilder/Shortcodes/Short
 Argument | Type | Description
 -------- | ---- | -----------
 `$name` | `string` | The name.
-`$this` | `\ProvenExpert\PageBuilder\Shortcodes\Shortcode_Base` | The shortcode-object.
+`$interface` | `\ProvenExpert\PageBuilder\Shortcodes\Shortcode_Base` | The shortcode-object.
 
 **Changelog**
 
@@ -434,7 +435,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/PageBuilder/Shortcodes/Shortcode_Base.php](PageBuilder/Shortcodes/Shortcode_Base.php), [line 83](PageBuilder/Shortcodes/Shortcode_Base.php#L83-L90)
+Source: [app/PageBuilder/Shortcodes/Shortcode_Base.php](PageBuilder/Shortcodes/Shortcode_Base.php), [line 84](PageBuilder/Shortcodes/Shortcode_Base.php#L84-L91)
 
 ### `provenexpert_classic_widgets`
 
@@ -444,7 +445,7 @@ Source: [app/PageBuilder/Shortcodes/Shortcode_Base.php](PageBuilder/Shortcodes/S
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$list` | `array` | List of classic widgets.
+`$list` | `array<int,string>` | List of classic widgets.
 
 **Changelog**
 
@@ -462,7 +463,7 @@ Source: [app/PageBuilder/ClassicWidgets/ClassicWidgets.php](PageBuilder/ClassicW
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$list` | `array` | List of page builders.
+`$list` | `array<int,string>` | List of page builders.
 
 **Changelog**
 
@@ -470,7 +471,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/PageBuilder/PageBuilders.php](PageBuilder/PageBuilders.php), [line 75](PageBuilder/PageBuilders.php#L75-L81)
+Source: [app/PageBuilder/PageBuilders.php](PageBuilder/PageBuilders.php), [line 87](PageBuilder/PageBuilders.php#L87-L93)
 
 ### `provenexpert_block_editor_block_name`
 
@@ -481,7 +482,7 @@ Source: [app/PageBuilder/PageBuilders.php](PageBuilder/PageBuilders.php), [line 
 Argument | Type | Description
 -------- | ---- | -----------
 `$name` | `string` | The name.
-`$this` | `\ProvenExpert\PageBuilder\Shortcodes\Shortcode_Base` | The block-object.
+`$instance` | `\ProvenExpert\PageBuilder\BlockEditor\Blocks_Base` | The block-object.
 
 **Changelog**
 
@@ -489,7 +490,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/PageBuilder/BlockEditor/Blocks_Base.php](PageBuilder/BlockEditor/Blocks_Base.php), [line 156](PageBuilder/BlockEditor/Blocks_Base.php#L156-L163)
+Source: [app/PageBuilder/BlockEditor/Blocks_Base.php](PageBuilder/BlockEditor/Blocks_Base.php), [line 159](PageBuilder/BlockEditor/Blocks_Base.php#L159-L166)
 
 ### `provenexpert_block_editor_blocks`
 
@@ -517,7 +518,7 @@ Source: [app/PageBuilder/BlockEditor/BlockEditor.php](PageBuilder/BlockEditor/Bl
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$widgets` | `array` | List of the widgets.
+`$widgets` | `array<int,string>` | List of the widgets.
 
 **Changelog**
 
@@ -536,7 +537,7 @@ Source: [app/ProvenExpertWidgets/Widgets.php](ProvenExpertWidgets/Widgets.php), 
 Argument | Type | Description
 -------- | ---- | -----------
 `$headers` | `array` | List of headers.
-`$this` | `\ProvenExpert\Api\Request` | The request-object.
+`$instance` | `\ProvenExpert\Api\Request` | The request-object.
 
 **Changelog**
 
@@ -544,7 +545,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0
 
-Source: [app/Api/Request.php](Api/Request.php), [line 146](Api/Request.php#L146-L154)
+Source: [app/Api/Request.php](Api/Request.php), [line 149](Api/Request.php#L149-L157)
 
 ### `provenexpert_request_api_id`
 
@@ -555,7 +556,7 @@ Source: [app/Api/Request.php](Api/Request.php), [line 146](Api/Request.php#L146-
 Argument | Type | Description
 -------- | ---- | -----------
 `$api_id` | `string` | The API ID.
-`$this` | `\ProvenExpert\Api\Request` | The request-object.
+`$instance` | `\ProvenExpert\Api\Request` | The request-object.
 
 **Changelog**
 
@@ -563,7 +564,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Api/Request.php](Api/Request.php), [line 285](Api/Request.php#L285-L293)
+Source: [app/Api/Request.php](Api/Request.php), [line 287](Api/Request.php#L287-L295)
 
 ### `provenexpert_request_api_key`
 
@@ -574,7 +575,7 @@ Source: [app/Api/Request.php](Api/Request.php), [line 285](Api/Request.php#L285-
 Argument | Type | Description
 -------- | ---- | -----------
 `$api_key` | `string` | The API key.
-`$this` | `\ProvenExpert\Api\Request` | The request-object.
+`$instance` | `\ProvenExpert\Api\Request` | The request-object.
 
 **Changelog**
 
@@ -582,7 +583,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | Available since 1.0.0.
 
-Source: [app/Api/Request.php](Api/Request.php), [line 304](Api/Request.php#L304-L312)
+Source: [app/Api/Request.php](Api/Request.php), [line 307](Api/Request.php#L307-L315)
 
 
 <p align="center"><a href="https://github.com/pronamic/wp-documentor"><img src="https://cdn.jsdelivr.net/gh/pronamic/wp-documentor@main/logos/pronamic-wp-documentor.svgo-min.svg" alt="Pronamic WordPress Documentor" width="32" height="32"></a><br><em>Generated by <a href="https://github.com/pronamic/wp-documentor">Pronamic WordPress Documentor</a> <code>1.2.0</code></em><p>

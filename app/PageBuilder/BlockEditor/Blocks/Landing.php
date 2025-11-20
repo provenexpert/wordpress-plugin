@@ -34,7 +34,7 @@ class Landing extends Blocks_Base {
 	/**
 	 * Attributes this block is using.
 	 *
-	 * @var array
+	 * @var array<string,mixed>
 	 */
 	protected array $attributes = array(
 		'preview' => array(
@@ -64,9 +64,27 @@ class Landing extends Blocks_Base {
 	);
 
 	/**
+	 * Instance of this object.
+	 *
+	 * @var ?Landing
+	 */
+	private static ?Landing $instance = null;
+
+	/**
+	 * Return the instance of this Singleton object.
+	 */
+	public static function get_instance(): Landing {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
 	 * Get the content for this block.
 	 *
-	 * @param array $attributes List of attributes for this block.
+	 * @param array<string,mixed> $attributes List of attributes for this block.
 	 * @return string
 	 */
 	public function render( array $attributes ): string {
