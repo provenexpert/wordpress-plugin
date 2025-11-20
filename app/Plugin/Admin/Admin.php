@@ -43,11 +43,11 @@ class Admin {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): Admin {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
@@ -171,7 +171,7 @@ class Admin {
 		Seals::get_instance()->delete_cache();
 
 		// forward user to previous page.
-		wp_safe_redirect( wp_get_referer() );
+		wp_safe_redirect( (string) wp_get_referer() );
 		exit;
 	}
 
@@ -200,7 +200,7 @@ class Admin {
 		\ProvenExpert\Plugin\Log::get_instance()->add_log( __( 'All previous logs has been deleted', 'provenexpert' ), 'success', 'system' );
 
 		// redirect user back to list.
-		wp_safe_redirect( wp_get_referer() );
+		wp_safe_redirect( (string) wp_get_referer() );
 		exit;
 	}
 }

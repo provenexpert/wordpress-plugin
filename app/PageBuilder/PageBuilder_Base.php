@@ -24,7 +24,7 @@ class PageBuilder_Base {
 	/**
 	 * Constructor for this object.
 	 */
-	private function __construct() {}
+	protected function __construct() {}
 
 	/**
 	 * Prevent cloning of this object.
@@ -37,11 +37,11 @@ class PageBuilder_Base {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): PageBuilder_Base {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
@@ -70,7 +70,7 @@ class PageBuilder_Base {
 	 *
 	 * This means any widgets, block, component ... name it.
 	 *
-	 * @return array
+	 * @return array<int,string>
 	 */
 	public function get_widgets(): array {
 		return array();

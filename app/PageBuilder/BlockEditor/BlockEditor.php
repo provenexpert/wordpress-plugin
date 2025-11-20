@@ -26,6 +26,24 @@ class BlockEditor extends PageBuilder_Base {
 	protected string $name = 'block_editor';
 
 	/**
+	 * Instance of this object.
+	 *
+	 * @var ?BlockEditor
+	 */
+	private static ?BlockEditor $instance = null;
+
+	/**
+	 * Return the instance of this Singleton object.
+	 */
+	public static function get_instance(): BlockEditor {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
 	 * Initialize this PageBuilders support.
 	 *
 	 * @return void
@@ -49,7 +67,7 @@ class BlockEditor extends PageBuilder_Base {
 	/**
 	 * Return list of available blocks.
 	 *
-	 * @return array
+	 * @return array<int,string>
 	 */
 	public function get_blocks(): array {
 		$list = array(
@@ -77,10 +95,24 @@ class BlockEditor extends PageBuilder_Base {
 	 */
 	public function register_blocks(): void {
 		foreach ( $this->get_blocks() as $block_class_name ) {
-			$obj = call_user_func( $block_class_name . '::get_instance' );
-			if ( $obj instanceof Blocks_Base ) {
-				$obj->register();
+			// get the object name.
+			$obj_name = $block_class_name . '::get_instance';
+
+			// bail if the object is not callable.
+			if ( ! is_callable( $obj_name ) ) {
+				continue;
 			}
+
+			// get the object.
+			$obj = $obj_name();
+
+			// bail if the object could not be loaded.
+			if ( ! $obj instanceof Blocks_Base ) {
+				continue;
+			}
+
+			// register this block.
+			$obj->register();
 		}
 	}
 
@@ -89,10 +121,10 @@ class BlockEditor extends PageBuilder_Base {
 	 *
 	 * @source https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/#managing-block-categories
 	 *
-	 * @param array                   $block_categories The list of categories.
-	 * @param WP_Block_Editor_Context $editor_context The context.
+	 * @param array<int,array<string,string|null>> $block_categories The list of categories.
+	 * @param WP_Block_Editor_Context              $editor_context The context.
 	 *
-	 * @return array
+	 * @return array<int,array<string,string|null>>
 	 */
 	public function add_block_category( array $block_categories, WP_Block_Editor_Context $editor_context ): array {
 		if ( ! empty( $editor_context->post ) ) {

@@ -42,11 +42,11 @@ class Init {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): Init {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
@@ -123,17 +123,37 @@ class Init {
 		$objects = array(
 			'ProvenExpert\Plugin\Log',
 		);
+
 		/**
 		 * Add additional objects for this plugin which use custom tables.
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
-		 * @param array $objects List of objects.
+		 * @param array<int,string> $objects List of objects.
 		 */
 		foreach ( apply_filters( 'provenexpert_objects_with_db_tables', $objects ) as $obj_name ) {
-			if ( method_exists( $obj_name, 'create_table' ) ) {
-				$obj = call_user_func( $obj_name . '::get_instance' );
-				$obj->create_table();
+			// bail if the object is not a string.
+			if ( ! is_string( $obj_name ) ) {
+				continue;
 			}
+
+			// bail if the object does not have a create-method.
+			if ( ! method_exists( $obj_name, 'create_table' ) ) {
+				continue;
+			}
+
+			// get the object name.
+			$class_name = $obj_name . '::get_instance';
+
+			// bail if the object is not callable.
+			if ( ! is_callable( $class_name ) ) {
+				continue;
+			}
+
+			// get the object.
+			$obj = $class_name();
+
+			// call the function.
+			$obj->create_table();
 		}
 	}
 
@@ -146,17 +166,37 @@ class Init {
 		$objects = array(
 			'ProvenExpert\Plugin\Log',
 		);
+
 		/**
 		 * Add additional objects for this plugin which use custom tables.
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
-		 * @param array $objects List of objects.
+		 * @param array<int,string> $objects List of objects.
 		 */
 		foreach ( apply_filters( 'provenexpert_objects_with_db_tables', $objects ) as $obj_name ) {
-			if ( method_exists( $obj_name, 'delete_table' ) ) {
-				$obj = call_user_func( $obj_name . '::get_instance' );
-				$obj->delete_table();
+			// bail if the object is not a string.
+			if ( ! is_string( $obj_name ) ) {
+				continue;
 			}
+
+			// bail if the object does not have a create-method.
+			if ( ! method_exists( $obj_name, 'delete_table' ) ) {
+				continue;
+			}
+
+			// get the object name.
+			$class_name = $obj_name . '::get_instance';
+
+			// bail if the object is not callable.
+			if ( ! is_callable( $class_name ) ) {
+				continue;
+			}
+
+			// get the object.
+			$obj = $class_name();
+
+			// call the function.
+			$obj->delete_table();
 		}
 	}
 
@@ -181,10 +221,10 @@ class Init {
 	/**
 	 * Get allowed fields for kses.
 	 *
-	 * @param array  $html The allowed HTML-entities with its attributes.
-	 * @param string $context The context.
+	 * @param array<string,mixed> $html The allowed HTML-entities with its attributes.
+	 * @param string              $context The context.
 	 *
-	 * @return array
+	 * @return array<string,mixed>
 	 */
 	public function allow_fields_in_kses( array $html, string $context ): array {
 		// bail if it is not a context compatible with our cpt.
@@ -204,7 +244,7 @@ class Init {
 			$html['noscript'] = array();
 		}
 
-		// return resulting list of allowed HTML-entities.
+		// return the resulting list of allowed HTML-entities.
 		return $html;
 	}
 

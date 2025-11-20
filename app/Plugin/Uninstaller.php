@@ -41,11 +41,11 @@ class Uninstaller {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): Uninstaller {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
@@ -128,9 +128,9 @@ class Uninstaller {
 	}
 
 	/**
-	 * Return list of options.
+	 * Return the list of options.
 	 *
-	 * @return array
+	 * @return array<int,string>
 	 */
 	private function get_options(): array {
 		return array(

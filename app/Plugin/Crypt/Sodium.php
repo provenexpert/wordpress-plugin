@@ -35,6 +35,24 @@ class Sodium extends Crypt_Base {
 	private int $coding_id = SODIUM_BASE64_VARIANT_ORIGINAL;
 
 	/**
+	 * Instance of this object.
+	 *
+	 * @var ?Sodium
+	 */
+	private static ?Sodium $instance = null;
+
+	/**
+	 * Return the instance of this Singleton object.
+	 */
+	public static function get_instance(): Sodium {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
 	 * Constructor for this object.
 	 *
 	 * @throws SodiumException Possible exception.
@@ -89,13 +107,17 @@ class Sodium extends Crypt_Base {
 			// split into the parts after converting from base64- to binary-string.
 			$parts = explode( ':', sodium_base642bin( $encrypted_text, $this->get_coding_id() ) );
 
-			// bail if array is empty or does not have 2 entries.
-			if ( empty( $parts ) || count( $parts ) !== 2 ) {
+			// bail if an array is empty or does not have 2 entries.
+			if ( count( $parts ) !== 2 ) {
 				return '';
 			}
 
 			// return decrypted text.
-			return sodium_crypto_aead_aes256gcm_decrypt( $parts[1], '', $parts[0], $this->get_hash() );
+			$decrypted = sodium_crypto_aead_aes256gcm_decrypt( $parts[1], '', $parts[0], $this->get_hash() );
+			if ( ! is_string( $decrypted ) ) {
+				return '';
+			}
+			return $decrypted;
 		} catch ( Exception $e ) {
 			// log this event.
 			/* translators: %1$s will nbe replaced by our support-URL. */

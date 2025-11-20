@@ -43,24 +43,24 @@ class Settings {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): Settings {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
 	 * Variable for complete settings.
 	 *
-	 * @var array
+	 * @var array<string,mixed>
 	 */
 	private array $settings = array();
 
 	/**
 	 * Variable for tab settings.
 	 *
-	 * @var array
+	 * @var array<int,mixed>
 	 */
 	private array $tabs = array();
 
@@ -542,7 +542,7 @@ class Settings {
 	/**
 	 * Return the settings and save them on the object.
 	 *
-	 * @return array
+	 * @return array<string,mixed>
 	 */
 	public function get_settings(): array {
 		$settings = $this->settings;
@@ -552,7 +552,7 @@ class Settings {
 		 *
 		 * @since 1.0.0 Available since 1.0.0
 		 *
-		 * @param array $settings The settings as array.
+		 * @param array<string,mixed> $settings The settings as array.
 		 */
 		$this->settings = apply_filters( 'provenexpert_settings', $settings );
 
@@ -568,16 +568,16 @@ class Settings {
 	 * @return string
 	 */
 	public function get_setting( string $setting ): string {
-		return get_option( $setting );
+		return (string) get_option( $setting );
 	}
 
 	/**
 	 * Return settings for single field.
 	 *
-	 * @param string $field The requested fiel.
-	 * @param array  $settings The settings to use.
+	 * @param string              $field The requested fiel.
+	 * @param array<string,mixed> $settings The settings to use.
 	 *
-	 * @return array
+	 * @return array<string,mixed>
 	 */
 	public function get_settings_for_field( string $field, array $settings = array() ): array {
 		foreach ( ( empty( $settings ) ? $this->get_settings() : $settings ) as $section_settings ) {
@@ -594,14 +594,14 @@ class Settings {
 			}
 		}
 
-		// return empty array if no field has been found.
+		// return an empty array if no field has been found.
 		return array();
 	}
 
 	/**
-	 * Return the tabs for the settings page.
+	 * Return the tabs to the settings page.
 	 *
-	 * @return array
+	 * @return array<int,mixed>
 	 */
 	public function get_tabs(): array {
 		$tabs = $this->tabs;
@@ -610,22 +610,22 @@ class Settings {
 		 *
 		 * @since 1.0.0 Available since 1.0.0
 		 *
-		 * @param array $false Set true to hide the buttons.
+		 * @param array $tabs Set true to hide the buttons.
 		 */
 		$tabs = apply_filters( 'provenexpert_settings_tabs', $tabs );
 
 		// sort them by 'order'-field.
 		usort( $tabs, array( $this, 'sort_tabs' ) );
 
-		// return resulting list of tabs.
+		// return the resulting list of tabs.
 		return $tabs;
 	}
 
 	/**
 	 * Sort the tabs by 'order'-field.
 	 *
-	 * @param array $a Tab 1 to check.
-	 * @param array $b Tab 2 to compare with tab 1.
+	 * @param array<string,int> $a Tab 1 to check.
+	 * @param array<string,int> $b Tab 2 to compare with tab 1.
 	 *
 	 * @return int
 	 */
@@ -703,7 +703,7 @@ class Settings {
 	/**
 	 * Show button to clear the widget-cache.
 	 *
-	 * @param array $attributes The used attributes.
+	 * @param array<string,mixed> $attributes The used attributes.
 	 *
 	 * @return void
 	 */
@@ -736,7 +736,7 @@ class Settings {
 				),
 			),
 		);
-		echo '<a class="easy-dialog-for-wordpress button button-primary" data-dialog="' . esc_attr( wp_json_encode( $dialog ) ) . '">' . esc_html__( 'Execute', 'provenexpert' ) . '</a>';
+		echo '<a class="easy-dialog-for-wordpress button button-primary" data-dialog="' . esc_attr( (string) wp_json_encode( $dialog ) ) . '">' . esc_html__( 'Execute', 'provenexpert' ) . '</a>';
 
 		// show description, if set.
 		if ( ! empty( $attributes['description'] ) ) {
@@ -762,7 +762,7 @@ class Settings {
 	}
 
 	/**
-	 * Show hint with magic link if API is not configured.
+	 * Show hint with a magic link if API is not configured.
 	 *
 	 * @return void
 	 */
@@ -801,7 +801,7 @@ class Settings {
 			);
 
 			// show disconnect button.
-			echo '<a href="" class="button button-primary quick-connect easy-dialog-for-wordpress" data-dialog="' . esc_attr( wp_json_encode( $dialog ) ) . '">' . esc_html__( 'Disconnect from ProvenExpert', 'provenexpert' ) . '</a>';
+			echo '<a href="" class="button button-primary quick-connect easy-dialog-for-wordpress" data-dialog="' . esc_attr( (string) wp_json_encode( $dialog ) ) . '">' . esc_html__( 'Disconnect from ProvenExpert', 'provenexpert' ) . '</a>';
 
 			// do not run any more tasks here.
 			return;
@@ -829,7 +829,7 @@ class Settings {
 		);
 
 		// show magic link to connect the plugin.
-		echo '<a href="' . esc_url( Setup::get_instance()->get_setup_link() ) . '" class="button quick-connect button-primary easy-dialog-for-wordpress" data-dialog="' . esc_attr( wp_json_encode( $dialog ) ) . '">' . esc_html__( 'Connect with ProvenExpert', 'provenexpert' ) . '</a>';
+		echo '<a href="' . esc_url( Setup::get_instance()->get_setup_link() ) . '" class="button quick-connect button-primary easy-dialog-for-wordpress" data-dialog="' . esc_attr( (string) wp_json_encode( $dialog ) ) . '">' . esc_html__( 'Connect with ProvenExpert', 'provenexpert' ) . '</a>';
 	}
 
 	/**
@@ -837,7 +837,7 @@ class Settings {
 	 *
 	 * @param bool $is_usable True is we only request usable widgets, false if not.
 	 *
-	 * @return array
+	 * @return array<int,array<string,string>>
 	 */
 	private function get_widgets( bool $is_usable ): array {
 		// get all widgets and seals in one list.
@@ -848,25 +848,28 @@ class Settings {
 
 		// loop through them.
 		foreach ( $widgets as $widget_name ) {
-			// bail if it is not a string.
-			if ( ! is_string( $widget_name ) ) {
-				continue;
-			}
-
 			// bail if the method get_instance is missing.
 			if ( ! method_exists( $widget_name, 'get_instance' ) ) {
 				continue;
 			}
 
+			// get the class name.
+			$obj_name = $widget_name . '::get_instance';
+
+			// bail if method is not callable.
+			if ( ! is_callable( $obj_name ) ) {
+				continue;
+			}
+
 			// get the object.
-			$obj = call_user_func( $widget_name . '::get_instance' );
+			$obj = $obj_name();
 
 			// bail if obj is not Widget_Base and not Seal_Base.
 			if ( ! $obj instanceof Widget_Base && ! $obj instanceof Seal_Base ) {
 				continue;
 			}
 
-			// bail if this object is not usable according to the account information we got from ProvenExpert.
+			// bail if this object is not usable, according to the account information we got from ProvenExpert.
 			if ( $is_usable !== $obj->is_usable() ) {
 				continue;
 			}
@@ -903,7 +906,7 @@ class Settings {
 		// get the widgets.
 		$list = $this->get_widgets( true );
 
-		// bail if list is empty.
+		// bail if the list is empty.
 		if ( empty( $list ) ) {
 			// show hint.
 			/* translators: %1$s will be replaced by an email. */

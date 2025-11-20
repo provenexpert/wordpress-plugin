@@ -97,7 +97,7 @@ class Widget_Base extends Object_Base {
 	/**
 	 * Constructor for this object.
 	 */
-	private function __construct() {}
+	protected function __construct() {}
 
 	/**
 	 * Prevent cloning of this object.
@@ -110,11 +110,11 @@ class Widget_Base extends Object_Base {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): Widget_Base {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
@@ -145,28 +145,28 @@ class Widget_Base extends Object_Base {
 			return $api_obj->show_api_disabled();
 		}
 
-		// bail if widget is not usable.
+		// bail if the widget is not usable.
 		if ( ! $this->is_usable() ) {
 			return $this->show_not_usable();
 		}
 
-		// if html is empty, get if from DB-cache depending on settings of this object.
+		// if the HTML code is empty, get if from DB-cache depending on the settings of this object.
 		if ( empty( $this->html ) ) {
 			$this->html = get_option( 'provenExpertWidget' . $this->get_md5(), '' );
 		}
 
-		// if html is still empty, get it from API.
+		// if the HTML code is still empty, get it from API.
 		if ( empty( $this->html ) ) {
 			$this->update();
 			$this->html = get_option( 'provenExpertWidget' . $this->get_md5(), '' );
 		}
 
-		// return the resulting html code.
+		// return the resulting HTML code.
 		return $this->html;
 	}
 
 	/**
-	 * Update the cached HTML-code of this widget via request to the ProvenExpert API.
+	 * Update the cached HTML code of this widget via request to the ProvenExpert API.
 	 *
 	 * @return void
 	 */
@@ -198,20 +198,20 @@ class Widget_Base extends Object_Base {
 		// send request to API.
 		$request_obj->send();
 
-		// if result is 200, response is OK.
+		// if the result is 200, the response is OK.
 		if ( 200 === $request_obj->get_http_status() ) {
 			// get the response.
 			$response = $request_obj->get_response();
 
 			// decode the response.
-			$response_array = json_decode( $response, ARRAY_A );
+			$response_array = json_decode( $response, true );
 
 			// bail if status is "error".
 			if ( ! empty( $response_array['status'] ) && 'error' === $response_array['status'] && ! empty( $response_array['errors'] ) ) {
 				// log event.
 				Log::get_instance()->add_log( __( 'API-request resulted in error:', 'provenexpert' ) . ' <code>' . wp_json_encode( $response_array['errors'] ) . '</code>', 'error', 'api' );
 
-				// if response contains "wrong credentials" clear the widget cache.
+				// if the response contains "wrong credentials" clear the widget cache.
 				if ( in_array( 'wrong credentials', $response_array['errors'], true ) ) {
 					// log event.
 					/* translators: %1$s will be replaced by the settings URL. */
@@ -240,7 +240,7 @@ class Widget_Base extends Object_Base {
 	}
 
 	/**
-	 * Create unique md5 hash of this object depending on its attributes and the actual language.
+	 * Create a unique md5 hash of this object depending on its attributes and the actual language.
 	 *
 	 * @return string
 	 */
@@ -351,9 +351,9 @@ class Widget_Base extends Object_Base {
 	/**
 	 * Return the feedback.
 	 *
-	 * @return string
+	 * @return int
 	 */
-	public function get_feedback(): string {
+	public function get_feedback(): int {
 		return $this->feedback;
 	}
 
@@ -389,9 +389,9 @@ class Widget_Base extends Object_Base {
 	}
 
 	/**
-	 * Return the config of this widget as array.
+	 * Return the config of this widget as an array.
 	 *
-	 * @return array
+	 * @return array<string,mixed>
 	 */
 	protected function get_config(): array {
 		return array();

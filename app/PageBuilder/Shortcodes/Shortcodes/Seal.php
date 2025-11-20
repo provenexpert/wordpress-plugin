@@ -25,9 +25,27 @@ class Seal extends Shortcode_Base {
 	protected string $name = 'seal';
 
 	/**
+	 * Instance of this object.
+	 *
+	 * @var ?Seal
+	 */
+	private static ?Seal $instance = null;
+
+	/**
+	 * Return the instance of this Singleton object.
+	 */
+	public static function get_instance(): Seal {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
 	 * Get the content for this widget.
 	 *
-	 * @param array $attributes List of attributes for this widget.
+	 * @param array<string,mixed> $attributes List of attributes for this widget.
 	 * @return string
 	 */
 	public function render( array $attributes ): string {

@@ -11,7 +11,6 @@ namespace ProvenExpert\PageBuilder\BlockEditor;
 defined( 'ABSPATH' ) || exit;
 
 use ProvenExpert\Api\Api;
-use ProvenExpert\PageBuilder\Shortcodes\Shortcode_Base;
 use ProvenExpert\Plugin\Helper;
 use WP_Block_Type_Registry;
 
@@ -36,7 +35,7 @@ class Blocks_Base {
 	/**
 	 * Attributes this block is using.
 	 *
-	 * @var array
+	 * @var array<string,mixed>
 	 */
 	protected array $attributes = array();
 
@@ -50,7 +49,7 @@ class Blocks_Base {
 	/**
 	 * Constructor, not used as this a Singleton object.
 	 */
-	private function __construct() {}
+	protected function __construct() {}
 
 	/**
 	 * Prevent cloning of this object.
@@ -63,11 +62,11 @@ class Blocks_Base {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): Blocks_Base {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
@@ -80,7 +79,7 @@ class Blocks_Base {
 		$block_registry = WP_Block_Type_Registry::get_instance();
 
 		// bail if block type registry is not available.
-		if ( is_null( $block_registry ) ) {
+		if ( is_null( $block_registry ) ) { // @phpstan-ignore function.impossibleType
 			return;
 		}
 
@@ -108,18 +107,12 @@ class Blocks_Base {
 			),
 			'before'
 		);
-
-		// embed translation if available.
-		// TODO remove on release.
-		if ( function_exists( 'wp_set_script_translations' ) ) {
-			wp_set_script_translations( 'provenexpert-' . $this->get_name() . '-editor-script', 'provenexpert', Helper::get_plugin_path() . 'languages/' );
-		}
 	}
 
 	/**
 	 * Return the list of attributes for this block.
 	 *
-	 * @return array
+	 * @return array<string,mixed>
 	 */
 	protected function get_attributes(): array {
 		$single_attributes = $this->attributes;
@@ -128,7 +121,7 @@ class Blocks_Base {
 		 *
 		 * @since 1.0.0 Available since 1.0.0
 		 *
-		 * @param array $single_attributes The settings as array.
+		 * @param array<string,mixed> $single_attributes The settings as an array.
 		 */
 		$filter_name = 'provenexpert_block_editor_block_' . $this->get_name() . '_attributes';
 		return apply_filters( $filter_name, $single_attributes );
@@ -161,20 +154,21 @@ class Blocks_Base {
 	public function get_name(): string {
 		$name = $this->name;
 
+		$instance = $this;
 		/**
 		 * Filter the used block name.
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
 		 * @param string $name The name.
-		 * @param Shortcode_Base $this The block-object.
+		 * @param Blocks_Base $instance The block-object.
 		 */
-		return apply_filters( 'provenexpert_block_editor_block_name', $name, $this );
+		return apply_filters( 'provenexpert_block_editor_block_name', $name, $instance );
 	}
 
 	/**
 	 * Return the rendered content of this block.
 	 *
-	 * @param array $attributes List of attributes for this block.
+	 * @param array<string,mixed> $attributes List of attributes for this block.
 	 *
 	 * @return string
 	 */

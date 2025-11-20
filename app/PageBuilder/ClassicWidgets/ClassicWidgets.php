@@ -25,6 +25,24 @@ class ClassicWidgets extends PageBuilder_Base {
 	protected string $name = 'classic_widgets';
 
 	/**
+	 * Instance of this object.
+	 *
+	 * @var ?ClassicWidgets
+	 */
+	private static ?ClassicWidgets $instance = null;
+
+	/**
+	 * Return the instance of this Singleton object.
+	 */
+	public static function get_instance(): ClassicWidgets {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
 	 * Initialize this PageBuilders support.
 	 *
 	 * @return void
@@ -43,9 +61,9 @@ class ClassicWidgets extends PageBuilder_Base {
 	}
 
 	/**
-	 * Return list of available classic widgets.
+	 * Return the list of available classic widgets.
 	 *
-	 * @return array
+	 * @return array<int,string>
 	 */
 	public function get_widgets(): array {
 		$list = array(
@@ -58,10 +76,10 @@ class ClassicWidgets extends PageBuilder_Base {
 		);
 
 		/**
-		 * Return list of classic widgets class names.
+		 * Return the list of classic widgets class names.
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
-		 * @param array $list List of classic widgets.
+		 * @param array<int,string> $list List of classic widgets.
 		 */
 		return apply_filters( 'provenexpert_classic_widgets', $list );
 	}
@@ -73,11 +91,6 @@ class ClassicWidgets extends PageBuilder_Base {
 	 */
 	public function register_widgets(): void {
 		foreach ( $this->get_widgets() as $widget_class_name ) {
-			// bail if name is not a string.
-			if ( ! is_string( $widget_class_name ) ) {
-				continue;
-			}
-
 			// bail if object does not exist.
 			if ( ! class_exists( $widget_class_name ) ) {
 				continue;
@@ -126,11 +139,6 @@ class ClassicWidgets extends PageBuilder_Base {
 	public function uninstall(): void {
 		// unregister each classic widget.
 		foreach ( $this->get_widgets() as $widget_class_name ) {
-			// bail if name is not a string.
-			if ( ! is_string( $widget_class_name ) ) {
-				continue;
-			}
-
 			// bail if object does not exist.
 			if ( ! class_exists( $widget_class_name ) ) {
 				continue;
@@ -139,7 +147,7 @@ class ClassicWidgets extends PageBuilder_Base {
 			// get object.
 			$obj = new $widget_class_name();
 
-			// bail if object is not from WP_Widget.
+			// bail if the object is not from WP_Widget.
 			if ( ! $obj instanceof WP_Widget ) {
 				continue;
 			}

@@ -1,8 +1,8 @@
 {
 	"$schema": "https://json.schemastore.org/block.json",
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "provenexpert/seal",
-	"version": "1.0.0",
+	"version": "1.1.2",
 	"title": "ProvenExpert Evaluation Seal",
 	"category": "widgets",
 	"description": "Provides a block to show your ProvenExpert Evaluation Seal.",

@@ -37,11 +37,11 @@ class PageBuilders {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): PageBuilders {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
@@ -51,19 +51,31 @@ class PageBuilders {
 	 */
 	public function init(): void {
 		foreach ( $this->get_page_builder() as $page_builder_name ) {
-			if ( method_exists( $page_builder_name, 'init' ) ) {
-				$obj = call_user_func( $page_builder_name . '::get_instance' );
-				if ( $obj instanceof PageBuilder_Base ) {
-					$obj->init();
-				}
+			// get the object name.
+			$obj_name = $page_builder_name . '::get_instance';
+
+			// bail if the object is not callable.
+			if ( ! is_callable( $obj_name ) ) {
+				continue;
 			}
+
+			// get the object.
+			$obj = $obj_name();
+
+			// bail if the object could not be loaded.
+			if ( ! $obj instanceof PageBuilder_Base ) {
+				continue;
+			}
+
+			// initialize this object.
+			$obj->init();
 		}
 	}
 
 	/**
-	 * Return list of supported page builders.
+	 * Return the list of supported page builders.
 	 *
-	 * @return array
+	 * @return array<int,string>
 	 */
 	private function get_page_builder(): array {
 		$list = array(
@@ -76,7 +88,7 @@ class PageBuilders {
 		 * Filter list of supported page builders.
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
-		 * @param array $list List of page builders.
+		 * @param array<int,string> $list List of page builders.
 		 */
 		return apply_filters( 'provenexpert_pagebuilder', $list );
 	}

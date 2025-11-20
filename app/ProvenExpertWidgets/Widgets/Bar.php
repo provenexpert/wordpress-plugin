@@ -32,9 +32,27 @@ class Bar extends Widget_Base {
 	protected string $type = 'bar';
 
 	/**
-	 * Return the config of this widget as array.
+	 * Instance of this object.
 	 *
-	 * @return array
+	 * @var ?Bar
+	 */
+	private static ?Bar $instance = null;
+
+	/**
+	 * Return the instance of this Singleton object.
+	 */
+	public static function get_instance(): Bar {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * Return the config of this widget as an array.
+	 *
+	 * @return array<string,mixed>
 	 */
 	protected function get_config(): array {
 		return array(

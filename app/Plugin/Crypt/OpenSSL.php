@@ -24,6 +24,24 @@ class OpenSSL extends Crypt_Base {
 	protected string $name = 'openssl';
 
 	/**
+	 * Instance of this object.
+	 *
+	 * @var ?OpenSSL
+	 */
+	private static ?OpenSSL $instance = null;
+
+	/**
+	 * Return the instance of this Singleton object.
+	 */
+	public static function get_instance(): OpenSSL {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
 	 * Constructor for this object.
 	 */
 	protected function __construct() {
@@ -31,7 +49,7 @@ class OpenSSL extends Crypt_Base {
 
 		// initially generate a hash if it is empty.
 		if ( empty( $this->get_hash() ) ) {
-			$hash = hash( 'sha256', wp_rand() );
+			$hash = hash( 'sha256', (string) wp_rand() );
 			$this->set_hash( $hash );
 			update_option( PROVENEXPERT_HASH, $this->get_hash() );
 		}
@@ -52,12 +70,27 @@ class OpenSSL extends Crypt_Base {
 			return '';
 		}
 
-		// encrypt the given string.
-		$cipher         = 'AES-128-CBC';
-		$iv_length      = openssl_cipher_iv_length( $cipher );
-		$iv             = openssl_random_pseudo_bytes( $iv_length );
+		$cipher    = 'AES-128-CBC';
+		$iv_length = openssl_cipher_iv_length( $cipher );
+
+		if ( ! is_int( $iv_length ) ) { // @phpstan-ignore function.alreadyNarrowedType
+			return '';
+		}
+
+		$iv = openssl_random_pseudo_bytes( $iv_length );
+
+		// bail if iv could not be created.
+		if ( ! $iv ) {
+			return '';
+		}
+
 		$ciphertext_raw = openssl_encrypt( $plain_text, $cipher, $this->get_hash(), OPENSSL_RAW_DATA, $iv );
-		$hmac           = hash_hmac( 'sha256', $ciphertext_raw, $this->get_hash(), true );
+
+		if ( ! $ciphertext_raw ) {
+			return '';
+		}
+
+		$hmac = hash_hmac( 'sha256', $ciphertext_raw, $this->get_hash(), true );
 		return base64_encode( base64_encode( $iv ) . ':' . base64_encode( $hmac . $ciphertext_raw ) );
 	}
 
@@ -74,19 +107,33 @@ class OpenSSL extends Crypt_Base {
 			return '';
 		}
 
-		// decrypt the given string.
-		$cipher             = 'AES-128-CBC';
-		$iv_length          = openssl_cipher_iv_length( $cipher );
-		$c                  = base64_decode( $encrypted_text );
-		$c_exploded         = explode( ':', $c );
-		$iv                 = base64_decode( $c_exploded[0] );
-		$iv                 = substr( $iv, 0, $iv_length );
-		$c                  = base64_decode( $c_exploded[1] );
-		$hmac               = substr( $c, 0, $sha2len = 32 );
-		$ciphertext_raw     = substr( $c, $sha2len, strlen( $c ) );
+		$cipher    = 'AES-128-CBC';
+		$iv_length = openssl_cipher_iv_length( $cipher );
+		if ( ! $iv_length ) {
+			return '';
+		}
+		$c = base64_decode( $encrypted_text );
+		if ( str_contains( $c, ':' ) ) {
+			$c_exploded = explode( ':', $c );
+			$iv         = base64_decode( $c_exploded[0] );
+			if ( ! $iv ) {
+				return '';
+			}
+			$iv = substr( $iv, 0, $iv_length );
+			$c  = base64_decode( $c_exploded[1] );
+			if ( ! $c ) {
+				return '';
+			}
+			$hmac           = substr( $c, 0, $sha2len = 32 );
+			$ciphertext_raw = substr( $c, $sha2len, strlen( $c ) );
+		} else {
+			$iv             = substr( $c, 0, $iv_length );
+			$hmac           = substr( $c, $iv_length, $sha2len = 32 );
+			$ciphertext_raw = substr( $c, $iv_length + $sha2len );
+		}
 		$original_plaintext = openssl_decrypt( $ciphertext_raw, $cipher, $this->get_hash(), OPENSSL_RAW_DATA, $iv );
 		$calc_mac           = hash_hmac( 'sha256', $ciphertext_raw, $this->get_hash(), true );
-		if ( $hmac && hash_equals( $hmac, $calc_mac ) ) {
+		if ( $original_plaintext && $hmac && hash_equals( $hmac, $calc_mac ) ) {
 			return $original_plaintext;
 		}
 		return '';

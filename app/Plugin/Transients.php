@@ -89,12 +89,12 @@ class Transients {
 	/**
 	 * Get all known transients as objects.
 	 *
-	 * @return array[Transient]
+	 * @return array<Transient>
 	 */
 	public function get_transients(): array {
 		$transients = array();
 
-		// get list of our own transients from DB as array.
+		// get the list of our own transients from DB as an array.
 		$transients_from_db = get_option( PROVENEXPERT_TRANSIENTS_LIST, array() );
 		if ( ! is_array( $transients_from_db ) ) {
 			$transients_from_db = array();
@@ -105,11 +105,11 @@ class Transients {
 			// create the object from setting.
 			$transient_obj = new Transient( $transient );
 
-			// add object to list.
+			// add the object to the list.
 			$transients[ $transient ] = $transient_obj;
 		}
 
-		// return the resulting list as array.
+		// return the resulting list as an array.
 		return $transients;
 	}
 
@@ -227,7 +227,7 @@ class Transients {
 		check_ajax_referer( 'provenexpert-dismiss-nonce', 'nonce' );
 
 		// get values.
-		$option_name        = isset( $_POST['option_name'] ) ? sanitize_text_field( wp_unslash( $_POST['option_name'] ) ) : false;
+		$option_name        = isset( $_POST['option_name'] ) ? sanitize_text_field( wp_unslash( $_POST['option_name'] ) ) : '';
 		$dismissible_length = isset( $_POST['dismissible_length'] ) ? sanitize_text_field( wp_unslash( $_POST['dismissible_length'] ) ) : 14;
 
 		if ( 'forever' !== $dismissible_length ) {
@@ -250,9 +250,9 @@ class Transients {
 	/**
 	 * Add URLs to the list where transients are hidden by default.
 	 *
-	 * @param array $urls List of URLs where the transients are hidden.
+	 * @param array<int,string> $urls List of URLs where the transients are hidden.
 	 *
-	 * @return array
+	 * @return array<int,string>
 	 */
 	public function set_default_pages_where_transients_are_hidden( array $urls ): array {
 		// add some URLs to the list.

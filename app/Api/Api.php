@@ -45,11 +45,11 @@ class Api {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): Api {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
@@ -190,9 +190,9 @@ class Api {
 	/**
 	 * Add our own category for logging.
 	 *
-	 * @param array $category_list List of log categories.
+	 * @param array<string,string> $category_list List of log categories.
 	 *
-	 * @return array
+	 * @return array<string,string>
 	 */
 	public function add_log_category( array $category_list ): array {
 		$category_list['api'] = __( 'API', 'provenexpert' );
@@ -293,7 +293,7 @@ class Api {
 		// bail if http status is not 200.
 		if ( 200 !== $http_status ) {
 			// log event.
-			$log->add_log( __( 'Unexpected HTTP-Status from ProvenExpert:', 'provenexpert' ) . ' <code>' . esc_html( $http_status ) . '</code>', 'error', 'api' );
+			$log->add_log( __( 'Unexpected HTTP-Status from ProvenExpert:', 'provenexpert' ) . ' <code>' . esc_html( (string) $http_status ) . '</code>', 'error', 'api' );
 
 			// return the default template.
 			return false;
@@ -312,7 +312,7 @@ class Api {
 		}
 
 		// get content as array.
-		$content_array = json_decode( $content, ARRAY_A );
+		$content_array = json_decode( $content, true );
 
 		// bail if status is not given.
 		if ( empty( $content_array['status'] ) ) {
@@ -381,7 +381,7 @@ class Api {
 		$this->disconnect();
 
 		// forward user to previous page.
-		wp_safe_redirect( wp_get_referer() );
+		wp_safe_redirect( (string) wp_get_referer() );
 		exit;
 	}
 
@@ -396,8 +396,16 @@ class Api {
 
 		// get client ID if plugin ID is not set.
 		if ( empty( $plugin_id ) ) {
+			// get the crypt method.
+			$crypt_method = Crypt::get_instance()->get_method();
+
+			// bail if the crypt method is not set.
+			if ( ! $crypt_method ) {
+				return;
+			}
+
 			// get the client ID.
-			$plugin_id = Crypt::get_instance()->get_method()->get_hash();
+			$plugin_id = $crypt_method->get_hash();
 
 			// bail if also client ID is not set.
 			if ( empty( $plugin_id ) ) {

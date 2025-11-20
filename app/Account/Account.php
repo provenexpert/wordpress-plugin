@@ -44,11 +44,11 @@ class Account {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): Account {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
@@ -65,10 +65,10 @@ class Account {
 	/**
 	 * Return account info.
 	 *
-	 * @return array
+	 * @return array<string,mixed>
 	 */
 	private function get(): array {
-		// get account infos.
+		// get the account info.
 		$account_info = get_option( 'provenExpertAccount', array() );
 
 		// bail if this is not an array.
@@ -83,7 +83,7 @@ class Account {
 	/**
 	 * Set the account info.
 	 *
-	 * @param array $account_info The account info from ProvenExpert API.
+	 * @param array<string,mixed> $account_info The account info from ProvenExpert API.
 	 *
 	 * @return void
 	 */
@@ -198,7 +198,7 @@ class Account {
 		}
 
 		// get the account info as array.
-		$account_info = json_decode( $account_info_json, ARRAY_A );
+		$account_info = json_decode( $account_info_json, true );
 
 		// bail if account info does not contain "status" with value "success".
 		if ( ! ( ! empty( $account_info['status'] ) && 'success' === $account_info['status'] ) ) {
@@ -240,7 +240,7 @@ class Account {
 		}
 
 		// forward user to previous page.
-		wp_safe_redirect( wp_get_referer() );
+		wp_safe_redirect( (string) wp_get_referer() );
 		exit;
 	}
 
@@ -253,7 +253,7 @@ class Account {
 	 * @return void
 	 */
 	public function load_account_info( string $old_value, string $new_value ): void {
-		// bail if value has not been changed.
+		// bail if the value has not been changed.
 		if ( Crypt::get_instance()->decrypt( $new_value ) === $old_value ) {
 			return;
 		}

@@ -48,7 +48,7 @@ class Seal_Base extends Object_Base {
 	/**
 	 * Constructor for this object.
 	 */
-	private function __construct() {}
+	protected function __construct() {}
 
 	/**
 	 * Prevent cloning of this object.
@@ -61,11 +61,11 @@ class Seal_Base extends Object_Base {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): Seal_Base {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
@@ -157,7 +157,7 @@ class Seal_Base extends Object_Base {
 			$response = $request_obj->get_response();
 
 			// decode the response.
-			$response_array = json_decode( $response, ARRAY_A );
+			$response_array = json_decode( $response, true );
 
 			// bail if status is "error".
 			if ( ! empty( $response_array['status'] ) && 'error' === $response_array['status'] && ! empty( $response_array['errors'] ) ) {
@@ -200,7 +200,7 @@ class Seal_Base extends Object_Base {
 					$response = $request_obj->get_response();
 
 					// decode the response.
-					$response_array = json_decode( $response, ARRAY_A );
+					$response_array = json_decode( $response, true );
 
 					// bail if status is "error".
 					if ( ! empty( $response_array['status'] ) && 'error' === $response_array['status'] && ! empty( $response_array['errors'] ) ) {
@@ -250,9 +250,9 @@ class Seal_Base extends Object_Base {
 	}
 
 	/**
-	 * Return the config of this seal as array.
+	 * Return the config of this seal as an array.
 	 *
-	 * @return array
+	 * @return array<string,mixed>
 	 */
 	protected function get_config(): array {
 		return array();

@@ -37,11 +37,11 @@ class Log {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): Log {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
@@ -76,7 +76,7 @@ class Log {
 	 */
 	public function delete_table(): void {
 		global $wpdb;
-		$wpdb->query( sprintf( 'DROP TABLE IF EXISTS %s', esc_sql( $wpdb->prefix . 'provenexpert_logs' ) ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		$wpdb->query( sprintf( 'DROP TABLE IF EXISTS %s', (string) esc_sql( $wpdb->prefix . 'provenexpert_logs' ) ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,cast.string
 	}
 
 	/**
@@ -110,7 +110,7 @@ class Log {
 	}
 
 	/**
-	 * Delete all entries which are older than X days.
+	 * Delete all entries older than X days..
 	 *
 	 * @return void
 	 */
@@ -119,13 +119,13 @@ class Log {
 		global $wpdb;
 
 		// run the deletion.
-		$wpdb->query( sprintf( 'DELETE FROM %s WHERE `time` < DATE_SUB(NOW(), INTERVAL 7 DAY) LIMIT 10000', esc_sql( $wpdb->prefix . 'provenexpert_logs' ) ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		$wpdb->query( sprintf( 'DELETE FROM %s WHERE `time` < DATE_SUB(NOW(), INTERVAL 7 DAY) LIMIT 10000', (string) esc_sql( $wpdb->prefix . 'provenexpert_logs' ) ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,cast.string
 	}
 
 	/**
 	 * Return list of categories with internal name & its label.
 	 *
-	 * @return array
+	 * @return array<string,string>
 	 */
 	public function get_categories(): array {
 		$list = array(
@@ -137,25 +137,25 @@ class Log {
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
 		 *
-		 * @param array $list List of categories.
+		 * @param array<string,string> $list List of categories.
 		 */
 		return apply_filters( 'provenexpert_log_categories', $list );
 	}
 
 	/**
-	 * Get log entries depending on filter.
+	 * Return log entries depending on the filter.
 	 *
 	 * Use for each possible condition own statements to match WCS.
 	 *
-	 * @return array
+	 * @return array<string,mixed>
 	 */
 	public function get_entries(): array {
 		global $wpdb;
 
 		// order table.
-		$order = filter_input( INPUT_GET, 'order', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-		if ( ! is_null( $order ) ) {
-			$order = sanitize_sql_orderby( $order );
+		$order = (string) filter_input( INPUT_GET, 'order', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		if ( ! empty( $order ) ) {
+			$order = (string) sanitize_sql_orderby( $order );
 		} else {
 			$order = 'DESC';
 		}
@@ -247,6 +247,6 @@ class Log {
 		global $wpdb;
 
 		// run the deletion.
-		$wpdb->query( sprintf( 'TRUNCATE TABLE %s ', esc_sql( $wpdb->prefix . 'provenexpert_logs' ) ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		$wpdb->query( sprintf( 'TRUNCATE TABLE %s ', (string) esc_sql( $wpdb->prefix . 'provenexpert_logs' ) ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,cast.string
 	}
 }

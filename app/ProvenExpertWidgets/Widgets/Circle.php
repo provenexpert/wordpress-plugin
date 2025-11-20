@@ -45,11 +45,28 @@ class Circle extends Widget_Base {
 	 */
 	protected int $fixed = 0;
 
+	/**
+	 * Instance of this object.
+	 *
+	 * @var ?Circle
+	 */
+	private static ?Circle $instance = null;
 
 	/**
-	 * Return the config of this widget as array.
+	 * Return the instance of this Singleton object.
+	 */
+	public static function get_instance(): Circle {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * Return the config of this widget as an array.
 	 *
-	 * @return array
+	 * @return array<string,mixed>
 	 */
 	protected function get_config(): array {
 		return array(

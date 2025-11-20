@@ -37,10 +37,11 @@ class Schedules {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): Schedules {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
-		return static::$instance;
+
+		return self::$instance;
 	}
 
 	/**
@@ -77,19 +78,19 @@ class Schedules {
 	/**
 	 * Get our own active events from WP-list.
 	 *
-	 * @return array
+	 * @return array<string,array<string,mixed>>
 	 */
 	private function get_events(): array {
 		// get our own events from events list in WordPress.
 		$our_events = $this->get_wp_events();
 
 		/**
-		 * Filter the list of our own events,
-		 * e.g. to check if all which are enabled in setting are active.
+		 * Filter the list of our own events.
+		 * E.g. to check if all which are enabled in setting are active.
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
 		 *
-		 * @param array $our_events List of our own events in WP-cron.
+		 * @param array<string,array<string,mixed>> $our_events List of our own events in WP-cron.
 		 */
 		return apply_filters( 'provenexpert_schedule_our_events', $our_events );
 	}
@@ -101,9 +102,9 @@ class Schedules {
 	 *
 	 * Does only run in wp-admin, not frontend.
 	 *
-	 * @param array $our_events List of our own events.
+	 * @param array<string,array<string,mixed>> $our_events List of our own events.
 	 *
-	 * @return array
+	 * @return array<string,array<string,mixed>>
 	 */
 	public function check_events( array $our_events ): array {
 		// bail if check should be disabled.
@@ -150,7 +151,7 @@ class Schedules {
 				$our_events = $this->get_wp_events();
 			}
 
-			// delete if schedule is in list of our events and not enabled.
+			// delete if schedule is in the list of our events and not enabled.
 			if ( ! $obj->is_enabled() && isset( $our_events[ $obj->get_name() ] ) ) {
 				$obj->delete();
 
@@ -201,7 +202,7 @@ class Schedules {
 	/**
 	 * Return list of all schedule-object-names.
 	 *
-	 * @return array
+	 * @return array<int,string>
 	 */
 	public function get_schedule_object_names(): array {
 		// list of schedules.
@@ -218,13 +219,13 @@ class Schedules {
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
 		 *
-		 * @param array $list_of_schedules List of additional schedules.
+		 * @param array<int,string> $list_of_schedules List of additional schedules.
 		 */
 		return apply_filters( 'provenexpert_schedules', $list_of_schedules );
 	}
 
 	/**
-	 * Get schedule object by its name.
+	 * Return a schedule object by its name.
 	 *
 	 * @param string $name The name of the object.
 	 *
@@ -243,7 +244,7 @@ class Schedules {
 	/**
 	 * Get our own events from WP-cron-event-list.
 	 *
-	 * @return array
+	 * @return array<string,array<string,mixed>>
 	 */
 	private function get_wp_events(): array {
 		$our_events = array();
@@ -263,7 +264,7 @@ class Schedules {
 	}
 
 	/**
-	 * Run check for cronjobs in frontend, if enabled.
+	 * Run check for cronjobs in the frontend, if enabled.
 	 *
 	 * @return void
 	 */
@@ -272,7 +273,7 @@ class Schedules {
 	}
 
 	/**
-	 * Add schedule to our list of schedules.
+	 * Add the schedule to our list of schedules.
 	 *
 	 * @param object|bool $event The event properties.
 	 *
@@ -285,7 +286,7 @@ class Schedules {
 		}
 
 		// get our object.
-		$schedule_obj = $this->get_schedule_object_by_name( $event->hook );
+		$schedule_obj = $this->get_schedule_object_by_name( $event->hook ); // @phpstan-ignore property.notFound
 
 		// bail if this is not an event of our plugin.
 		if ( ! $schedule_obj ) {

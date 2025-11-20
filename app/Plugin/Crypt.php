@@ -50,11 +50,11 @@ class Crypt {
 	 * Return the instance of this Singleton object.
 	 */
 	public static function get_instance(): Crypt {
-		if ( ! static::$instance instanceof static ) {
-			static::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
@@ -86,7 +86,7 @@ class Crypt {
 	}
 
 	/**
-	 * Return decrypted string.
+	 * Return the decrypted string.
 	 *
 	 * @param string $encrypted_text Text to decrypt.
 	 *
@@ -108,9 +108,9 @@ class Crypt {
 	}
 
 	/**
-	 * Return list of supported methods.
+	 * Return the list of supported methods.
 	 *
-	 * @return array
+	 * @return array<int,string>
 	 */
 	private function get_available_methods(): array {
 		$methods = array(
@@ -122,7 +122,7 @@ class Crypt {
 		 * Filter the available crypt-methods.
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
-		 * @param array $methods List of methods.
+		 * @param array<int,string> $methods List of methods.
 		 */
 		return apply_filters( 'provenexpert_crypt_methods', $methods );
 	}
@@ -147,10 +147,29 @@ class Crypt {
 	 */
 	private function get_method_by_name( string $method ): false|Crypt_Base {
 		foreach ( $this->get_available_methods() as $method_class_name ) {
-			$obj = call_user_func( $method_class_name . '::get_instance' );
-			if ( ( $obj instanceof Crypt_Base ) && $method === $obj->get_name() ) {
-				return $obj;
+			// get the object name.
+			$obj_name = $method_class_name . '::get_instance';
+
+			// bail if the object is not callable.
+			if ( ! is_callable( $obj_name ) ) {
+				continue;
 			}
+
+			// get the object.
+			$obj = $obj_name();
+
+			// bail if the object could not be loaded.
+			if ( ! $obj instanceof Crypt_Base ) {
+				continue;
+			}
+
+			// bail if the name does not match.
+			if ( $method !== $obj->get_name() ) {
+				continue;
+			}
+
+			// return this object.
+			return $obj;
 		}
 
 		// return false if no object could be found.
