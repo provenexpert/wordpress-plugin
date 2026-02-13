@@ -128,7 +128,7 @@ class BlockEditor extends PageBuilder_Base {
 	 */
 	public function add_block_category( array $block_categories, mixed $editor_context ): array {
 		// bail if the given editor context is not "WP_Block_Editor_Context".
-		if( ! $editor_context instanceof WP_Block_Editor_Context ) {
+		if ( ! $editor_context instanceof WP_Block_Editor_Context ) {
 			return $block_categories;
 		}
 
