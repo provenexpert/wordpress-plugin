@@ -122,7 +122,7 @@ class BlockEditor extends PageBuilder_Base {
 	 * @source https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/#managing-block-categories
 	 *
 	 * @param array<int,array<string,string|null>> $block_categories The list of categories.
-	 * @param WP_Block_Editor_Context              $editor_context The context.
+	 * @param mixed                                $editor_context The context.
 	 *
 	 * @return array<int,array<string,string|null>>
 	 */
