@@ -65,7 +65,7 @@ class BlockEditor extends PageBuilder_Base {
 	}
 
 	/**
-	 * Return list of available blocks.
+	 * Return the list of available blocks.
 	 *
 	 * @return array<int,string>
 	 */
@@ -80,7 +80,7 @@ class BlockEditor extends PageBuilder_Base {
 		);
 
 		/**
-		 * Return list of block class names.
+		 * Return the list of block class names.
 		 *
 		 * @since 1.0.0 Available since 1.0.0.
 		 * @param array $list List of blocks.
@@ -117,7 +117,7 @@ class BlockEditor extends PageBuilder_Base {
 	}
 
 	/**
-	 * Add block category.
+	 * Add our own block category.
 	 *
 	 * @source https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/#managing-block-categories
 	 *
@@ -126,14 +126,25 @@ class BlockEditor extends PageBuilder_Base {
 	 *
 	 * @return array<int,array<string,string|null>>
 	 */
-	public function add_block_category( array $block_categories, WP_Block_Editor_Context $editor_context ): array {
-		if ( ! empty( $editor_context->post ) ) {
-			$block_categories[] = array(
-				'slug'  => 'provenexpert',
-				'title' => __( 'ProvenExpert', 'provenexpert' ),
-				'icon'  => null,
-			);
+	public function add_block_category( array $block_categories, mixed $editor_context ): array {
+		// bail if the given editor context is not "WP_Block_Editor_Context".
+		if( ! $editor_context instanceof WP_Block_Editor_Context ) {
+			return $block_categories;
 		}
+
+		// bail if this is not a post context.
+		if ( empty( $editor_context->post ) ) {
+			return $block_categories;
+		}
+
+		// add the category.
+		$block_categories[] = array(
+			'slug'  => 'provenexpert',
+			'title' => __( 'ProvenExpert', 'provenexpert' ),
+			'icon'  => null,
+		);
+
+		// return the resulting list of categories.
 		return $block_categories;
 	}
 
