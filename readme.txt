@@ -2,7 +2,7 @@
 Contributors: provenexpert, laolaweb, threadi
 Tags: provenexpert
 Requires at least: 4.9.25
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 8.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -53,11 +53,7 @@ The plugin can be installed even without ProvenExpert account. However, it is no
 == Changelog ==
 
 = @@VersionNumber@@ =
-- Updated Block usage for WordPress 6.9
 - Updated dependencies
-- Set compatibility to WordPress 6.9
-- Using PHPStan for additional security checks on every release
-- Removed unused embedding of translation files from development
-- Fixed missing output of some classic widgets
+- Fixed a potential error with by third party plugins wrong called hook "block_categories_all"
 
 [older changes](https://github.com/provenexpert/wordpress-plugin/blob/master/changelog.md)

@@ -1,5 +1,14 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+- Updated dependencies
+
+### Fixed
+
+- Fixed a potential error with by third party plugins wrong called hook "block_categories_all"
+
 ## [1.1.2] - 17.11.2025
 
 ### Changed
