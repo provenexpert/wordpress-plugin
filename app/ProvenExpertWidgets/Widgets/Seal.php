@@ -32,6 +32,13 @@ class Seal extends Widget_Base {
 	protected string $type = 'seal';
 
 	/**
+	 * The name for the request to get the ZIP-file of this widget.
+	 *
+	 * @var string
+	 */
+	protected string $zip_widget_name = 'seal';
+
+	/**
 	 * The widget width.
 	 *
 	 * @var int

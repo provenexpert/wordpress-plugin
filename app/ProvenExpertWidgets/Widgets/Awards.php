@@ -33,6 +33,13 @@ class Awards extends Widget_Base {
 	protected string $type = 'awards';
 
 	/**
+	 * The name for the request to get the ZIP-file of this widget.
+	 *
+	 * @var string
+	 */
+	protected string $zip_widget_name = 'awards';
+
+	/**
 	 * The widget width.
 	 *
 	 * @var int

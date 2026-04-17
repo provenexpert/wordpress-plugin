@@ -14,6 +14,11 @@ defined( 'ABSPATH' ) || exit;
 const PROVENEXPERT_API_WIDGET_URL = 'https://www.provenexpert.com/api/v1/widget/create';
 
 /**
+ * The API URL of ProvenExpert for ZIP-files of the widgets.
+ */
+const PROVENEXPERT_API_ZIP_URL = 'https://www.provenexpert.com/restapi/v1/plugins/widget-assets';
+
+/**
  * The API URL of ProvenExpert for seals.
  */
 const PROVENEXPERT_API_SEAL_URL = 'https://www.provenexpert.com/restapi/v1/seals/';

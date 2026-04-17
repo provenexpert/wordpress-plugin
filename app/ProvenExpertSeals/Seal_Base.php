@@ -14,6 +14,7 @@ defined( 'ABSPATH' ) || exit;
 
 use ProvenExpert\Api\Api;
 use ProvenExpert\Api\Request;
+use ProvenExpert\Api\Zip;
 use ProvenExpert\Plugin\Helper;
 use ProvenExpert\Plugin\Languages;
 use ProvenExpert\Plugin\Log;
@@ -30,6 +31,13 @@ class Seal_Base extends Object_Base {
 	 * @var string
 	 */
 	protected string $type = '';
+
+	/**
+	 * The name for the request to get the ZIP-file of this widget.
+	 *
+	 * @var string
+	 */
+	protected string $zip_widget_name = '';
 
 	/**
 	 * The HTML-code of this seal.
@@ -137,6 +145,15 @@ class Seal_Base extends Object_Base {
 
 		// bail if API is disabled.
 		if ( ! Api::get_instance()->is_enabled() ) {
+			return;
+		}
+
+		// use ZIP-file if the widget does support it.
+		if ( ! empty( $this->get_zip_widget_name() ) ) {
+			$zip = new Zip( $this->get_zip_widget_name() );
+			$zip->run();
+
+			// do nothing more.
 			return;
 		}
 
@@ -256,5 +273,14 @@ class Seal_Base extends Object_Base {
 	 */
 	protected function get_config(): array {
 		return array();
+	}
+
+	/**
+	 * Return the ZIP widget name.
+	 *
+	 * @return string
+	 */
+	private function get_zip_widget_name(): string {
+		return $this->zip_widget_name;
 	}
 }

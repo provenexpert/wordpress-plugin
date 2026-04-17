@@ -68,13 +68,17 @@ class Widgets {
 	}
 
 	/**
-	 * Add a given md5 to the list of widgets we have saved.
+	 * Save a given HTML code with its md5 and add them to the list of widgets we have saved.
 	 *
+	 * @param string $html The HTML code to save.
 	 * @param string $md5 The md5 to add.
 	 *
 	 * @return void
 	 */
-	public function add_widget_with_code( string $md5 ): void {
+	public function add_widget_with_code( string $html, string $md5 ): void {
+		// save the HTML code from the response.
+		update_option( 'provenExpertWidget' . $md5, $html );
+
 		// get actual list.
 		$list = get_option( 'provenExpertWidgets' );
 
@@ -98,5 +102,18 @@ class Widgets {
 
 		// empty the list.
 		update_option( 'provenExpertWidgets', array() );
+	}
+
+	/**
+	 * Return our own upload directory for unzipped files.
+	 *
+	 * @return string
+	 */
+	public function get_upload_dir(): string {
+		// get the upload directory from WordPress.
+		$upload_dir = wp_upload_dir();
+
+		// return the path to our own upload directory.
+		return $upload_dir['basedir'] . '/provenexpert-widgets/';
 	}
 }

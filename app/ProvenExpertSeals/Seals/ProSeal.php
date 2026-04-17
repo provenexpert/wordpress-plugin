@@ -34,6 +34,13 @@ class ProSeal extends Seal_Base {
 	protected string $type = 'proseal';
 
 	/**
+	 * The name for the request to get the ZIP-file of this widget.
+	 *
+	 * @var string
+	 */
+	protected string $zip_widget_name = 'proseal';
+
+	/**
 	 * Banner color.
 	 *
 	 * @var string

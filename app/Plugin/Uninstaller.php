@@ -98,6 +98,13 @@ class Uninstaller {
 		// delete our custom database-tables.
 		Init::get_instance()->delete_db_tables();
 
+		// delete our custom directory in the upload folder.
+		$directory     = Widgets::get_instance()->get_upload_dir();
+		$wp_filesystem = Helper::get_wp_filesystem();
+		if ( $wp_filesystem->exists( $directory ) ) {
+			$wp_filesystem->delete( $directory, true );
+		}
+
 		// remove options from settings.
 		$settings_obj = Settings::get_instance();
 		$settings_obj->set_settings();

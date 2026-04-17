@@ -10,6 +10,9 @@ namespace ProvenExpert\Plugin;
 // prevent direct access.
 defined( 'ABSPATH' ) || exit;
 
+use WP_Error;
+use WP_Filesystem_Base;
+use WP_Filesystem_Direct;
 use WP_Post;
 use WP_Post_Type;
 
@@ -300,5 +303,67 @@ class Helper {
 	 */
 	public static function get_support_email(): string {
 		return 'support@provenexpert.com';
+	}
+
+	/**
+	 * Return the WP Filesystem object.
+	 *
+	 * @param bool $local Mark with "true" to get the local filesystem object.
+	 *
+	 * @return WP_Filesystem_Base
+	 */
+	public static function get_wp_filesystem( bool $local = false ): WP_Filesystem_Base {
+		// get WP Filesystem-handler for local files if requested.
+		if ( $local ) {
+			require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php';
+			require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php';
+
+			return new WP_Filesystem_Direct( false );
+		}
+
+		// get global WP Filesystem handler.
+		require_once ABSPATH . '/wp-admin/includes/file.php';
+		\WP_Filesystem();
+		global $wp_filesystem;
+
+		// bail if wp_filesystem is not of "WP_Filesystem_Base".
+		if ( ! $wp_filesystem instanceof WP_Filesystem_Base ) {
+			require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php';
+			require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php';
+			return new WP_Filesystem_Direct( false );
+		}
+
+		// return the local object on any error.
+		if ( $wp_filesystem->errors->has_errors() ) {
+			// embed the local directory object.
+			require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php';
+			require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php';
+
+			return new WP_Filesystem_Direct( false );
+		}
+
+		// return the requested filesystem object.
+		return $wp_filesystem;
+	}
+
+	/**
+	 * Create JSON from the given array.
+	 *
+	 * @param array<string|int,mixed>|WP_Error $source The source array.
+	 * @param int                              $flag Flags to use for this JSON.
+	 *
+	 * @return string
+	 */
+	public static function get_json( array|WP_Error $source, int $flag = 0 ): string {
+		// create JSON.
+		$json = wp_json_encode( $source, $flag );
+
+		// bail if creating the JSON failed.
+		if ( ! $json ) {
+			return '';
+		}
+
+		// return the resulting JSON string.
+		return $json;
 	}
 }

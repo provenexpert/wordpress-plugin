@@ -2,12 +2,17 @@
 
 ## [Unreleased]
 
+### Added
+
+- Added support for ZIP-files from ProvenExpert API to use local hosted widgets
+
 ### Changed
+
 - Updated dependencies
 
 ### Fixed
 
-- Fixed a potential error with by third party plugins wrong called hook "block_categories_all"
+- Fixed a potential error with by third party plugins wrongly called hook "block_categories_all"
 
 ## [1.1.2] - 17.11.2025
 

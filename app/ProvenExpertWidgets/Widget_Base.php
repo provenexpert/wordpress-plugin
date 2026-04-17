@@ -14,6 +14,7 @@ defined( 'ABSPATH' ) || exit;
 
 use ProvenExpert\Api\Api;
 use ProvenExpert\Api\Request;
+use ProvenExpert\Api\Zip;
 use ProvenExpert\Plugin\Helper;
 use ProvenExpert\Plugin\Languages;
 use ProvenExpert\Plugin\Log;
@@ -25,11 +26,18 @@ use ProvenExpert\Plugin\Object_Base;
 class Widget_Base extends Object_Base {
 
 	/**
-	 * The widgets type.
+	 * The type of the widget.
 	 *
 	 * @var string
 	 */
 	protected string $type = '';
+
+	/**
+	 * The name for the request to get the ZIP-file of this widget.
+	 *
+	 * @var string
+	 */
+	protected string $zip_widget_name = '';
 
 	/**
 	 * The width of the widget.
@@ -53,7 +61,7 @@ class Widget_Base extends Object_Base {
 	protected string $origin = 'top';
 
 	/**
-	 * The widgets position.
+	 * The position of the widget.
 	 *
 	 * @var int
 	 */
@@ -67,7 +75,7 @@ class Widget_Base extends Object_Base {
 	protected string $side = '';
 
 	/**
-	 * The widgets style.
+	 * The widget style.
 	 *
 	 * @var string
 	 */
@@ -166,7 +174,11 @@ class Widget_Base extends Object_Base {
 	}
 
 	/**
-	 * Update the cached HTML code of this widget via request to the ProvenExpert API.
+	 * Update this widget via request to the ProvenExpert API.
+	 *
+	 * We have 2 ways:
+	 * - Using the HTML code from the API.
+	 * - Using the ZIP-file from the API.
 	 *
 	 * @return void
 	 */
@@ -184,7 +196,16 @@ class Widget_Base extends Object_Base {
 			return;
 		}
 
-		// define the request.
+		// use ZIP-file if the widget does support it.
+		if ( ! empty( $this->get_zip_widget_name() ) ) {
+			$zip = new Zip( $this->get_zip_widget_name() );
+			$zip->run();
+
+			// do nothing more.
+			return;
+		}
+
+		// define the request to get the HTML code of this widget with the configuration from the API.
 		$request_obj = new Request();
 		$request_obj->set_url( PROVENEXPERT_API_WIDGET_URL );
 		$request_obj->set_api_id( $api_obj->get_id() );
@@ -211,7 +232,7 @@ class Widget_Base extends Object_Base {
 				// log event.
 				Log::get_instance()->add_log( __( 'API-request resulted in error:', 'provenexpert' ) . ' <code>' . wp_json_encode( $response_array['errors'] ) . '</code>', 'error', 'api' );
 
-				// if the response contains "wrong credentials" clear the widget cache.
+				// if the response contains "wrong credentials", clear the widget cache.
 				if ( in_array( 'wrong credentials', $response_array['errors'], true ) ) {
 					// log event.
 					/* translators: %1$s will be replaced by the settings URL. */
@@ -228,13 +249,10 @@ class Widget_Base extends Object_Base {
 				return;
 			}
 
-			// get the HTML-code from response array.
+			// get the HTML code from the response array.
 			if ( ! empty( $response_array['html'] ) ) {
-				// save the response so widget can use it.
-				update_option( 'provenExpertWidget' . $this->get_md5(), $response_array['html'] );
-
-				// add this widget to the list of provenexpert_widgets.
-				Widgets::get_instance()->add_widget_with_code( $this->get_md5() );
+				// add this widget to the list of "provenexpert_widgets".
+				Widgets::get_instance()->add_widget_with_code( $response_array['html'], $this->get_md5() );
 			}
 		}
 	}
@@ -395,5 +413,14 @@ class Widget_Base extends Object_Base {
 	 */
 	protected function get_config(): array {
 		return array();
+	}
+
+	/**
+	 * Return the ZIP widget name.
+	 *
+	 * @return string
+	 */
+	private function get_zip_widget_name(): string {
+		return $this->zip_widget_name;
 	}
 }

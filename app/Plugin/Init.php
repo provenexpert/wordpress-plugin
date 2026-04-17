@@ -132,7 +132,7 @@ class Init {
 		 */
 		foreach ( apply_filters( 'provenexpert_objects_with_db_tables', $objects ) as $obj_name ) {
 			// bail if the object is not a string.
-			if( ! is_string( $obj_name ) ) { // @phpstan-ignore function.alreadyNarrowedType
+			if ( ! is_string( $obj_name ) ) { // @phpstan-ignore function.alreadyNarrowedType
 				continue;
 			}
 

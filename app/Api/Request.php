@@ -1,6 +1,6 @@
 <?php
 /**
- * File to handle single API request to ProvenExpert.
+ * File to handle a single API request to ProvenExpert.
  *
  * @source https://www.provenexpert.com/restapi/v1/docs/
  *
@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
 use ProvenExpert\Plugin\Log;
 
 /**
- * Object to handle single request.
+ * Object to handle a single request.
  */
 class Request {
 
@@ -132,7 +132,7 @@ class Request {
 	 * @return bool
 	 */
 	public function send(): bool {
-		// merge header-array and create authentication string, if id and key are set.
+		// merge header-array and create authentication string if id and key are set.
 		$headers                    = $this->header;
 		$headers['Accept-Language'] = $this->get_language_for_header();
 
