@@ -48,12 +48,11 @@ This plugin is compatible with [ClassicPress](https://www.classicpress.net/).
 
 = Can I use the plugin without a ProvenExpert account? =
 
-The plugin can be installed even without ProvenExpert account. However, it is not usable without it.
+The plugin can be installed even without an account on ProvenExpert. However, it is not usable without it.
 
 == Changelog ==
 
 = @@VersionNumber@@ =
-- Updated dependencies
-- Fixed a potential error with by third party plugins wrong called hook "block_categories_all"
+- Missing saving of colors in classic widgets
 
 [older changes](https://github.com/provenexpert/wordpress-plugin/blob/master/changelog.md)
