@@ -174,6 +174,11 @@ class Init {
 		 * @param array<int,string> $objects List of objects.
 		 */
 		foreach ( apply_filters( 'provenexpert_objects_with_db_tables', $objects ) as $obj_name ) {
+			// bail if the value is not a string.
+			if ( ! is_string( $obj_name ) ) {
+				continue;
+			}
+
 			// bail if the object does not have a create-method.
 			if ( ! method_exists( $obj_name, 'delete_table' ) ) {
 				continue;
