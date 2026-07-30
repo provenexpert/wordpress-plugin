@@ -8,6 +8,8 @@
  * 3. Unzip the file in a custom directory in the WordPress-own upload directory.
  * 4. Save the HTML code from the JSON file in the plugin-own cache which will be used for the output of the widget.
  *
+ * @source https://www.provenexpert.com/restapi/v1/docs/
+ *
  * @package provenexpert
  */
 
@@ -18,7 +20,6 @@ defined( 'ABSPATH' ) || exit;
 
 use Error;
 use ProvenExpert\Plugin\Helper;
-use ProvenExpert\Plugin\Languages;
 use ProvenExpert\Plugin\Log;
 use ProvenExpert\ProvenExpertWidgets\Widgets;
 use WP_Error;
@@ -55,9 +56,11 @@ class Zip {
 	/**
 	 * Run the ZIP-file request and processes the results.
 	 *
+	 * @param string $md5
+	 *
 	 * @return void
 	 */
-	public function run(): void {
+	public function run( string $md5 ): void {
 		// get the API object.
 		$api_obj = Api::get_instance();
 
@@ -106,6 +109,7 @@ class Zip {
 
 		// define the target directory for files of this widget.
 		$target_dir = Widgets::get_instance()->get_upload_dir() . $this->get_widget_name() . '/';
+		$target_url = Widgets::get_instance()->get_upload_url() . $this->get_widget_name() . '/';
 
 		// create the target directory if it does not exist.
 		if ( ! $wp_filesystem->exists( $target_dir ) ) {
@@ -115,7 +119,7 @@ class Zip {
 		// delete all files and directories in the target directory.
 		$wp_filesystem->delete( $target_dir, true );
 
-		// get the zip object in the target directory.
+		// unzip the zip object in the target directory.
 		$result = unzip_file( $tmp_file, $target_dir );
 
 		// bail if unzipping failed.
@@ -127,23 +131,35 @@ class Zip {
 			return;
 		}
 
+		// get the name of the file in the zip for this specific widget.
+		switch( $this->get_widget_name() ) {
+			case 'awards':
+				$zip_widget_file_name = 'award';
+				break;
+			default:
+				$zip_widget_file_name = $this->get_widget_name();
+		}
+
 		// get the HTML code from the JSON file in the response.
 		$html      = '';
-		$json_path = $target_dir . 'data/' . $this->get_widget_name() . '.json';
+		$json_path = $target_dir . 'data/' . $zip_widget_file_name . '.json';
 		if ( $wp_filesystem->exists( $json_path ) ) {
 			$json  = (string) $wp_filesystem->get_contents( $json_path );
 			$array = json_decode( $json, true );
 			$html  = ! empty( $array['html'] ) ? $array['html'] : '';
+
+			// replace the base URL.
+			$html = str_replace( '{baseUrl}', $target_url, $html );
 		}
 
 		// get the JS and CSS files from the directory.
-		$js_file  = $target_dir . 'js/' . $this->get_widget_name() . '.js';
-		$css_file = $target_dir . 'css/' . $this->get_widget_name() . '.css';
+		$js_file  = $target_dir . 'js/' . $zip_widget_file_name . '.js';
+		$css_file = $target_dir . 'css/' . $zip_widget_file_name . '.css';
 
 		// bail if anything does not exist.
 		if ( empty( $html ) || ! $wp_filesystem->exists( $js_file ) ) {
 			/* translators: %1$s: Widget name */
-			Log::get_instance()->add_log( sprintf( __( 'Necessary files for the widget %1$s are missing.', 'provenexpert' ), $this->get_widget_name() ), 'error', 'api' );
+			Log::get_instance()->add_log( sprintf( __( 'Necessary files for the widget %1$s are missing from ZIP.', 'provenexpert' ), $this->get_widget_name() ), 'error', 'api' );
 			return;
 		}
 
@@ -162,15 +178,6 @@ class Zip {
 		}
 
 		// add this widget to the list of "provenexpert_widgets".
-		Widgets::get_instance()->add_widget_with_code( $html, $this->get_md5() );
-	}
-
-	/**
-	 * Create a unique md5 hash of this object depending on its attributes and the actual language.
-	 *
-	 * @return string
-	 */
-	private function get_md5(): string {
-		return md5( Languages::get_instance()->get_current_locale() . $this->get_widget_name() );
+		Widgets::get_instance()->add_widget_with_code( $html, $md5 );
 	}
 }

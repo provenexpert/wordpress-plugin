@@ -116,4 +116,17 @@ class Widgets {
 		// return the path to our own upload directory.
 		return $upload_dir['basedir'] . '/provenexpert-widgets/';
 	}
+
+	/**
+	 * Return our own upload directory URL for unzipped files.
+	 *
+	 * @return string
+	 */
+	public function get_upload_url(): string {
+		// get the upload directory from WordPress.
+		$upload_dir = wp_upload_dir();
+
+		// return the path to our own upload directory.
+		return $upload_dir['baseurl'] . '/provenexpert-widgets/';
+	}
 }

@@ -199,7 +199,7 @@ class Widget_Base extends Object_Base {
 		// use ZIP-file if the widget does support it.
 		if ( ! empty( $this->get_zip_widget_name() ) ) {
 			$zip = new Zip( $this->get_zip_widget_name() );
-			$zip->run();
+			$zip->run(  $this->get_md5() );
 
 			// do nothing more.
 			return;

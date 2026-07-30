@@ -108,6 +108,7 @@ class Awards extends Widget_Base {
 			return $api_obj->show_api_not_prepared();
 		}
 
+		// get the award types from cache.
 		$award_types = get_option( 'provenExpertWidget' . $this->get_md5(), '' );
 
 		// if html is still empty, get it from API.
