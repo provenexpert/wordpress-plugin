@@ -1,6 +1,12 @@
 # Changelog
 
-## [Unreleased]
+## [1.1.4] - 22.06.2026
+
+### Fixed
+
+- Missing saving of colors in classic widgets
+
+## [1.1.3] - 30.03.2026
 
 ### Added
 

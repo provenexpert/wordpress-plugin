@@ -7,6 +7,9 @@
 
 namespace ProvenExpert\PageBuilder\ClassicWidgets;
 
+// prevent direct access.
+defined( 'ABSPATH' ) || exit;
+
 /**
  * The trait object.
  */
@@ -132,6 +135,12 @@ trait ClassicWidgets_Trait {
 				case 'number':
 				case 'range':
 					$instance[ $name ] = absint( ! empty( $new_instance[ $name ] ) ? $new_instance[ $name ] : 0 );
+					break;
+				case 'color':
+					$instance[ $name ] = sanitize_hex_color( ! empty( $new_instance[ $name ] ) ? $new_instance[ $name ] : '' );
+					break;
+				case 'text':
+					$instance[ $name ] = sanitize_text_field( ! empty( $new_instance[ $name ] ) ? $new_instance[ $name ] : '' );
 					break;
 			}
 		}
